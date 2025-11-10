@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-primary text-foreground font-['Inter',sans-serif];
+  }
+
+  ::selection {
+    background-color: rgba(229, 9, 20, 0.35);
+    color: #f8f8f8;
+  }
+}
