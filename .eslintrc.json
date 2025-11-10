@@ -1,0 +1,14 @@
+{
+  "extends": ["react-app", "plugin:tailwindcss/recommended"],
+  "rules": {
+    "tailwindcss/classnames-order": "warn",
+    "tailwindcss/no-custom-classname": "warn",
+    "tailwindcss/no-contradicting-classname": "error"
+  },
+  "settings": {
+    "tailwindcss": {
+      "callees": ["classnames", "clsx", "tw"],
+      "config": "tailwind.config.js"
+    }
+  }
+}
