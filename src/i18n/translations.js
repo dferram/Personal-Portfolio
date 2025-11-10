@@ -1,0 +1,219 @@
+export const translations = {
+  es: {
+    common: {
+      brand: 'Fernando Ramírez',
+      languageLabel: 'Idioma',
+      languageOptions: {
+        es: 'ES',
+        en: 'EN',
+      },
+      portfolioBadge: 'Portafolio 2025',
+      viewProjects: 'Ver Proyectos',
+      backToProjects: '← Volver a Proyectos',
+      notFoundTitle: 'Proyecto no encontrado',
+      notFoundDescription:
+        'No pudimos encontrar un proyecto con el identificador proporcionado. Revisa el enlace o regresa a la página principal.',
+      metrics: {
+        heading: 'Ficha técnica',
+        role: 'Rol',
+        duration: 'Duración',
+        team: 'Equipo',
+        year: 'Año',
+      },
+      linkLabels: {
+        github: 'Código',
+        demo: 'Demo',
+        certificate: 'Certificado',
+      },
+    },
+    navbar: {
+      links: [
+        { label: 'Inicio', href: '#inicio' },
+        { label: 'Perfil', href: '#sobre-mí' },
+        { label: 'Habilidades', href: '#habilidades' },
+        { label: 'Proyectos', href: '#proyectos' },
+        { label: 'Contacto', href: '#contacto' },
+        { label: 'Certificados', href: '/certificados' },
+      ],
+    },
+    hero: {
+      title: 'Fernando Ramírez',
+      subtitle: 'Software Engineer | Aspiring Data Scientist',
+      description:
+        'Estudiante de 5º semestre de Ingeniería de Software enfocado en construir experiencias digitales robustas y explorar cómo la ciencia de datos potencia decisiones estratégicas basadas en evidencia.',
+      cta: 'Ver Proyectos',
+    },
+    about: {
+      title: 'Sobre Mí',
+      paragraphs: [
+        'Soy estudiante de quinto semestre de Ingeniería de Software apasionado por construir soluciones digitales end-to-end. Mi experiencia abarca el desarrollo full-stack con un enfoque en experiencias modernas y accesibles que generen impacto.',
+        'Actualmente estoy pivotando hacia el análisis de datos y la ciencia de datos, combinando mi conocimiento técnico con la curiosidad por entender cómo la información guía decisiones estratégicas. Busco proyectos que me permitan unir ambas disciplinas.',
+      ],
+    },
+    skills: {
+      tag: 'Skillset',
+      title: 'Habilidades Técnicas',
+      description:
+        'Tecnologías que domino para crear productos digitales end-to-end y herramientas que estoy adoptando para impulsar el análisis basado en datos.',
+      categories: {
+        web: {
+          title: 'Desarrollo Web (Full-Stack)',
+          description:
+            'Construcción de experiencias completas: desde interfaces accesibles hasta APIs escalables y bases de datos robustas.',
+          items: ['React', 'Node.js', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'PostgreSQL', 'MongoDB'],
+        },
+        data: {
+          title: 'Análisis de Datos (En aprendizaje)',
+          description:
+            'Herramientas y librerías que utilizo para limpiar, analizar y visualizar información que apoya la toma de decisiones.',
+          items: ['Python', 'Pandas', 'NumPy', 'SQL', 'Scikit-learn', 'Matplotlib'],
+        },
+      },
+    },
+    projects: {
+      tag: 'Work',
+      title: 'Proyectos Destacados',
+      description:
+        'Selección de trabajos recientes que combinan ingeniería de software y el potencial de los datos para generar valor.',
+      viewDetail: 'Ver Detalle',
+    },
+    contact: {
+      tag: 'Contacto',
+      title: 'Construyamos algo increíble',
+      description:
+        'Estoy abierto a oportunidades, colaboraciones y proyectos que unan desarrollo de software con el poder del análisis de datos. Escríbeme y exploremos ideas juntos.',
+      links: {
+        linkedin: 'LinkedIn',
+        github: 'GitHub',
+        email: 'Email',
+      },
+    },
+    viewProject: {
+      gallery: 'Galería',
+      overview: 'Visión general',
+      objectives: 'Objetivos clave',
+      responsibilities: 'Responsabilidades',
+      description: 'Descripción del Proyecto',
+      technologies: 'Tecnologías',
+      links: 'Enlaces',
+      lightboxClose: 'Cerrar galería',
+      previousImage: 'Imagen anterior',
+      nextImage: 'Imagen siguiente',
+      expandedLabel: 'Vista ampliada de',
+    },
+    certificates: {
+      title: 'Mis Certificaciones',
+      subtitle:
+        'Aquí puedes encontrar las credenciales y certificados de los cursos y tecnologías que he completado.',
+      button: 'Ver Credencial',
+    },
+  },
+  en: {
+    common: {
+      brand: 'Fernando Ramírez',
+      languageLabel: 'Language',
+      languageOptions: {
+        es: 'ES',
+        en: 'EN',
+      },
+      portfolioBadge: 'Portfolio 2025',
+      viewProjects: 'See Projects',
+      backToProjects: '← Back to Projects',
+      notFoundTitle: 'Project not found',
+      notFoundDescription:
+        'We could not find a project with the provided identifier. Please verify the link or go back to the main page.',
+      metrics: {
+        heading: 'Tech brief',
+        role: 'Role',
+        duration: 'Duration',
+        team: 'Team',
+        year: 'Year',
+      },
+      linkLabels: {
+        github: 'Code',
+        demo: 'Demo',
+        certificate: 'Certificate',
+      },
+    },
+    navbar: {
+      links: [
+        { label: 'Home', href: '#inicio' },
+        { label: 'Profile', href: '#sobre-mí' },
+        { label: 'Skills', href: '#habilidades' },
+        { label: 'Projects', href: '#proyectos' },
+        { label: 'Contact', href: '#contacto' },
+        { label: 'Certificates', href: '/certificados' },
+      ],
+    },
+    hero: {
+      title: 'Fernando Ramírez',
+      subtitle: 'Software Engineer | Aspiring Data Scientist',
+      description:
+        'Fifth-semester Software Engineering student focused on building robust digital experiences while exploring how data science powers evidence-based strategic decisions.',
+      cta: 'See Projects',
+    },
+    about: {
+      title: 'About Me',
+      paragraphs: [
+        'I am a fifth-semester Software Engineering student passionate about building end-to-end digital solutions. My experience spans full-stack development with a focus on modern, accessible experiences that drive impact.',
+        'I am currently pivoting toward data and analytics, combining my technical background with curiosity about how information informs strategic decisions. I seek projects where both disciplines converge.',
+      ],
+    },
+    skills: {
+      tag: 'Skillset',
+      title: 'Technical Skills',
+      description:
+        'Technologies I master to deliver end-to-end digital products and the tools I am adopting to power data-driven analysis.',
+      categories: {
+        web: {
+          title: 'Web Development (Full-Stack)',
+          description:
+            'Building complete experiences: from accessible interfaces to scalable APIs and robust databases.',
+          items: ['React', 'Node.js', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'PostgreSQL', 'MongoDB'],
+        },
+        data: {
+          title: 'Data Analysis (In progress)',
+          description:
+            'Tools and libraries I rely on to clean, analyze, and visualize information that supports decision-making.',
+          items: ['Python', 'Pandas', 'NumPy', 'SQL', 'Scikit-learn', 'Matplotlib'],
+        },
+      },
+    },
+    projects: {
+      tag: 'Work',
+      title: 'Featured Projects',
+      description:
+        'A selection of recent work that blends software engineering with the power of data to create value.',
+      viewDetail: 'View Detail',
+    },
+    contact: {
+      tag: 'Contact',
+      title: 'Let’s build something great',
+      description:
+        'I am open to opportunities, collaborations, and projects that bring software development together with the power of data analysis. Reach out and let’s explore ideas together.',
+      links: {
+        linkedin: 'LinkedIn',
+        github: 'GitHub',
+        email: 'Email',
+      },
+    },
+    viewProject: {
+      gallery: 'Gallery',
+      overview: 'Overview',
+      objectives: 'Key objectives',
+      responsibilities: 'Responsibilities',
+      description: 'Project Description',
+      technologies: 'Technologies',
+      links: 'Links',
+      lightboxClose: 'Close gallery',
+      previousImage: 'Previous image',
+      nextImage: 'Next image',
+      expandedLabel: 'Expanded view of',
+    },
+    certificates: {
+      title: 'My Certifications',
+      subtitle: 'Here you can find the credentials and certificates for the courses and technologies I have completed.',
+      button: 'View Credential',
+    },
+  },
+};

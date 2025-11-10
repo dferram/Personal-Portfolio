@@ -18,3 +18,41 @@
     color: #f8f8f8;
   }
 }
+
+.spark-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.spark-overlay span {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle at center, rgba(229, 9, 20, 0.55), rgba(229, 9, 20, 0));
+  filter: blur(0.5px);
+  opacity: 0.65;
+  animation: sparkFloat var(--spark-duration, 12s) ease-in-out infinite;
+}
+
+@keyframes sparkFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate3d(var(--spark-x, 10px), -25px, 0) scale(1.05);
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(calc(var(--spark-x, 10px) * -0.5), 20px, 0) scale(0.85);
+    opacity: 0;
+  }
+}
