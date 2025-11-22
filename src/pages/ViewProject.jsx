@@ -46,16 +46,14 @@ function MetricGrid({ metrics, heading }) {
   return (
     <div>
       <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-foreground">{heading ?? 'Ficha técnica'}</h3>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
+      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
         {metrics.map(({ label, value }) => (
           <div
             key={label}
             className="rounded-2xl border border-white/5 bg-black/50 px-4 py-4 text-left transition duration-300 hover:border-accent/60"
           >
             <p className="text-[0.65rem] uppercase tracking-[0.4em] text-muted">{label}</p>
-            <p className="mt-2 text-sm font-semibold leading-snug text-foreground break-words whitespace-normal">
-              {value}
-            </p>
+            <p className="mt-2 text-sm font-semibold leading-snug text-foreground break-words whitespace-normal">{value}</p>
           </div>
         ))}
       </div>

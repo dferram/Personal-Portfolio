@@ -39,10 +39,10 @@ export default function Contact() {
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group flex flex-1 items-center justify-center gap-3 rounded-full border border-accent/50 bg-black/70 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-foreground transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent hover:text-white hover:shadow-[0_0_35px_rgba(229,9,20,0.45)]"
+              className="group flex flex-1 items-center justify-center gap-3 rounded-full border border-red-600 bg-black/70 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-foreground transition-all duration-300 hover:-translate-y-1 hover:border-red-600 hover:bg-red-600 hover:text-white"
             >
-              <span className="text-accent transition duration-300 group-hover:text-white">{link.icon}</span>
-              {linkLabels?.[link.key] ?? link.key}
+              <span className="text-red-600 transition-all duration-300 group-hover:text-white">{link.icon}</span>
+              <span className="transition-all duration-300 group-hover:text-white">{linkLabels?.[link.key] ?? link.key}</span>
             </a>
           ))}
         </div>

@@ -16,12 +16,12 @@ export const PROJECTS_DATA = [
     isOngoing: false,
     year: '2024',
     duration: {
-      es: '6 semanas',
-      en: '6 weeks',
+      es: '1 semana',
+      en: '1 week',
     },
     team: {
-      es: '3 personas',
-      en: '3 people',
+      es: '1 desarrollador',
+      en: '1 developer',
     },
     role: {
       es: 'Ingeniero de Datos y Analista',
@@ -79,12 +79,12 @@ export const PROJECTS_DATA = [
     isOngoing: true,
     year: '2025',
     duration: {
-      es: 'Proyecto continuo',
-      en: 'Ongoing project',
+      es: 'En desarrollo',
+      en: 'In progress',
     },
     team: {
-      es: '4 personas',
-      en: '4 people',
+      es: '1 desarrollador',
+      en: '1 developer',
     },
     role: {
       es: 'Ingeniero Full-Stack',
@@ -147,8 +147,8 @@ export const PROJECTS_DATA = [
       en: 'In development',
     },
     team: {
-      es: 'Equipo de 7 desarrolladores',
-      en: 'Team of 7 developers',
+      es: '7 desarrolladores',
+      en: '7 developers',
     },
     role: {
       es: 'Desarrollador Backend',

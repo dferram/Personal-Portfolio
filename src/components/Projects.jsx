@@ -36,7 +36,7 @@ export default function Projects() {
           )}
         </div>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
           {PROJECTS_DATA.map((project) => {
             const heroImage = project.images?.hero ?? null;
             const galleryImages = Array.isArray(project.images?.gallery) ? project.images.gallery : [];
@@ -79,7 +79,7 @@ export default function Projects() {
                   <div>
                     <h3 className="text-xl font-semibold text-foreground">{title}</h3>
                     {subtitle && (
-                      <p className="mt-1 text-xs font-medium uppercase tracking-[0.2em] text-muted">{subtitle}</p>
+                      <p className="mt-1 truncate text-xs font-medium uppercase tracking-[0.2em] text-muted">{subtitle}</p>
                     )}
                     <p className="mt-2 text-xs font-medium uppercase tracking-[0.3em] text-muted/80">
                       {year ?? (project.isOngoing ? (language === 'en' ? 'Ongoing' : 'En curso') : '—')}

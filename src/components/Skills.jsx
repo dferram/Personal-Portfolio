@@ -1,16 +1,22 @@
 import { useEffect, useMemo, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { SKILLS_DATA } from '@/data/skillsData';
 import { useI18n } from '@/i18n/I18nProvider';
 
-const SCROLL_SNAP_CLASSES = 'snap-x snap-mandatory';
+gsap.registerPlugin(ScrollTrigger);
 
 const HORIZONTAL_SECTION_BG = 'bg-black';
 
+// Full-width carousel item styling (no cutoff, proper padding/spacing)
 const SKILL_ITEM_CLASSES =
-  'flex w-40 flex-shrink-0 flex-col items-center gap-4 px-6 text-center';
-const SKILL_ICON_CLASSES = 'h-20 w-20 object-contain drop-shadow-[0_0_18px_rgba(229,9,20,0.55)]';
-const SKILL_NAME_CLASSES = 'text-lg font-medium text-white';
+  'group flex flex-col items-center justify-center gap-6 text-center transition-all duration-300 hover:scale-105 flex-shrink-0 w-96';
+const SKILL_ICON_CLASSES =
+  'h-40 w-40 md:h-48 md:w-48 object-contain drop-shadow-[0_0_8px_rgba(229,9,20,0.8)] drop-shadow-[0_0_20px_rgba(229,9,20,0.4)] transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(229,9,20,0.95)] group-hover:drop-shadow-[0_0_30px_rgba(229,9,20,0.6)] group-hover:brightness-120 group-hover:saturate-150';
+const SKILL_NAME_CLASSES = 'text-2xl md:text-3xl font-bold text-white tracking-wide';
+const CATEGORY_TITLE_CLASSES = 'text-5xl md:text-6xl font-black uppercase text-white drop-shadow-[0_4px_16px_rgba(229,9,20,0.3)] leading-tight';
+const CATEGORY_DESC_CLASSES = 'mt-3 text-lg md:text-xl text-gray-300 font-light max-w-xl';
 
 export default function Skills() {
   const { t } = useI18n();
@@ -19,59 +25,99 @@ export default function Skills() {
   const title = t('skills.title') ?? 'Habilidades Técnicas';
   const description = t('skills.description') ?? 'Mi Stack Tecnológico y Herramientas';
 
-  const scrollAreaRef = useRef(null);
-
-  useEffect(() => {
-    const scrollElement = scrollAreaRef.current;
-    if (!scrollElement) return;
-
-    const handleWheel = (event) => {
-      if (!scrollElement) return;
-      const { deltaY, deltaX } = event;
-
-      if (Math.abs(deltaX) > Math.abs(deltaY)) return;
-
-      const maxScrollLeft = scrollElement.scrollWidth - scrollElement.clientWidth;
-      const atStart = scrollElement.scrollLeft <= 0;
-      const atEnd = scrollElement.scrollLeft >= maxScrollLeft;
-
-      if ((deltaY < 0 && atStart) || (deltaY > 0 && atEnd)) {
-        return;
-      }
-
-      event.preventDefault();
-      scrollElement.scrollLeft += deltaY;
-    };
-
-    scrollElement.addEventListener('wheel', handleWheel, { passive: false });
-
-    return () => {
-      scrollElement.removeEventListener('wheel', handleWheel);
-    };
-  }, []);
+  // Separate refs for each carousel: trigger (outer container) and track (inner scrollable element)
+  const carouselTriggersRef = useRef([]);
+  const carouselTracksRef = useRef([]);
 
   const categories = useMemo(() => {
     return SKILLS_DATA.map((category) => {
       const translatedTitle = t(`skills.categories.${category.id}.title`);
-      const translatedDescription = t(`skills.categories.${category.id}.description`);
 
       return {
         ...category,
         title:
           (typeof translatedTitle === 'string' && translatedTitle.length > 0 && translatedTitle) || category.title || '',
-        description:
-          (typeof translatedDescription === 'string' && translatedDescription.length > 0 && translatedDescription) ||
-          category.description ||
-          '',
         items: category.items ?? [],
       };
     });
   }, [t]);
 
+  useEffect(() => {
+    // Use gsap.context to manage animations and prevent duplicates in React strict mode
+    const ctx = gsap.context(() => {
+      carouselTracksRef.current.forEach((track, idx) => {
+        if (!track) return;
+
+        const triggerContainer = carouselTriggersRef.current[idx];
+        if (!triggerContainer) return;
+
+        // Calculate the total distance the track needs to travel horizontally
+        const trackWidth = track.scrollWidth;
+        const containerWidth = triggerContainer.clientWidth;
+        const distance = trackWidth - containerWidth;
+
+        if (distance <= 0) return;
+
+        // Animate ONLY the X axis (xPercent) to move the track left
+        // The trigger container is pinned, so the entire section stays visible
+        gsap.to(track, {
+          xPercent: -(distance / trackWidth) * 100,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: triggerContainer,
+            start: 'top top',
+            // End distance: user scrolls down by exactly the amount of horizontal travel
+            end: () => `+=${distance}`,
+            scrub: 2,
+            pin: true, // Pin the ENTIRE section (title + gallery)
+            pinSpacing: true,
+            invalidateOnRefresh: true,
+            markers: false,
+          },
+        });
+      });
+    });
+
+    return () => {
+      ctx.revert(); // Clean up all animations created in this context
+    };
+  }, [categories]);
+
+  // Observe right-column groups to trigger entry animations when they enter viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target;
+          if (entry.isIntersecting) {
+            const items = el.querySelectorAll('[data-skill-item]');
+            items.forEach((it, idx) => {
+              setTimeout(() => {
+                it.style.opacity = '1';
+                it.style.transform = 'translateY(0)';
+              }, idx * 100);
+            });
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    carouselTracksRef.current.forEach((el) => {
+      if (el) {
+        observer.observe(el);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [categories]);
+
   return (
-    <section id="habilidades" className={`relative overflow-hidden py-28 text-white ${HORIZONTAL_SECTION_BG}`}>
+    <section id="habilidades" className={`relative text-white ${HORIZONTAL_SECTION_BG}`}>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,9,20,0.25),_transparent_65%)]" />
-      <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-24 px-6">
+      
+      {/* Main Header */}
+      <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-0 px-6 py-28">
         <header className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
           {tag && (
             <span className="text-xs font-semibold uppercase tracking-[0.35em] text-red-500">{tag}</span>
@@ -82,59 +128,68 @@ export default function Skills() {
           </h2>
           {description && <p className="text-base text-gray-400 md:text-lg">{description}</p>}
         </header>
+      </div>
 
-        {categories.map((category, index) => {
-          const isScrollable = category.id !== 'data';
+      {/* Each Category is a Full-Screen Panel */}
+      {categories.map((category, index) => {
+        return (
+          <div
+            key={category.id}
+            ref={(el) => {
+              carouselTriggersRef.current[index] = el;
+            }}
+            className="relative min-h-screen w-full flex flex-col overflow-hidden bg-black"
+          >
+            {/* Title Section - Top of the panel */}
+            <div className="relative z-10 flex flex-col justify-start px-6 pt-20 pb-12 md:pt-24">
+              <h3 className={CATEGORY_TITLE_CLASSES}>
+                {category.title}
+              </h3>
+            </div>
 
-          return (
-            <div key={category.id} className="relative flex flex-col gap-12">
+            {/* Carousel Track - Fills remaining vertical space, centers content */}
+            <div className="relative flex-1 flex items-center overflow-hidden px-6 pb-12">
               <div
-                className={
-                  (isScrollable ? 'sticky top-24 z-10 ' : 'relative z-10 ') +
-                  'max-w-lg bg-black/95 px-8 pt-6 text-left ' +
-                  (isScrollable ? 'pb-12' : 'pb-8')
-                }
+                ref={(el) => {
+                  carouselTracksRef.current[index] = el;
+                }}
+                className="flex gap-8 items-center"
+                data-carousel-scroll
+                style={{
+                  minWidth: 'min-content',
+                  width: '100%',
+                }}
               >
-                <h3 className="text-2xl font-bold uppercase tracking-[0.35em] text-red-500">{category.title}</h3>
-              </div>
+                <style>{`
+                  #habilidades [data-carousel-scroll]::-webkit-scrollbar { display: none; }
+                `}</style>
 
-              <div className="relative z-0">
-                {isScrollable ? (
+                {category.items.map((item, itemIndex) => (
                   <div
-                    ref={index === 0 ? scrollAreaRef : undefined}
-                    data-horizontal-scroll={index === 0 ? true : undefined}
-                    className={`flex gap-16 overflow-x-auto overflow-y-hidden pb-8 ${SCROLL_SNAP_CLASSES}`}
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    key={item.name}
+                    className={SKILL_ITEM_CLASSES}
+                    data-skill-item
+                    style={{
+                      opacity: 0,
+                      transform: 'translateY(24px)',
+                      transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+                      transitionDelay: `${itemIndex * 100}ms`,
+                    }}
                   >
-                    {index === 0 && (
-                      <style>{`
-                        #habilidades [data-horizontal-scroll="true"]::-webkit-scrollbar { display: none; }
-                      `}</style>
-                    )}
-                    <div className="flex gap-12 px-8">
-                      {category.items.map((item) => (
-                        <div key={item.name} className={SKILL_ITEM_CLASSES}>
-                          <img src={item.icon} alt={item.name} className={SKILL_ICON_CLASSES} loading="lazy" />
-                          <p className={SKILL_NAME_CLASSES}>{item.name}</p>
-                        </div>
-                      ))}
-                    </div>
+                    <img
+                      src={item.icon}
+                      alt={item.name}
+                      className={SKILL_ICON_CLASSES}
+                      loading="lazy"
+                    />
+                    <p className={SKILL_NAME_CLASSES}>{item.name}</p>
                   </div>
-                ) : (
-                  <div className="flex flex-wrap justify-center gap-16 px-8 pb-8">
-                    {category.items.map((item) => (
-                      <div key={item.name} className={SKILL_ITEM_CLASSES}>
-                        <img src={item.icon} alt={item.name} className={SKILL_ICON_CLASSES} loading="lazy" />
-                        <p className={SKILL_NAME_CLASSES}>{item.name}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                ))}
               </div>
             </div>
-          );
-        })}
-      </div>
+          </div>
+        );
+      })}
     </section>
   );
 }
