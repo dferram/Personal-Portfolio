@@ -31,7 +31,7 @@ export default function Hero() {
               zIndex: 1,
             }}
           >
-            portfolio
+            "portfolio"
           </div>
           
           {/* Layer 2 - MIDDLE BACK - Large, semi-transparent */}
@@ -46,7 +46,7 @@ export default function Hero() {
               zIndex: 2,
             }}
           >
-            portfolio
+            "portfolio"
           </div>
           
           {/* Layer 3 - Near front - Medium opacity */}
@@ -61,7 +61,7 @@ export default function Hero() {
               zIndex: 3,
             }}
           >
-            portfolio
+            "portfolio"
           </div>
           
           {/* Layer 4 - Close to front */}
@@ -76,7 +76,7 @@ export default function Hero() {
               zIndex: 4,
             }}
           >
-            portfolio
+            "portfolio"
           </div>
           
           {/* FOREGROUND LAYER - Main sharp Electric Blue text */}
@@ -91,7 +91,7 @@ export default function Hero() {
               zIndex: 10,
             }}
           >
-            portfolio
+            "portfolio"
           </div>
           
           {/* Year '2026' - White with subtle drop shadow, aligned with baseline */}
