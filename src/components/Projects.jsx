@@ -20,19 +20,17 @@ export default function Projects() {
   const localizedLinkLabels = t('common.linkLabels') ?? {};
 
   return (
-    <section id="proyectos" className="relative py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(229,9,20,0.08),_transparent_70%)]" />
+    <section id="proyectos" className="relative py-24 bg-primary-dark">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="mx-auto flex flex-col items-center gap-4 text-center md:max-w-2xl">
           {sectionTag && (
-            <span className="text-sm font-semibold uppercase tracking-[0.35em] text-accent">{sectionTag}</span>
+            <span className="text-sm font-bold uppercase tracking-[0.3em] text-accent">{sectionTag}</span>
           )}
-          <h2 className="text-3xl font-semibold text-foreground md:text-4xl">
+          <h2 className="text-4xl font-black text-foreground md:text-5xl">
             {sectionTitle}
-            <span className="ml-3 text-accent">//</span>
           </h2>
           {sectionDescription && (
-            <p className="text-sm text-muted md:text-base">{sectionDescription}</p>
+            <p className="text-base text-muted md:text-lg">{sectionDescription}</p>
           )}
         </div>
 
@@ -60,7 +58,7 @@ export default function Projects() {
             return (
               <article
                 key={project.id}
-                className="group relative overflow-hidden rounded-2xl border border-white/5 bg-[#1a1a1a]/95 shadow-[0_35px_60px_-15px_rgba(229,9,20,0.2)] backdrop-blur transition duration-300 hover:-translate-y-2 hover:scale-[1.015] hover:border-accent/70 cursor-pointer"
+                className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg cursor-pointer"
                 role="link"
                 tabIndex={0}
                 aria-label={`${viewDetailLabel} ${title}`}
@@ -98,8 +96,7 @@ export default function Projects() {
                     {technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full border border-accent/40 bg-black/60 px-3 py-1 text-xs font-medium uppercase tracking-[0.15em] text-foreground/70 transition duration-300 group-hover:border-accent group-hover:text-foreground"
-                      >
+                        className="pill-badge text-xs">
                         {tech}
                       </span>
                     ))}
@@ -124,7 +121,7 @@ export default function Projects() {
                         event.stopPropagation();
                         goToDetail();
                       }}
-                      className="inline-flex items-center gap-2 rounded-full border border-accent px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-foreground transition.duration-300 hover:-translate-y-1 hover:border-accent-light hover:text-white"
+                      className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-accent-dark"
                     >
                       {viewDetailLabel}
                     </button>

@@ -3,15 +3,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0a0a0a',
-        accent: '#E50914',
-        'accent-dark': '#B0060F',
-        'accent-light': '#FF2A36',
-        muted: '#A0A0A0',
-        foreground: '#F0F0F0',
+        primary: '#FFFFFF',
+        'primary-dark': '#F5F5F5',
+        accent: '#1a2aeb',
+        'accent-dark': '#0f1da8',
+        'accent-light': '#3d4ef0',
+        muted: '#666666',
+        foreground: '#0a0a0a',
+        'foreground-light': '#333333',
       },
       boxShadow: {
-        glow: '0 0 25px rgba(229, 9, 20, 0.35)',
+        clean: '0 2px 8px rgba(0, 0, 0, 0.08)',
+        'clean-lg': '0 4px 16px rgba(0, 0, 0, 0.12)',
       },
     },
   },

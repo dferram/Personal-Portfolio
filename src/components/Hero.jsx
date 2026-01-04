@@ -1,4 +1,3 @@
-import SparkOverlay from '@/components/SparkOverlay';
 import { useI18n } from '@/i18n/I18nProvider';
 
 export default function Hero() {
@@ -13,35 +12,44 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-black via-[#0a0a0a] to-black"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-primary pt-20"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,9,20,0.18),_transparent_60%)]" />
-      <SparkOverlay className="opacity-80" />
-      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 text-center">
+      {/* Large background text effect - similar to reference image */}
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden opacity-10 pointer-events-none">
+        <h1 className="text-[20rem] font-black text-accent select-none">
+          portfolio
+        </h1>
+      </div>
+
+      <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-8 px-6 text-center">
         {badge && (
-          <span className="rounded-full border border-accent/40 px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-accent">
+          <span className="inline-block rounded-full border-2 border-accent px-6 py-2 text-xs font-bold uppercase tracking-[0.3em] text-accent">
             {badge}
           </span>
         )}
-        <h1 className="text-4xl font-bold text-white drop-shadow-[0_0_35px_rgba(229,9,20,0.35)] md:text-7xl">
+        
+        <h1 className="text-6xl font-black text-foreground md:text-8xl leading-tight">
           {title}
         </h1>
-        <h2 className="text-xl font-medium text-foreground/80 md:text-3xl">
+        
+        <h2 className="text-2xl font-semibold text-foreground-light md:text-4xl">
           {subtitle?.split('|')?.[0] ?? subtitle}
           {subtitle?.includes('|') && (
             <>
-              <span className="text-accent-light"> | </span>
+              <span className="text-accent"> | </span>
               {subtitle.split('|')[1]}
             </>
           )}
         </h2>
+        
         {description && (
-          <p className="max-w-2xl text-base leading-relaxed text-muted md:text-lg">{description}</p>
+          <p className="max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{description}</p>
         )}
+        
         {cta && (
           <a
             href="#proyectos"
-            className="inline-flex items-center gap-3 rounded-full bg-accent px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-glow transition duration-300 ease-out hover:-translate-y-1 hover:bg-accent-light hover:shadow-[0_0_45px_rgba(229,9,20,0.45)]"
+            className="inline-flex items-center gap-3 rounded-full bg-accent px-10 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white shadow-clean-lg transition duration-300 ease-out hover:-translate-y-1 hover:bg-accent-light hover:shadow-xl"
           >
             {cta}
             <span className="text-lg">→</span>

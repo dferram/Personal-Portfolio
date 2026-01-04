@@ -25,9 +25,9 @@ export default function Navbar() {
   }, [location]);
 
   return (
-    <nav className="fixed top-0 w-full bg-black/85 backdrop-blur border-b border-accent-dark/40 z-50">
+    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur border-b border-gray-200 z-50 shadow-clean">
       <div className="flex w-full items-center justify-between px-2 py-4 sm:px-4 md:px-6">
-        <Link to="/" className="text-2xl font-semibold text-white drop-shadow-[0_0_12px_rgba(229,9,20,0.35)]">
+        <Link to="/" className="text-2xl font-bold text-foreground hover:text-accent transition-colors">
           {brand}
         </Link>
 
@@ -40,7 +40,7 @@ export default function Navbar() {
               const hash = isAnchor ? href : undefined;
 
               const commonClasses =
-                'relative text-xs md:text-sm font-medium uppercase tracking-[0.2em] text-foreground transition duration-300 ease-out hover:text-accent after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:after:scale-x-100';
+                'relative text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-foreground-light transition duration-300 ease-out hover:text-accent';
 
               const destination = isAnchor ? { pathname: '/', hash } : href;
 
@@ -68,17 +68,17 @@ export default function Navbar() {
             })}
           </div>
 
-          <div className="flex items-center gap-2 rounded-full border border-accent/40 bg-black/70 px-2 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-foreground">
+          <div className="flex items-center gap-2 rounded-full border border-accent/30 bg-primary-dark px-2 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
             {LANG_OPTIONS.map((lang) => (
               <button
                 key={lang}
                 type="button"
                 onClick={() => setLanguage(lang)}
                 aria-pressed={language === lang}
-                className={`rounded-full px-2 py-1 transition duration-300 ${
+                className={`rounded-full px-3 py-1.5 transition duration-300 ${
                   language === lang
-                    ? 'bg-accent text-white shadow-[0_0_18px_rgba(229,9,20,0.4)]'
-                    : 'text-foreground/70 hover:text-white'
+                    ? 'bg-accent text-white'
+                    : 'text-muted hover:text-foreground'
                 }`}
               >
                 {t(`common.languageOptions.${lang}`) ?? lang.toUpperCase()}
