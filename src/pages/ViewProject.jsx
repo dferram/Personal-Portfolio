@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight, FaCheckCircle, FaImage, FaTimes } from 'react-icons/fa';
 import { PROJECTS_DATA } from '../data/projects';
-import SparkOverlay from '@/components/SparkOverlay';
 import { useI18n } from '@/i18n/I18nProvider';
 import { getLocalizedList, getLocalizedValue } from '@/i18n/utils';
 
@@ -26,13 +25,13 @@ function StatusBadge({ status, isOngoing }) {
   const isComplete = !isOngoing;
 
   return (
-    <span className="flex items-center gap-2 rounded-full bg-[#1a1a1a] px-5 py-1.5 text-xs font-semibold uppercase tracking-[0.35em] text-foreground">
+    <span className="flex items-center gap-2 pill-badge-lg">
       {isComplete ? (
-        <FaCheckCircle className="text-accent" aria-hidden="true" />
+        <FaCheckCircle aria-hidden="true" />
       ) : (
         <span className="relative flex h-3 w-3 items-center justify-center" aria-hidden="true">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-light opacity-60" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-light" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
         </span>
       )}
       <span>{status}</span>
@@ -45,12 +44,12 @@ function MetricGrid({ metrics, heading }) {
 
   return (
     <div>
-      <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-foreground">{heading ?? 'Ficha técnica'}</h3>
+      <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-foreground">{heading ?? 'Ficha técnica'}</h3>
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
         {metrics.map(({ label, value }) => (
           <div
             key={label}
-            className="rounded-2xl border border-white/5 bg-black/50 px-4 py-4 text-left transition duration-300 hover:border-accent/60"
+            className="rounded-lg border border-gray-200 bg-white px-4 py-4 text-left shadow-clean transition duration-300 hover:shadow-clean-lg"
           >
             <p className="text-[0.65rem] uppercase tracking-[0.4em] text-muted">{label}</p>
             <p className="mt-2 text-sm font-semibold leading-snug text-foreground break-words whitespace-normal">{value}</p>
@@ -175,20 +174,19 @@ export default function ViewProject() {
   ].filter((metric) => Boolean(metric.value));
 
   return (
-    <main className="relative min-h-screen bg-primary px-6 py-20 text-foreground">
-      <SparkOverlay className="opacity-55" />
+    <main className="relative min-h-screen bg-primary-dark px-6 py-20 text-foreground">
       <div className="relative z-10 mx-auto w-full max-w-6xl">
         <div className="flex items-center justify-between">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.35em] text-accent transition duration-300 hover:text-accent-light"
+            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.3em] text-accent transition duration-300 hover:text-accent-dark"
           >
             {t('common.backToProjects')}
           </Link>
         </div>
 
         <header className="mt-10 flex flex-col gap-4">
-          <h1 className="text-4xl font-bold text-foreground md:text-5xl">{title}</h1>
+          <h1 className="text-4xl font-black text-foreground md:text-5xl">{title}</h1>
           <div className="flex flex-wrap items-center gap-4">
             <p className="text-lg text-muted">{subtitle}</p>
             <StatusBadge status={status} isOngoing={isOngoing} />
@@ -199,9 +197,9 @@ export default function ViewProject() {
           <div className="order-1 flex flex-col gap-12">
             <article className="space-y-10">
               <div>
-                <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-accent">{t('viewProject.gallery')}</h2>
+                <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-accent">{t('viewProject.gallery')}</h2>
                 <div className="mt-4">
-                  <div className="group relative overflow-hidden rounded-3xl border border-white/5 bg-black/30">
+                  <div className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-clean">
                     {hasGallery ? (
                       <>
                         <img
@@ -245,8 +243,8 @@ export default function ViewProject() {
                           key={`${id}-thumb-${index}`}
                           type="button"
                           onClick={() => setActiveIndex(index)}
-                          className={`relative h-20 w-28 flex-shrink-0 overflow-hidden rounded-2xl border transition duration-300 ${
-                            activeIndex === index ? 'border-accent shadow-[0_0_25px_rgba(229,9,20,0.3)]' : 'border-white/10'
+                          className={`relative h-20 w-28 flex-shrink-0 overflow-hidden rounded-lg border transition duration-300 ${
+                            activeIndex === index ? 'border-accent shadow-clean-lg' : 'border-gray-200'
                           }`}
                         >
                           <span className="sr-only">{`${t('viewProject.gallery')} ${index + 1}`}</span>
@@ -261,7 +259,7 @@ export default function ViewProject() {
               <div className="space-y-8">
                 {overview && (
                   <div>
-                    <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-accent">{t('viewProject.overview')}</h2>
+                    <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-accent">{t('viewProject.overview')}</h2>
                     <p className="mt-4 text-sm leading-7 text-muted">{overview}</p>
                   </div>
                 )}
@@ -281,17 +279,14 @@ export default function ViewProject() {
             </article>
           </div>
 
-          <aside className="order-2 flex flex-col gap-8 rounded-3xl border border-white/5 bg-[#111]/90 p-8 shadow-[0_35px_60px_-15px_rgba(229,9,20,0.18)] lg:sticky lg:top-28">
+          <aside className="order-2 flex flex-col gap-8 rounded-lg border border-gray-200 bg-white p-8 shadow-clean lg:sticky lg:top-28">
             <MetricGrid metrics={metrics} heading={t('common.metrics.heading')} />
 
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-foreground">{t('viewProject.technologies')}</h3>
+              <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-foreground">{t('viewProject.technologies')}</h3>
               <div className="mt-4 flex flex-wrap gap-3">
                 {technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-accent/50 bg-black/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-foreground/80 transition duration-300 hover:border-accent hover:text-foreground"
-                  >
+                  <span key={tech} className="pill-badge text-xs">
                     {tech}
                   </span>
                 ))}
@@ -300,7 +295,7 @@ export default function ViewProject() {
 
             {links && Object.keys(links).length > 0 && (
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-foreground">{t('viewProject.links')}</h3>
+                <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-foreground">{t('viewProject.links')}</h3>
                 <div className="mt-4 flex flex-col gap-3">
                   {Object.entries(links).map(([key, value]) => (
                     <a
@@ -309,7 +304,7 @@ export default function ViewProject() {
                       target={value?.startsWith('http') ? '_blank' : undefined}
                       rel={value?.startsWith('http') ? 'noopener noreferrer' : undefined}
                       aria-label={`${t(`common.linkLabels.${key}`) ?? FALLBACK_LINK_LABELS[key]?.[language] ?? key} - ${title}`}
-                      className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white transition.duration-300 hover:-translate-y-1 hover:bg-accent-light"
+                      className="inline-flex items-center justify-center pill-badge-lg hover:bg-accent-dark transition-colors"
                     >
                       <span aria-hidden="true">{t(`common.linkLabels.${key}`) ?? FALLBACK_LINK_LABELS[key]?.[language] ?? key}</span>
                     </a>
