@@ -8,6 +8,7 @@ const LINK_LABELS = {
   github: 'Código',
   demo: 'Demo',
   certificate: 'Certificado',
+  visit_store: 'Visitar tienda',
 };
 
 export default function Projects() {

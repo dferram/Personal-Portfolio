@@ -65,12 +65,12 @@ export const PROJECTS_DATA = [
   {
     id: 'razo-connect',
     title: {
-      es: 'Razo Connect',
-      en: 'Razo Connect',
+      es: 'RazoConnect',
+      en: 'RazoConnect',
     },
     subtitle: {
-      es: 'E-commerce y Sistema de Gestión Empresarial',
-      en: 'E-commerce and Business Management System',
+      es: 'Ecosistema ERP y E-commerce para Centro Mayorista',
+      en: 'ERP Ecosystem and E-commerce for Wholesale Center',
     },
     status: {
       es: 'En desarrollo',
@@ -87,43 +87,56 @@ export const PROJECTS_DATA = [
       en: '1 developer',
     },
     role: {
-      es: 'Ingeniero Full-Stack',
-      en: 'Full-Stack Engineer',
+      es: 'Desarrollador Full-Stack & Arquitecto de Datos',
+      en: 'Full-Stack Developer & Data Architect',
     },
     overview: {
-      es: 'Solución integral que combina una tienda en línea para clientes con un panel administrativo que centraliza inventario, órdenes y reportes financieros.',
-      en: 'End-to-end solution combining an online store for customers with an admin panel that centralizes inventory, orders, and financial reports.',
+      es: 'Plataforma integral Full-Stack desarrollada para centralizar y optimizar la operación de una empresa mayorista. El sistema unifica la gestión comercial (B2B/B2C) con la administración interna, eliminando la dependencia de hojas de cálculo dispersas y proporcionando inteligencia de negocios en tiempo real.',
+      en: 'Comprehensive Full-Stack platform developed to centralize and optimize wholesale business operations. The system unifies commercial management (B2B/B2C) with internal administration, eliminating scattered spreadsheet dependencies and providing real-time business intelligence.',
     },
     objectives: {
       es: [
-        'Unificar operaciones comerciales en una única plataforma accesible desde web.',
-        'Automatizar reportes de ventas y stock exportables a Excel para gerencia y contabilidad.',
+        'Implementar gestión de inventarios ciegos con módulos de auditoría que garanticen la integridad del stock y reduzcan pérdidas.',
+        'Desarrollar tableros de inteligencia financiera con cálculo de márgenes de ganancia por unidad y proyecciones basadas en datos.',
+        'Crear experiencia de usuario dinámica (Seasonal UX) que adapte la identidad visual automáticamente según la temporada comercial.',
+        'Establecer sistema robusto de trazabilidad con bitácora de movimientos para auditoría forense completa.',
       ],
       en: [
-        'Unify business operations within a single web platform.',
-        'Automate sales and stock reports exportable to Excel for management and accounting.',
+        'Implement blind inventory management with audit modules to ensure stock integrity and reduce losses.',
+        'Develop financial intelligence dashboards with unit profit margin calculations and data-based projections.',
+        'Create dynamic user experience (Seasonal UX) that automatically adapts visual identity according to commercial season.',
+        'Establish robust traceability system with movement logs for complete forensic auditing.',
       ],
     },
     responsibilities: {
       es: [
-        'Diseño de arquitectura modular React + Node.js con separación de capas y autenticación JWT.',
-        'Construcción de flujos CRUD para catálogos, órdenes y proveedores con validaciones en tiempo real.',
-        'Implementación de exportaciones a Excel y gráficos de desempeño utilizando APIs internas.',
+        'Diseño de arquitectura modular React + Node.js desplegada en Azure, escalable con las operaciones del cliente.',
+        'Implementación de algoritmos backend para cálculo automático de "Unit Economics" (Costo vs. Precio vs. Margen) con alertas en tiempo real.',
+        'Desarrollo de sistema de generación de reportes automatizados exportables a Excel para contabilidad y gerencia.',
+        'Construcción de arquitectura de autenticación JWT con separación estricta de roles y registro inmutable de actividades.',
+        'Creación de módulo de proyección de stock que calcula capacidades de empaquetado y ventas potenciales basándose en materia prima disponible.',
       ],
       en: [
-        'Designed a modular React + Node.js architecture with layered separation and JWT authentication.',
-        'Built CRUD workflows for catalogs, orders, and suppliers with real-time validations.',
-        'Implemented Excel exports and performance dashboards using internal APIs.',
+        'Designed modular React + Node.js architecture deployed on Azure, scalable with client operations.',
+        'Implemented backend algorithms for automatic "Unit Economics" calculation (Cost vs. Price vs. Margin) with real-time alerts.',
+        'Developed automated report generation system exportable to Excel for accounting and management.',
+        'Built JWT authentication architecture with strict role separation and immutable activity logging.',
+        'Created stock projection module that calculates packaging capacities and potential sales based on available raw materials.',
       ],
     },
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Full-Stack', 'E-commerce', 'Reportes Excel'],
+    technologies: ['React', 'Node.js', 'PostgreSQL', 'Azure', 'Full-Stack', 'ERP', 'E-commerce'],
     links: {
-      github: '#',
-      demo: '#',
+      visit_store: 'https://razoconnect-api-hwafd9ghd8axfeas.mexicocentral-01.azurewebsites.net/login.html',
     },
     images: {
-      hero: '/images/razo/main.png',
-      gallery: ['/images/razo/thumb1.png', '/images/razo/thumb2.png'],
+      hero: '/images/RC_index.png',
+      gallery: [
+        '/images/RC_admin.png',
+        '/images/RC_Inicio.png',
+        '/images/RC_Productos.png',
+        '/images/RC_Carrito.png',
+        '/images/RC_Pedidos.png',
+      ],
     },
   },
   {

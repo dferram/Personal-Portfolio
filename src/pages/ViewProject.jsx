@@ -18,6 +18,10 @@ const FALLBACK_LINK_LABELS = {
     es: 'Certificado',
     en: 'Certificate',
   },
+  visit_store: {
+    es: 'Visitar tienda',
+    en: 'Visit Store',
+  },
 };
 
 function StatusBadge({ status, isOngoing }) {
@@ -25,16 +29,16 @@ function StatusBadge({ status, isOngoing }) {
   const isComplete = !isOngoing;
 
   return (
-    <span className="flex items-center gap-2 pill-badge-lg">
+    <span className="inline-flex flex-row items-center gap-3 whitespace-nowrap pill-badge-lg">
+      <span>{status}</span>
       {isComplete ? (
         <FaCheckCircle aria-hidden="true" />
       ) : (
-        <span className="relative flex h-3 w-3 items-center justify-center" aria-hidden="true">
+        <span className="relative flex h-3 w-3 items-center justify-center shrink-0" aria-hidden="true">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
         </span>
       )}
-      <span>{status}</span>
     </span>
   );
 }
