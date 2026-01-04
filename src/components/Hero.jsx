@@ -15,61 +15,100 @@ export default function Hero() {
       className="relative flex min-h-screen items-center justify-center overflow-hidden bg-primary pt-20 pb-12"
     >
       <div className="relative z-10 mx-auto flex max-w-6xl w-full flex-col items-center gap-6 px-6 text-center">
-        {badge && (
-          <span className="inline-block rounded-full border-2 border-accent px-6 py-2 text-xs font-bold uppercase tracking-[0.3em] text-accent mb-4">
-            {badge}
-          </span>
-        )}
         
-        {/* Layered "portfolio" effect - more compact and visible like reference image 2 */}
-        <div className="relative w-full flex items-center justify-center mb-8" style={{ height: '200px' }}>
-          {/* Layer 1 - Lightest blue, furthest back */}
-          <h1 
-            className="absolute text-[10rem] md:text-[14rem] font-black select-none leading-none"
+        {/* Grand Watermark "portfolio" - Poster Design Style */}
+        <div className="relative w-full flex items-center justify-center mb-8" style={{ height: '280px' }}>
+          
+          {/* Layer 1 - TOP BACK - Massive, very faded, positioned high */}
+          <div 
+            className="absolute font-black select-none leading-none"
             style={{
-              color: '#e5ecff',
-              transform: 'translate(8px, 8px)',
+              fontSize: '20rem',
+              color: '#E5F0FF',
+              opacity: 0.12,
+              transform: 'translateY(-35%)',
+              letterSpacing: '-0.05em',
+              zIndex: 1,
             }}
           >
             portfolio
-          </h1>
+          </div>
           
-          {/* Layer 2 - Light blue */}
-          <h1 
-            className="absolute text-[10rem] md:text-[14rem] font-black select-none leading-none"
+          {/* Layer 2 - MIDDLE BACK - Large, semi-transparent */}
+          <div 
+            className="absolute font-black select-none leading-none"
             style={{
-              color: '#b8c9ff',
-              transform: 'translate(5px, 5px)',
+              fontSize: '18rem',
+              color: '#B3D4FF',
+              opacity: 0.25,
+              transform: 'translateY(-15%)',
+              letterSpacing: '-0.05em',
+              zIndex: 2,
             }}
           >
             portfolio
-          </h1>
+          </div>
           
-          {/* Layer 3 - Medium blue */}
-          <h1 
-            className="absolute text-[10rem] md:text-[14rem] font-black select-none leading-none"
+          {/* Layer 3 - Near front - Medium opacity */}
+          <div 
+            className="absolute font-black select-none leading-none"
             style={{
-              color: '#7a9aff',
-              transform: 'translate(2px, 2px)',
+              fontSize: '16rem',
+              color: '#6BA3FF',
+              opacity: 0.45,
+              transform: 'translateY(-5%)',
+              letterSpacing: '-0.05em',
+              zIndex: 3,
             }}
           >
             portfolio
-          </h1>
+          </div>
           
-          {/* Layer 4 - Strong blue (primary accent) - front layer */}
-          <h1 
-            className="absolute text-[10rem] md:text-[14rem] font-black text-accent select-none leading-none"
+          {/* Layer 4 - Close to front */}
+          <div 
+            className="absolute font-black select-none leading-none"
             style={{
-              transform: 'translate(0px, 0px)',
+              fontSize: '15rem',
+              color: '#3D7FFF',
+              opacity: 0.65,
+              transform: 'translateY(0%)',
+              letterSpacing: '-0.05em',
+              zIndex: 4,
             }}
           >
             portfolio
-          </h1>
+          </div>
           
-          {/* Year overlay like in reference image */}
-          <span className="absolute text-2xl md:text-3xl font-bold text-white opacity-90" style={{ transform: 'translateY(20px)' }}>
-            2025
-          </span>
+          {/* FOREGROUND LAYER - Main sharp Electric Blue text */}
+          <div 
+            className="absolute font-black select-none leading-none"
+            style={{
+              fontSize: '14rem',
+              color: '#0022FF',
+              opacity: 1,
+              transform: 'translateY(2%)',
+              letterSpacing: '-0.03em',
+              zIndex: 10,
+            }}
+          >
+            portfolio
+          </div>
+          
+          {/* Year '2025' - White with subtle drop shadow, aligned with baseline */}
+          <div 
+            className="absolute font-bold select-none"
+            style={{ 
+              fontSize: '2.5rem',
+              color: '#FFFFFF',
+              opacity: 0.9,
+              transform: 'translateY(20px)',
+              letterSpacing: '0.05em',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+              zIndex: 11,
+            }}
+          >
+            2026
+          </div>
         </div>
         
         {/* Title (name) below the portfolio effect */}

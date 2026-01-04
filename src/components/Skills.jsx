@@ -27,7 +27,7 @@ export default function Skills() {
         </header>
 
         {/* Skills Categories */}
-        <div className="space-y-16">
+        <div className="space-y-12">
           {SKILLS_DATA.map((category) => {
             const translatedTitle = t(`skills.categories.${category.id}.title`);
             const categoryTitle =
@@ -42,14 +42,19 @@ export default function Skills() {
                   {categoryTitle}
                 </h3>
 
-                {/* Skills Grid - Pill Badges */}
-                <div className="flex flex-wrap gap-3">
+                {/* Skills Icons Grid - Small icons like in reference image */}
+                <div className="flex flex-wrap gap-4 items-center">
                   {category.items.map((skill) => (
                     <div
                       key={skill.name}
-                      className="pill-badge-lg hover:bg-accent-dark transition-colors duration-200 cursor-default"
+                      className="group flex items-center gap-2 transition-transform duration-200 hover:scale-110"
+                      title={skill.name}
                     >
-                      {skill.name}
+                      <img
+                        src={skill.icon}
+                        alt={skill.name}
+                        className="h-12 w-12 object-contain"
+                      />
                     </div>
                   ))}
                 </div>
