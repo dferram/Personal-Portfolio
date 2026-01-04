@@ -40,14 +40,14 @@ export const translations = {
       title: 'Fernando Ramírez',
       subtitle: 'Software Engineer | Aspiring Data Scientist',
       description:
-        'Estudiante de 5º semestre de Ingeniería de Software enfocado en construir experiencias digitales robustas y explorar cómo la ciencia de datos potencia decisiones estratégicas basadas en evidencia.',
+        'Estudiante de 6º semestre de Ingeniería de Software enfocado en construir experiencias digitales robustas y explorar cómo la ciencia de datos potencia decisiones estratégicas basadas en evidencia.',
       cta: 'Ver Proyectos',
     },
     about: {
       title: 'Sobre Mí',
       paragraphs: [
-        'Soy estudiante de quinto semestre de Ingeniería de Software apasionado por construir soluciones digitales end-to-end. Mi experiencia abarca el desarrollo full-stack con un enfoque en experiencias modernas y accesibles que generen impacto.',
-        'Actualmente estoy pivotando hacia el análisis de datos y la ciencia de datos, combinando mi conocimiento técnico con la curiosidad por entender cómo la información guía decisiones estratégicas. Busco proyectos que me permitan unir ambas disciplinas.',
+        'Soy estudiante de sexto semestre de Ingeniería de Software apasionado por construir soluciones digitales end-to-end. Mi experiencia abarca el desarrollo full-stack con un enfoque en experiencias modernas y accesibles que generen impacto.',
+        'Actualmente estoy interesado en el análisis de datos y la ciencia de datos, combinando mi conocimiento técnico con la curiosidad por entender cómo la información guía decisiones estratégicas. Busco proyectos que me permitan unir ambas disciplinas.',
       ],
     },
     skills: {
@@ -149,14 +149,14 @@ export const translations = {
       title: 'Fernando Ramírez',
       subtitle: 'Software Engineer | Aspiring Data Scientist',
       description:
-        'Fifth-semester Software Engineering student focused on building robust digital experiences while exploring how data science powers evidence-based strategic decisions.',
+        'Sixth-semester Software Engineering student focused on building robust digital experiences while exploring how data science powers evidence-based strategic decisions.',
       cta: 'See Projects',
     },
     about: {
       title: 'About Me',
       paragraphs: [
-        'I am a fifth-semester Software Engineering student passionate about building end-to-end digital solutions. My experience spans full-stack development with a focus on modern, accessible experiences that drive impact.',
-        'I am currently pivoting toward data and analytics, combining my technical background with curiosity about how information informs strategic decisions. I seek projects where both disciplines converge.',
+        'I am a sixth-semester Software Engineering student passionate about building end-to-end digital solutions. My experience spans full-stack development with a focus on modern, accessible experiences that drive impact.',
+        'I am currently interested in data and analytics, combining my technical background with curiosity about how information informs strategic decisions. I seek projects where both disciplines converge.',
       ],
     },
     skills: {
