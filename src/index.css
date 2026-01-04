@@ -7,10 +7,21 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
   }
 
   body {
     @apply bg-primary text-foreground font-['Inter',sans-serif];
+    overflow-x: hidden; /* Prevent horizontal scroll globally */
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
   }
 
   ::selection {

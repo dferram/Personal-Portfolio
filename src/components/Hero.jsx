@@ -17,13 +17,13 @@ export default function Hero() {
       <div className="relative z-10 mx-auto flex max-w-6xl w-full flex-col items-center gap-6 px-6 text-center">
         
         {/* Grand Watermark "portfolio" - Poster Design Style */}
-        <div className="relative w-full flex items-center justify-center mb-8" style={{ height: '280px' }}>
+        <div className="relative w-full flex items-center justify-center mb-8 h-[160px] sm:h-[220px] md:h-[280px]">
           
           {/* Layer 1 - TOP BACK - Massive, very faded, positioned high */}
           <div 
             className="absolute font-black select-none leading-none"
             style={{
-              fontSize: '20rem',
+              fontSize: 'clamp(3rem, 15vw, 20rem)',
               color: '#E5F0FF',
               opacity: 0.12,
               transform: 'translateY(-35%)',
@@ -38,7 +38,7 @@ export default function Hero() {
           <div 
             className="absolute font-black select-none leading-none"
             style={{
-              fontSize: '18rem',
+              fontSize: 'clamp(2.8rem, 14vw, 18rem)',
               color: '#B3D4FF',
               opacity: 0.25,
               transform: 'translateY(-15%)',
@@ -53,7 +53,7 @@ export default function Hero() {
           <div 
             className="absolute font-black select-none leading-none"
             style={{
-              fontSize: '16rem',
+              fontSize: 'clamp(2.6rem, 13vw, 16rem)',
               color: '#6BA3FF',
               opacity: 0.45,
               transform: 'translateY(-5%)',
@@ -68,7 +68,7 @@ export default function Hero() {
           <div 
             className="absolute font-black select-none leading-none"
             style={{
-              fontSize: '15rem',
+              fontSize: 'clamp(2.4rem, 12vw, 15rem)',
               color: '#3D7FFF',
               opacity: 0.65,
               transform: 'translateY(0%)',
@@ -83,7 +83,7 @@ export default function Hero() {
           <div 
             className="absolute font-black select-none leading-none"
             style={{
-              fontSize: '14rem',
+              fontSize: 'clamp(2.2rem, 11vw, 14rem)',
               color: '#0022FF',
               opacity: 1,
               transform: 'translateY(2%)',
@@ -94,14 +94,14 @@ export default function Hero() {
             portfolio
           </div>
           
-          {/* Year '2025' - White with subtle drop shadow, aligned with baseline */}
+          {/* Year '2026' - White with subtle drop shadow, aligned with baseline */}
           <div 
             className="absolute font-bold select-none"
             style={{ 
-              fontSize: '2.5rem',
+              fontSize: 'clamp(1rem, 2.5vw, 2.5rem)',
               color: '#FFFFFF',
               opacity: 0.9,
-              transform: 'translateY(20px)',
+              transform: 'translateY(15px) sm:translateY(20px)',
               letterSpacing: '0.05em',
               textShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
               zIndex: 11,

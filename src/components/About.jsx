@@ -79,7 +79,7 @@ export default function About() {
           </div>
 
           {/* Right Column: Photo with tape effect */}
-          <div className="relative">
+          <div className="relative order-first lg:order-none">
             <div className="relative">
               {/* Tape effect decorations */}
               <div 
