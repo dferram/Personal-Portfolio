@@ -36,7 +36,7 @@
 }
 
 .pill-badge-lg {
-  @apply inline-block px-8 py-4 rounded-full bg-accent text-white font-bold text-base;
+  @apply inline-block px-4 py-2 md:px-8 md:py-4 rounded-full bg-accent text-white font-bold text-sm md:text-base;
 }
 
 .spark-overlay {

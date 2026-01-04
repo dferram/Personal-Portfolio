@@ -29,7 +29,7 @@ function StatusBadge({ status, isOngoing }) {
   const isComplete = !isOngoing;
 
   return (
-    <span className="inline-flex flex-row items-center gap-3 whitespace-nowrap pill-badge-lg">
+    <span className="inline-flex flex-row items-center gap-3 pill-badge-lg max-w-full">
       <span>{status}</span>
       {isComplete ? (
         <FaCheckCircle aria-hidden="true" />
@@ -178,57 +178,61 @@ export default function ViewProject() {
   ].filter((metric) => Boolean(metric.value));
 
   return (
-    <main className="relative min-h-screen bg-primary-dark px-6 py-20 text-foreground">
+    <main className="relative min-h-screen bg-primary-dark px-4 pt-24 pb-12 md:px-6 md:py-20 text-foreground">
       <div className="relative z-10 mx-auto w-full max-w-6xl">
         <div className="flex items-center justify-between">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.3em] text-accent transition duration-300 hover:text-accent-dark"
+            className="inline-flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-accent transition duration-300 hover:text-accent-dark"
           >
             {t('common.backToProjects')}
           </Link>
         </div>
 
-        <header className="mt-10 flex flex-col gap-4">
-          <h1 className="text-4xl font-black text-foreground md:text-5xl">{title}</h1>
+        <header className="mt-8 md:mt-10 flex flex-col gap-4">
+          <h1 className="text-3xl font-black text-foreground md:text-5xl">{title}</h1>
           <div className="flex flex-wrap items-center gap-4">
-            <p className="text-lg text-muted">{subtitle}</p>
-            <StatusBadge status={status} isOngoing={isOngoing} />
+            <p className="text-base md:text-lg text-muted">{subtitle}</p>
+            <div className="flex flex-wrap"> 
+               <StatusBadge status={status} isOngoing={isOngoing} />
+            </div>
           </div>
         </header>
 
-        <section className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)]">
-          <div className="order-1 flex flex-col gap-12">
-            <article className="space-y-10">
+        <section className="mt-8 md:mt-12 w-full overflow-hidden grid gap-12 lg:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)]">
+          <div className="order-1 flex flex-col gap-12 min-w-0">
+            <article className="space-y-10 min-w-0">
               <div>
-                <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-accent">{t('viewProject.gallery')}</h2>
-                <div className="mt-4">
-                  <div className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-clean">
+                <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">{t('viewProject.gallery')}</h2>
+                <div className="mt-4 w-full">
+                  <div className="group relative w-full overflow-hidden rounded-lg border border-gray-200 bg-gray-50 shadow-clean">
                     {hasGallery ? (
                       <>
-                        <img
-                          src={activeImage}
-                          alt={`${title} - ${t('viewProject.gallery')} ${activeIndex + 1}`}
-                          className="w-full cursor-zoom-in object-cover transition duration-300 hover:opacity-90"
-                          onClick={() => setIsLightboxOpen(true)}
-                        />
+                        <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden">
+                          <img
+                            src={activeImage}
+                            alt={`${title} - ${t('viewProject.gallery')} ${activeIndex + 1}`}
+                            className="max-h-full max-w-full object-contain p-1 transition duration-300 md:p-0"
+                            onClick={() => setIsLightboxOpen(true)}
+                          />
+                        </div>
                         {gallery.length > 1 && (
                           <>
                             <button
                               type="button"
                               aria-label="Imagen anterior"
                               onClick={handlePrev}
-                              className="absolute left-3 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-full bg-black/60 p-2 text-white backdrop-blur transition duration-300 hover:bg-black/80"
+                              className="absolute z-10 left-1 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-full bg-black/60 p-2 text-white backdrop-blur transition duration-300 hover:bg-black/80 md:left-4"
                             >
-                              <FaChevronLeft aria-hidden="true" />
+                              <FaChevronLeft aria-hidden="true" size={16} className="md:w-5 md:h-5" />
                             </button>
                             <button
                               type="button"
                               aria-label="Imagen siguiente"
                               onClick={handleNext}
-                              className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-full bg-black/60 p-2 text-white backdrop-blur transition duration-300 hover:bg-black/80"
+                              className="absolute z-10 right-1 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-full bg-black/60 p-2 text-white backdrop-blur transition duration-300 hover:bg-black/80 md:right-4"
                             >
-                              <FaChevronRight aria-hidden="true" />
+                              <FaChevronRight aria-hidden="true" size={16} className="md:w-5 md:h-5" />
                             </button>
                           </>
                         )}
@@ -241,14 +245,14 @@ export default function ViewProject() {
                     )}
                   </div>
                   {gallery.length > 1 && (
-                    <div className="mt-4 flex gap-3 overflow-x-auto">
+                    <div className="mt-4 flex gap-3 overflow-x-auto pb-4 snap-x">
                       {gallery.map((image, index) => (
                         <button
                           key={`${id}-thumb-${index}`}
                           type="button"
                           onClick={() => setActiveIndex(index)}
-                          className={`relative h-20 w-28 flex-shrink-0 overflow-hidden rounded-lg border transition duration-300 ${
-                            activeIndex === index ? 'border-accent shadow-clean-lg' : 'border-gray-200'
+                          className={`relative h-16 w-24 md:h-20 md:w-28 flex-shrink-0 snap-center overflow-hidden rounded-lg border transition duration-300 ${
+                            activeIndex === index ? 'border-accent shadow-clean-lg ring-2 ring-accent ring-offset-2' : 'border-gray-200 opacity-70 hover:opacity-100'
                           }`}
                         >
                           <span className="sr-only">{`${t('viewProject.gallery')} ${index + 1}`}</span>
@@ -263,7 +267,7 @@ export default function ViewProject() {
               <div className="space-y-8">
                 {overview && (
                   <div>
-                    <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-accent">{t('viewProject.overview')}</h2>
+                    <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">{t('viewProject.overview')}</h2>
                     <p className="mt-4 text-sm leading-7 text-muted">{overview}</p>
                   </div>
                 )}
@@ -272,7 +276,7 @@ export default function ViewProject() {
                 <ListSection title={t('viewProject.responsibilities')} items={responsibilities} />
                 {!overview && description && (
                   <div>
-                    <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-accent">{t('viewProject.description')}</h2>
+                    <h2 className="text-xs md:text-sm font-semibold uppercase tracking-[0.35em] text-accent">{t('viewProject.description')}</h2>
                     <div
                       className="prose prose-invert prose-p:text-muted mt-4 max-w-none space-y-4 text-sm leading-7"
                       dangerouslySetInnerHTML={{ __html: description }}
@@ -283,14 +287,14 @@ export default function ViewProject() {
             </article>
           </div>
 
-          <aside className="order-2 flex flex-col gap-8 rounded-lg border border-gray-200 bg-white p-8 shadow-clean lg:sticky lg:top-28">
+          <aside className="order-2 flex flex-col gap-8 rounded-lg border border-gray-200 bg-white p-6 md:p-8 shadow-clean lg:sticky lg:top-28 h-fit">
             <MetricGrid metrics={metrics} heading={t('common.metrics.heading')} />
 
             <div>
-              <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-foreground">{t('viewProject.technologies')}</h3>
-              <div className="mt-4 flex flex-wrap gap-3">
+              <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-foreground">{t('viewProject.technologies')}</h3>
+              <div className="mt-4 flex flex-wrap gap-2 md:gap-3">
                 {technologies.map((tech) => (
-                  <span key={tech} className="pill-badge text-xs">
+                  <span key={tech} className="pill-badge text-[0.65rem] md:text-xs px-4 py-2">
                     {tech}
                   </span>
                 ))}
@@ -299,7 +303,7 @@ export default function ViewProject() {
 
             {links && Object.keys(links).length > 0 && (
               <div>
-                <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-foreground">{t('viewProject.links')}</h3>
+                <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-foreground">{t('viewProject.links')}</h3>
                 <div className="mt-4 flex flex-col gap-3">
                   {Object.entries(links).map(([key, value]) => (
                     <a
@@ -308,7 +312,7 @@ export default function ViewProject() {
                       target={value?.startsWith('http') ? '_blank' : undefined}
                       rel={value?.startsWith('http') ? 'noopener noreferrer' : undefined}
                       aria-label={`${t(`common.linkLabels.${key}`) ?? FALLBACK_LINK_LABELS[key]?.[language] ?? key} - ${title}`}
-                      className="inline-flex items-center justify-center pill-badge-lg hover:bg-accent-dark transition-colors"
+                      className="inline-flex items-center justify-center pill-badge-lg hover:bg-accent-dark transition-colors text-xs md:text-sm text-center"
                     >
                       <span aria-hidden="true">{t(`common.linkLabels.${key}`) ?? FALLBACK_LINK_LABELS[key]?.[language] ?? key}</span>
                     </a>

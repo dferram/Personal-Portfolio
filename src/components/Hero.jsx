@@ -17,13 +17,13 @@ export default function Hero() {
       <div className="relative z-10 mx-auto flex max-w-6xl w-full flex-col items-center gap-6 px-6 text-center">
         
         {/* Grand Watermark "portfolio" - Poster Design Style */}
-        <div className="relative w-full flex items-center justify-center mb-8 h-[160px] sm:h-[220px] md:h-[280px]">
+        <div className="relative w-full flex items-center justify-center mb-12 h-[180px] sm:h-[260px] md:h-[340px]">
           
           {/* Layer 1 - TOP BACK - Massive, very faded, positioned high */}
           <div 
             className="absolute font-black select-none leading-none"
             style={{
-              fontSize: 'clamp(3rem, 15vw, 20rem)',
+              fontSize: 'clamp(5rem, 24vw, 26rem)',
               color: '#E5F0FF',
               opacity: 0.12,
               transform: 'translateY(-35%)',
@@ -38,7 +38,7 @@ export default function Hero() {
           <div 
             className="absolute font-black select-none leading-none"
             style={{
-              fontSize: 'clamp(2.8rem, 14vw, 18rem)',
+              fontSize: 'clamp(4.5rem, 22vw, 24rem)',
               color: '#B3D4FF',
               opacity: 0.25,
               transform: 'translateY(-15%)',
@@ -53,7 +53,7 @@ export default function Hero() {
           <div 
             className="absolute font-black select-none leading-none"
             style={{
-              fontSize: 'clamp(2.6rem, 13vw, 16rem)',
+              fontSize: 'clamp(4rem, 20vw, 22rem)',
               color: '#6BA3FF',
               opacity: 0.45,
               transform: 'translateY(-5%)',
@@ -68,7 +68,7 @@ export default function Hero() {
           <div 
             className="absolute font-black select-none leading-none"
             style={{
-              fontSize: 'clamp(2.4rem, 12vw, 15rem)',
+              fontSize: 'clamp(3.5rem, 18vw, 20rem)',
               color: '#3D7FFF',
               opacity: 0.65,
               transform: 'translateY(0%)',
@@ -83,7 +83,7 @@ export default function Hero() {
           <div 
             className="absolute font-black select-none leading-none"
             style={{
-              fontSize: 'clamp(2.2rem, 11vw, 14rem)',
+              fontSize: 'clamp(3rem, 16vw, 18rem)',
               color: '#0022FF',
               opacity: 1,
               transform: 'translateY(2%)',
