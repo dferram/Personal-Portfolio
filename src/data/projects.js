@@ -139,7 +139,7 @@ export const PROJECTS_DATA = [
     ],
     links: {
       visit_store:
-        "https://razoconnect-api-hwafd9ghd8axfeas.mexicocentral-01.azurewebsites.net/login.html",
+        "https://razo.com.mx/",
     },
     images: {
       hero: "/images/RazoConnect.png",
