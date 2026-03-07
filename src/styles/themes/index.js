@@ -13,6 +13,7 @@ import oceanBreezeTheme from './ocean-breeze';
 import forestGreenTheme from './forest-green';
 import sunsetWarmTheme from './sunset-warm';
 import midnightPurpleTheme from './midnight-purple';
+import racingRedTheme from './racing-red';
 
 /* 
  * TEMA ACTIVO
@@ -53,6 +54,7 @@ export const allThemes = {
   forestGreen: forestGreenTheme,
   sunsetWarm: sunsetWarmTheme,
   midnightPurple: midnightPurpleTheme,
+  racingRed: racingRedTheme,
 };
 
 /* Exportaciones individuales por si las necesitas */
@@ -65,4 +67,5 @@ export {
   forestGreenTheme,
   sunsetWarmTheme,
   midnightPurpleTheme,
+  racingRedTheme,
 };
