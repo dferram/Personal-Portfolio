@@ -206,11 +206,11 @@ export default function ViewProject() {
                   <div className="group relative w-full overflow-hidden rounded-xl border border-gray-200 bg-gray-50 shadow-clean cursor-pointer">
                     {hasGallery ? (
                       <>
-                        <div className="relative flex w-full items-center justify-center overflow-hidden" style={{minHeight: '600px'}}>
+                        <div className="relative flex w-full items-center justify-center overflow-hidden bg-gray-100" style={{maxHeight: '600px', minHeight: '400px'}}>
                           <img
                             src={activeImage}
                             alt={`${title} - ${t('viewProject.gallery')} ${activeIndex + 1}`}
-                            className="w-full h-full object-contain transition duration-300"
+                            className="max-h-[600px] w-auto max-w-full object-contain transition duration-300"
                             onClick={() => setIsLightboxOpen(true)}
                           />
                         </div>

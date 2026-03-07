@@ -20,6 +20,24 @@ import { EXPERIENCES_DATA } from '@/data/experiencesData';
 import { useI18n } from '@/i18n/I18nProvider';
 import { getLocalizedList, getLocalizedValue } from '@/i18n/utils';
 
+// Función para procesar texto con negritas usando markdown (**texto**)
+function parseTextWithBold(text) {
+  if (!text) return null;
+  
+  // Dividir el texto por el patrón **texto**
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  
+  return parts.map((part, index) => {
+    // Si la parte está entre **, renderizar en negrita
+    if (part.startsWith('**') && part.endsWith('**')) {
+      const boldText = part.slice(2, -2);
+      return <strong key={index} className="font-bold text-foreground">{boldText}</strong>;
+    }
+    // Si no, renderizar como texto normal
+    return <span key={index}>{part}</span>;
+  });
+}
+
 function ListSection({ title, items }) {
   if (!items || items.length === 0) return null;
 
@@ -30,7 +48,7 @@ function ListSection({ title, items }) {
         {items.map((item, index) => (
           <li key={`${title}-${index}`} className="flex gap-4">
             <span className="mt-2.5 inline-flex h-2.5 w-2.5 flex-shrink-0 rounded-full bg-accent" />
-            <span>{item}</span>
+            <span>{parseTextWithBold(item)}</span>
           </li>
         ))}
       </ul>
@@ -326,22 +344,28 @@ export default function ViewExperience() {
                             // PERSONALIZACIÓN: Cambia colores de tape en 'bg-blue-200/40' o rotación en 'rotate-[]'
                             <div className="md:grid md:grid-cols-[1.5fr_1fr] gap-10 items-center">
                               <div>
-                                <p className="text-lg md:text-xl leading-relaxed text-muted">{paragraph}</p>
+                                <p className="text-lg md:text-xl leading-relaxed text-muted">{parseTextWithBold(paragraph)}</p>
                               </div>
                               <div 
                                 key={`img-right-${pIndex}-${rotationIndex}`}
                                 className="mt-6 md:mt-0 relative"
                               >
-                                {/* Tape effect decorations - cuadrados que simulan cinta adhesiva */}
+                                {/* Tape effect decorations - cinta adhesiva translúcida tipo scotch */}
                                 {/* PERSONALIZACIÓN: Cambia left-4 right-4 para posición horizontal */}
                                 {/* Cambia -top-3 -bottom-3 para posición vertical */}
                                 <div 
-                                  className="absolute -top-3 left-4 w-16 h-6 bg-blue-200/40 rotate-[-8deg] z-10"
-                                  style={{ backdropFilter: 'blur(1px)' }}
+                                  className="absolute -top-4 left-8 w-20 h-8 bg-yellow-100/60 rotate-[-8deg] z-10 shadow-sm"
+                                  style={{ 
+                                    backdropFilter: 'blur(0.5px)',
+                                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
+                                  }}
                                 />
                                 <div 
-                                  className="absolute -bottom-3 right-4 w-16 h-6 bg-blue-200/40 rotate-[12deg] z-10"
-                                  style={{ backdropFilter: 'blur(1px)' }}
+                                  className="absolute -bottom-4 right-8 w-20 h-8 bg-yellow-100/60 rotate-[12deg] z-10 shadow-sm"
+                                  style={{ 
+                                    backdropFilter: 'blur(0.5px)',
+                                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
+                                  }}
                                 />
                                 
                                 <div
@@ -370,16 +394,22 @@ export default function ViewExperience() {
                                 key={`img-left-${pIndex}-${rotationIndex}`}
                                 className="mb-6 md:mb-0 relative"
                               >
-                                {/* Tape effect decorations - cuadrados que simulan cinta adhesiva */}
+                                {/* Tape effect decorations - cinta adhesiva translúcida tipo scotch */}
                                 {/* PERSONALIZACIÓN: Cambia left-4 right-4 para posición horizontal */}
                                 {/* Cambia -top-3 -bottom-3 para posición vertical */}
                                 <div 
-                                  className="absolute -top-3 right-4 w-16 h-6 bg-blue-200/40 rotate-[8deg] z-10"
-                                  style={{ backdropFilter: 'blur(1px)' }}
+                                  className="absolute -top-4 right-8 w-20 h-8 bg-yellow-100/60 rotate-[8deg] z-10 shadow-sm"
+                                  style={{ 
+                                    backdropFilter: 'blur(0.5px)',
+                                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
+                                  }}
                                 />
                                 <div 
-                                  className="absolute -bottom-3 left-4 w-16 h-6 bg-blue-200/40 rotate-[-12deg] z-10"
-                                  style={{ backdropFilter: 'blur(1px)' }}
+                                  className="absolute -bottom-4 left-8 w-20 h-8 bg-yellow-100/60 rotate-[-12deg] z-10 shadow-sm"
+                                  style={{ 
+                                    backdropFilter: 'blur(0.5px)',
+                                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
+                                  }}
                                 />
                                 
                                 <div
@@ -400,13 +430,13 @@ export default function ViewExperience() {
                                 </div>
                               </div>
                               <div>
-                                <p className="text-lg md:text-xl leading-relaxed text-muted">{paragraph}</p>
+                                <p className="text-lg md:text-xl leading-relaxed text-muted">{parseTextWithBold(paragraph)}</p>
                               </div>
                             </div>
                           ) : (
                             // Solo texto
                             <div>
-                              <p className="text-lg md:text-xl leading-relaxed text-muted">{paragraph}</p>
+                              <p className="text-lg md:text-xl leading-relaxed text-muted">{parseTextWithBold(paragraph)}</p>
                             </div>
                           )}
                         </div>
