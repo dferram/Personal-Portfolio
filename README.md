@@ -15,6 +15,7 @@ This README explains how the portfolio is put together, the common tech stack ch
   - [Clone & download](#clone--download)
   - [If this is a static site (no build system)](#if-this-is-a-static-site-no-build-system)
   - [If this is a Node-based project (React/Vite/Next/etc.)](#if-this-is-a-node-based-project-reactvite-nextetc)
+- [Theming system](#theming-system)
 - [Security](#security)
 - [Deployment options](#deployment-options)
 - [How the portfolio is made up — content & components](#how-the-portfolio-is-made-up---content--components)
@@ -96,6 +97,49 @@ git clone https://github.com/ferramdr/Personal-Portfolio-.git
 cd Personal-Portfolio-
 
 (Or download ZIP from GitHub -> Code -> Download ZIP)
+
+---
+
+## Theming system
+
+This portfolio includes a flexible theming system with **8 pre-designed color palettes** that you can switch between easily. Perfect for learning Git/GitHub while customizing your portfolio.
+
+### Available themes
+
+1. **Clasico Profesional** - Clean white and blue (default)
+2. **Oscuro Elegante** - Dark with golden accents
+3. **Retro Solar** - Warm cream and orange vintage style
+4. **Tech Pastel** - Soft blue and purple modern look
+5. **Brisa Marina** - Fresh ocean blues and aqua
+6. **Bosque Verde** - Natural greens
+7. **Atardecer Calido** - Energetic pinks and oranges
+8. **Medianoche Purpura** - Deep purple tech style
+
+### Quick start - Change theme
+
+1. Open `src/styles/themes/index.js`
+2. Find the line: `export const activeTheme = classicTheme;`
+3. Change to any theme: `export const activeTheme = darkElegantTheme;`
+4. Save and reload your browser
+
+### Create your own theme
+
+1. Copy any theme file from `src/styles/themes/`
+2. Rename it (e.g., `my-theme.js`)
+3. Edit the colors
+4. Import and activate it in `index.js`
+
+### Complete theming guide
+
+For detailed instructions, color psychology tips, and best practices, see **[GUIA_TEMAS.md](./GUIA_TEMAS.md)**
+
+This guide includes:
+- Detailed description of each theme
+- Step-by-step customization instructions
+- Color selection tips and tools
+- Accessibility and contrast guidelines
+- Git workflow examples for theme changes
+- Troubleshooting common issues
 
 ---
 

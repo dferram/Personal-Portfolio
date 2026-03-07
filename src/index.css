@@ -1,3 +1,17 @@
+/* 
+ * ESTILOS PRINCIPALES DEL PORTAFOLIO
+ * 
+ * Este archivo contiene los estilos base y utilidades de Tailwind CSS.
+ * Los colores del tema se configuran en: src/styles/themes/index.js
+ * 
+ * Para cambiar el tema:
+ * 1. Ve a src/styles/themes/index.js
+ * 2. Cambia la linea: export const activeTheme = [nombreDelTema];
+ * 3. Guarda y recarga el navegador
+ * 
+ * No necesitas modificar este archivo para cambiar colores.
+ */
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
