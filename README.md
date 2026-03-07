@@ -15,6 +15,7 @@ This README explains how the portfolio is put together, the common tech stack ch
   - [Clone & download](#clone--download)
   - [If this is a static site (no build system)](#if-this-is-a-static-site-no-build-system)
   - [If this is a Node-based project (React/Vite/Next/etc.)](#if-this-is-a-node-based-project-reactvite-nextetc)
+- [Security](#security)
 - [Deployment options](#deployment-options)
 - [How the portfolio is made up — content & components](#how-the-portfolio-is-made-up---content--components)
 - [Customizing content](#customizing-content)
@@ -95,6 +96,91 @@ git clone https://github.com/ferramdr/Personal-Portfolio-.git
 cd Personal-Portfolio-
 
 (Or download ZIP from GitHub -> Code -> Download ZIP)
+
+---
+
+## Security
+
+This portfolio includes a secure backend server with multiple security layers to protect against common web attacks. **Even though the site is mostly static, any functionality that receives user input (like contact forms) needs proper security measures.**
+
+### 🔒 Security measures implemented
+
+- **Rate Limiting:** Prevents spam and DoS attacks by limiting requests per IP
+- **CORS:** Controls which domains can access your API
+- **Helmet:** Configures secure HTTP headers (XSS, clickjacking, MIME sniffing protection)
+- **CSRF Protection:** Prevents cross-site request forgery attacks
+- **Data Sanitization:** Cleans malicious input (XSS, NoSQL injection)
+- **Input Validation:** Validates email format, field lengths, and required fields
+- **HTTPS Ready:** Configured for SSL/TLS in production
+
+### 📚 Complete security documentation
+
+For detailed explanations, examples, and customization guides, see **[SEGURIDAD.md](./SEGURIDAD.md)**
+
+This guide includes:
+- What each security measure does and why it's important
+- Real-world examples and attack scenarios
+- Step-by-step configuration instructions
+- How to customize security settings for your needs
+- Best practices and common pitfalls
+- FAQ section with practical answers
+
+### 🚀 Quick start with the secure server
+
+1. **Install server dependencies:**
+```bash
+cd server
+npm install
+```
+
+2. **Configure environment variables:**
+```bash
+cp .env.example .env
+# Edit .env with your credentials
+```
+
+3. **Start the server:**
+```bash
+# Development
+npm run dev
+
+# Production
+npm start
+```
+
+4. **Test the security:**
+```bash
+# Health check
+curl http://localhost:3001/api/health
+
+# Get CSRF token
+curl http://localhost:3001/api/csrf-token
+```
+
+### 🛡️ Key security concepts explained simply
+
+**Rate Limiting:**  
+Prevents someone from sending 1000 messages through your contact form in one minute. Example: limit to 5 messages per hour per IP.
+
+**CORS (Cross-Origin Resource Sharing):**  
+Controls which websites can make requests to your API. Only your domain (e.g., `https://your-portfolio.com`) can send requests, blocking malicious sites.
+
+**XSS (Cross-Site Scripting) Protection:**  
+Prevents attackers from injecting malicious JavaScript through your forms. All user input is sanitized automatically.
+
+**CSRF (Cross-Site Request Forgery) Protection:**  
+Prevents malicious sites from making requests on behalf of your users. Uses secure tokens to validate requests.
+
+**Data Sanitization:**  
+Cleans all user input to remove dangerous characters and code before processing.
+
+### 📖 Learn more
+
+If you're new to web security, don't worry! The concepts might seem complex at first, but you'll learn them gradually as you work with the code. The important thing is to have these protections in place from the start.
+
+For in-depth explanations with examples, see **[SEGURIDAD.md](./SEGURIDAD.md)**
+
+---
 
 ## Deployment options
 

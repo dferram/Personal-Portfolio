@@ -10,7 +10,7 @@ const CONTACT_LINKS = [
   {
     key: 'github',
     icon: <FaGithub size={26} />,
-    href: 'https://github.com/ferramdr',
+    href: 'https://github.com/dferram',
   },
   {
     key: 'whatsapp',
