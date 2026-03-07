@@ -80,7 +80,7 @@ export const EXPERIENCES_DATA = [
       en: 'A full week of technological immersion in the capital. Attended conferences on AI, data analysis, and app development, connecting with professionals from across Latin America.',
     },
     
-    imageUrl: '/images/experiences/cdmx-tech-week/10.jpeg',
+    imageUrl: '/images/experiences/cdmx-tech-week/20.jpeg',
     
     category: 'conference',
     
@@ -111,7 +111,7 @@ export const EXPERIENCES_DATA = [
     },
     
     images: {
-      hero: '/images/experiences/cdmx-tech-week/5.jpeg',
+      hero: '/images/experiences/cdmx-tech-week/20.jpeg',
       gallery: [
         '/images/experiences/cdmx-tech-week/1.jpeg',
         '/images/experiences/cdmx-tech-week/10.jpeg',
@@ -131,8 +131,19 @@ export const EXPERIENCES_DATA = [
         '/images/experiences/cdmx-tech-week/17.jpeg',
         '/images/experiences/cdmx-tech-week/18.jpeg',
         '/images/experiences/cdmx-tech-week/19.jpeg',
-        '/images/experiences/cdmx-tech-week/20.jpeg',
         '/images/experiences/cdmx-tech-week/21.jpeg',
+        '/images/experiences/cdmx-tech-week/22.jpeg',
+        '/images/experiences/cdmx-tech-week/23.jpeg',
+        '/images/experiences/cdmx-tech-week/24.jpeg',
+        '/images/experiences/cdmx-tech-week/25.jpeg',
+        '/images/experiences/cdmx-tech-week/26.jpeg',
+        '/images/experiences/cdmx-tech-week/27.jpeg',
+        '/images/experiences/cdmx-tech-week/28.jpeg',
+        '/images/experiences/cdmx-tech-week/29.jpeg',
+        '/images/experiences/cdmx-tech-week/30.jpeg',
+        '/images/experiences/cdmx-tech-week/31.jpeg',
+        '/images/experiences/cdmx-tech-week/32.jpeg',
+        '/images/experiences/cdmx-tech-week/33.jpeg',
       ],
     },
   },
@@ -160,7 +171,7 @@ export const EXPERIENCES_DATA = [
       en: 'Christmas meetup of the local Google Developer Group. Talks about the Google Cloud ecosystem, mobile development with Flutter, and the latest in web technologies.',
     },
     
-    imageUrl: '/images/experiences/gdg-queretaro/7.jpeg',
+    imageUrl: '/images/experiences/gdg-queretaro/1.jpeg',
     
     category: 'conference',
     

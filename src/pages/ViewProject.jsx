@@ -22,6 +22,10 @@ const FALLBACK_LINK_LABELS = {
     es: 'Visitar tienda',
     en: 'Visit Store',
   },
+  instagram: {
+    es: 'Ver en Instagram',
+    en: 'View on Instagram',
+  },
 };
 
 function StatusBadge({ status, isOngoing }) {
@@ -47,19 +51,13 @@ function MetricGrid({ metrics, heading }) {
   if (!metrics || metrics.length === 0) return null;
 
   return (
-    <div>
-      <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-foreground">{heading ?? 'Ficha técnica'}</h3>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-        {metrics.map(({ label, value }) => (
-          <div
-            key={label}
-            className="rounded-lg border border-gray-200 bg-white px-4 py-4 text-left shadow-clean transition duration-300 hover:shadow-clean-lg"
-          >
-            <p className="text-[0.65rem] uppercase tracking-[0.4em] text-muted">{label}</p>
-            <p className="mt-2 text-sm font-semibold leading-snug text-foreground break-words whitespace-normal">{value}</p>
-          </div>
-        ))}
-      </div>
+    <div className="flex flex-wrap gap-6">
+      {metrics.map(({ label, value }) => (
+        <div key={label} className="flex flex-col">
+          <p className="text-sm uppercase tracking-[0.2em] text-muted font-medium">{label}</p>
+          <p className="mt-1 text-lg font-bold text-foreground">{value}</p>
+        </div>
+      ))}
     </div>
   );
 }
@@ -69,11 +67,11 @@ function ListSection({ title, items }) {
 
   return (
     <div>
-      <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-accent">{title}</h3>
-      <ul className="mt-4 space-y-3 text-sm leading-7 text-muted">
+      <h3 className="text-base font-semibold uppercase tracking-[0.25em] text-accent">{title}</h3>
+      <ul className="mt-4 space-y-3 text-base leading-relaxed text-muted">
         {items.map((item, index) => (
           <li key={`${title}-${index}`} className="flex gap-3">
-            <span className="mt-1 inline-flex h-1.5 w-1.5 flex-shrink-0 translate-y-1 rounded-full bg-accent" />
+            <span className="mt-1.5 inline-flex h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
             <span>{item}</span>
           </li>
         ))}
@@ -199,20 +197,20 @@ export default function ViewProject() {
           </div>
         </header>
 
-        <section className="mt-8 md:mt-12 w-full overflow-hidden grid gap-12 lg:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)]">
-          <div className="order-1 flex flex-col gap-12 min-w-0">
+        <section className="mt-8 md:mt-12 w-full overflow-hidden">
+          <div className="flex flex-col gap-12 min-w-0">
             <article className="space-y-10 min-w-0">
               <div>
-                <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">{t('viewProject.gallery')}</h2>
-                <div className="mt-4 w-full">
-                  <div className="group relative w-full overflow-hidden rounded-lg border border-gray-200 bg-gray-50 shadow-clean">
+                <h2 className="text-base md:text-lg font-bold uppercase tracking-[0.25em] text-accent">{t('viewProject.gallery')}</h2>
+                <div className="mt-6 w-full">
+                  <div className="group relative w-full overflow-hidden rounded-xl border border-gray-200 bg-gray-50 shadow-clean cursor-pointer">
                     {hasGallery ? (
                       <>
-                        <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden">
+                        <div className="relative flex w-full items-center justify-center overflow-hidden" style={{minHeight: '600px'}}>
                           <img
                             src={activeImage}
                             alt={`${title} - ${t('viewProject.gallery')} ${activeIndex + 1}`}
-                            className="max-h-full max-w-full object-contain p-1 transition duration-300 md:p-0"
+                            className="w-full h-full object-contain transition duration-300"
                             onClick={() => setIsLightboxOpen(true)}
                           />
                         </div>
@@ -245,13 +243,13 @@ export default function ViewProject() {
                     )}
                   </div>
                   {gallery.length > 1 && (
-                    <div className="mt-4 flex gap-3 overflow-x-auto pb-4 snap-x">
+                    <div className="mt-6 flex gap-4 overflow-x-auto pb-4 snap-x">
                       {gallery.map((image, index) => (
                         <button
                           key={`${id}-thumb-${index}`}
                           type="button"
                           onClick={() => setActiveIndex(index)}
-                          className={`relative h-16 w-24 md:h-20 md:w-28 flex-shrink-0 snap-center overflow-hidden rounded-lg border transition duration-300 ${
+                          className={`relative h-24 w-36 md:h-32 md:w-48 flex-shrink-0 snap-center overflow-hidden rounded-lg border transition duration-300 ${
                             activeIndex === index ? 'border-accent shadow-clean-lg ring-2 ring-accent ring-offset-2' : 'border-gray-200 opacity-70 hover:opacity-100'
                           }`}
                         >
@@ -264,11 +262,18 @@ export default function ViewProject() {
                 </div>
               </div>
 
-              <div className="space-y-8">
+              <div className="space-y-10">
+                {metrics.length > 0 && (
+                  <div>
+                    <h3 className="text-base md:text-lg font-bold uppercase tracking-[0.25em] text-accent mb-6">{t('common.metrics.heading')}</h3>
+                    <MetricGrid metrics={metrics} />
+                  </div>
+                )}
+
                 {overview && (
                   <div>
-                    <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">{t('viewProject.overview')}</h2>
-                    <p className="mt-4 text-sm leading-7 text-muted">{overview}</p>
+                    <h2 className="text-base md:text-lg font-bold uppercase tracking-[0.25em] text-accent">{t('viewProject.overview')}</h2>
+                    <p className="mt-4 text-base leading-relaxed text-muted">{overview}</p>
                   </div>
                 )}
 
@@ -276,51 +281,49 @@ export default function ViewProject() {
                 <ListSection title={t('viewProject.responsibilities')} items={responsibilities} />
                 {!overview && description && (
                   <div>
-                    <h2 className="text-xs md:text-sm font-semibold uppercase tracking-[0.35em] text-accent">{t('viewProject.description')}</h2>
+                    <h2 className="text-base md:text-lg font-semibold uppercase tracking-[0.25em] text-accent">{t('viewProject.description')}</h2>
                     <div
-                      className="prose prose-invert prose-p:text-muted mt-4 max-w-none space-y-4 text-sm leading-7"
+                      className="prose prose-invert prose-p:text-muted mt-4 max-w-none space-y-4 text-base leading-relaxed"
                       dangerouslySetInnerHTML={{ __html: description }}
                     />
+                  </div>
+                )}
+
+                {technologies.length > 0 && (
+                  <div>
+                    <h3 className="text-base md:text-lg font-bold uppercase tracking-[0.25em] text-accent">{t('viewProject.technologies')}</h3>
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      {technologies.map((tech) => (
+                        <span key={tech} className="pill-badge text-sm px-5 py-2.5">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {links && Object.keys(links).length > 0 && (
+                  <div>
+                    <h3 className="text-base md:text-lg font-bold uppercase tracking-[0.25em] text-accent">{t('viewProject.links')}</h3>
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      {Object.entries(links).map(([key, value]) => (
+                        <a
+                          key={key}
+                          href={value}
+                          target={value?.startsWith('http') ? '_blank' : undefined}
+                          rel={value?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                          aria-label={`${t(`common.linkLabels.${key}`) ?? FALLBACK_LINK_LABELS[key]?.[language] ?? key} - ${title}`}
+                          className="inline-flex items-center justify-center pill-badge-lg hover:bg-accent-dark transition-colors text-base px-6 py-3"
+                        >
+                          <span aria-hidden="true">{t(`common.linkLabels.${key}`) ?? FALLBACK_LINK_LABELS[key]?.[language] ?? key}</span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
             </article>
           </div>
-
-          <aside className="order-2 flex flex-col gap-8 rounded-lg border border-gray-200 bg-white p-6 md:p-8 shadow-clean lg:sticky lg:top-28 h-fit">
-            <MetricGrid metrics={metrics} heading={t('common.metrics.heading')} />
-
-            <div>
-              <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-foreground">{t('viewProject.technologies')}</h3>
-              <div className="mt-4 flex flex-wrap gap-2 md:gap-3">
-                {technologies.map((tech) => (
-                  <span key={tech} className="pill-badge text-[0.65rem] md:text-xs px-4 py-2">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {links && Object.keys(links).length > 0 && (
-              <div>
-                <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-foreground">{t('viewProject.links')}</h3>
-                <div className="mt-4 flex flex-col gap-3">
-                  {Object.entries(links).map(([key, value]) => (
-                    <a
-                      key={key}
-                      href={value}
-                      target={value?.startsWith('http') ? '_blank' : undefined}
-                      rel={value?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      aria-label={`${t(`common.linkLabels.${key}`) ?? FALLBACK_LINK_LABELS[key]?.[language] ?? key} - ${title}`}
-                      className="inline-flex items-center justify-center pill-badge-lg hover:bg-accent-dark transition-colors text-xs md:text-sm text-center"
-                    >
-                      <span aria-hidden="true">{t(`common.linkLabels.${key}`) ?? FALLBACK_LINK_LABELS[key]?.[language] ?? key}</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-          </aside>
         </section>
       </div>
 

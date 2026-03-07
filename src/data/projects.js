@@ -138,8 +138,8 @@ export const PROJECTS_DATA = [
       "E-commerce",
     ],
     links: {
-      visit_store:
-        "https://razo.com.mx/",
+      visit_store: "https://razo.com.mx/",
+      instagram: "https://www.instagram.com/razoconnect/",
     },
     images: {
       hero: "/images/RazoConnect.png",

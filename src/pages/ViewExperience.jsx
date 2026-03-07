@@ -25,11 +25,11 @@ function ListSection({ title, items }) {
 
   return (
     <div>
-      <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-accent">{title}</h3>
-      <ul className="mt-4 space-y-3 text-sm leading-7 text-muted">
+      <h3 className="text-base md:text-lg font-semibold uppercase tracking-[0.25em] text-accent">{title}</h3>
+      <ul className="mt-6 space-y-4 text-base md:text-lg leading-relaxed text-muted">
         {items.map((item, index) => (
-          <li key={`${title}-${index}`} className="flex gap-3">
-            <span className="mt-1 inline-flex h-1.5 w-1.5 flex-shrink-0 translate-y-1 rounded-full bg-accent" />
+          <li key={`${title}-${index}`} className="flex gap-4">
+            <span className="mt-2 inline-flex h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
             <span>{item}</span>
           </li>
         ))}
@@ -176,18 +176,53 @@ export default function ViewExperience() {
         </header>
 
         {/* Contenido principal - Diseño de álbum de recuerdos */}
-        <section className="mt-8 md:mt-12 w-full overflow-hidden grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)]">
-          <div className="order-1 flex flex-col gap-12 min-w-0">
+        <section className="mt-8 md:mt-12 w-full overflow-hidden">
+          <div className="flex flex-col gap-12 min-w-0">
             <article className="space-y-10 min-w-0">
+              {/* Información básica inline */}
+              <div className="flex flex-wrap gap-6 pb-8 border-b border-gray-200">
+                <div className="flex flex-col">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted font-medium">
+                    {t('viewExperience.category') ?? 'Categoría'}
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-foreground">{categoryLabel}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted font-medium">
+                    {t('viewExperience.date') ?? 'Fecha'}
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-foreground">{date}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted font-medium">
+                    {t('viewExperience.location') ?? 'Ubicación'}
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-foreground">{location}</p>
+                </div>
+                {instagramUrl && (
+                  <div className="flex items-end">
+                    <a
+                      href={instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 px-5 py-2.5 text-sm font-bold uppercase tracking-[0.2em] text-white transition duration-300 hover:shadow-lg hover:scale-105"
+                    >
+                      <FaInstagram size={18} />
+                      {t('experiences.instagram.viewButton') ?? 'Ver en Instagram'}
+                    </a>
+                  </div>
+                )}
+              </div>
+
               {/* Historia con imágenes integradas estilo scrapbook */}
               {story && (
                 <div>
-                  <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent mb-8">
+                  <h2 className="text-base md:text-lg font-bold uppercase tracking-[0.25em] text-accent mb-8">
                     {t('viewExperience.story') ?? 'Historia'}
                   </h2>
                   
                   {/* Contenedor tipo álbum de recuerdos */}
-                  <div className="space-y-8">
+                  <div className="space-y-10">
                     {storyParagraphs.map((paragraph, pIndex) => {
                       const imageIndex = Math.floor((pIndex / storyParagraphs.length) * storyImages.length);
                       const hasImage = storyImages[imageIndex];
@@ -197,19 +232,19 @@ export default function ViewExperience() {
                         <div key={pIndex} className="relative">
                           {hasImage && imagePosition === 'right' ? (
                             // Imagen a la derecha
-                            <div className="md:grid md:grid-cols-[2fr_1fr] gap-6 items-start">
+                            <div className="md:grid md:grid-cols-[1.5fr_1fr] gap-8 items-start">
                               <div>
-                                <p className="text-sm leading-7 text-muted">{paragraph}</p>
+                                <p className="text-base md:text-lg leading-relaxed text-muted">{paragraph}</p>
                               </div>
                               <div 
-                                className="mt-4 md:mt-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:rotate-1"
+                                className="mt-6 md:mt-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:rotate-1"
                                 onClick={() => openLightbox(storyImages[imageIndex])}
                               >
-                                <div className="relative overflow-hidden rounded-lg border-4 border-white shadow-xl bg-white p-2 transform rotate-2">
+                                <div className="relative overflow-hidden rounded-xl border-4 border-white shadow-xl bg-white p-3 transform rotate-2">
                                   <img 
                                     src={storyImages[imageIndex]} 
                                     alt={`${title} - Momento ${imageIndex + 1}`}
-                                    className="w-full h-48 md:h-56 object-cover rounded"
+                                    className="w-full h-64 md:h-80 object-cover rounded"
                                   />
                                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
@@ -217,28 +252,28 @@ export default function ViewExperience() {
                             </div>
                           ) : hasImage && imagePosition === 'left' ? (
                             // Imagen a la izquierda
-                            <div className="md:grid md:grid-cols-[1fr_2fr] gap-6 items-start">
+                            <div className="md:grid md:grid-cols-[1fr_1.5fr] gap-8 items-start">
                               <div 
-                                className="mb-4 md:mb-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-rotate-1"
+                                className="mb-6 md:mb-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-rotate-1"
                                 onClick={() => openLightbox(storyImages[imageIndex])}
                               >
-                                <div className="relative overflow-hidden rounded-lg border-4 border-white shadow-xl bg-white p-2 transform -rotate-2">
+                                <div className="relative overflow-hidden rounded-xl border-4 border-white shadow-xl bg-white p-3 transform -rotate-2">
                                   <img 
                                     src={storyImages[imageIndex]} 
                                     alt={`${title} - Momento ${imageIndex + 1}`}
-                                    className="w-full h-48 md:h-56 object-cover rounded"
+                                    className="w-full h-64 md:h-80 object-cover rounded"
                                   />
                                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
                               </div>
                               <div>
-                                <p className="text-sm leading-7 text-muted">{paragraph}</p>
+                                <p className="text-base md:text-lg leading-relaxed text-muted">{paragraph}</p>
                               </div>
                             </div>
                           ) : (
                             // Solo texto
                             <div>
-                              <p className="text-sm leading-7 text-muted">{paragraph}</p>
+                              <p className="text-base md:text-lg leading-relaxed text-muted">{paragraph}</p>
                             </div>
                           )}
                         </div>
@@ -257,7 +292,7 @@ export default function ViewExperience() {
               {/* Carrusel de imágenes restantes */}
               {hasCarousel && (
                 <div className="mt-12">
-                  <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent mb-6">
+                  <h2 className="text-base md:text-lg font-bold uppercase tracking-[0.25em] text-accent mb-8">
                     Más Recuerdos
                   </h2>
                   
@@ -265,16 +300,16 @@ export default function ViewExperience() {
                     {/* Botón anterior */}
                     <button
                       onClick={() => scrollCarousel('prev')}
-                      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-accent/90 hover:bg-accent text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-1/2"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-accent/90 hover:bg-accent text-white p-4 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-1/2"
                       aria-label="Anterior"
                     >
-                      <FaChevronLeft size={20} />
+                      <FaChevronLeft size={24} />
                     </button>
                     
                     {/* Carrusel */}
                     <div 
                       ref={carouselRef}
-                      className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4"
+                      className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-6"
                       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
                       {carouselImages.map((image, index) => (
@@ -283,14 +318,14 @@ export default function ViewExperience() {
                           className="flex-shrink-0 snap-center group/item cursor-pointer transform transition-all duration-300 hover:scale-105"
                           onClick={() => openLightbox(image)}
                         >
-                          <div className="relative w-64 md:w-80 h-48 md:h-64 overflow-hidden rounded-lg border-4 border-white shadow-xl bg-white p-2">
+                          <div className="relative w-80 md:w-[500px] h-64 md:h-[400px] overflow-hidden rounded-xl border-4 border-white shadow-xl bg-white p-3">
                             <img
                               src={image}
                               alt={`${title} - Galería ${index + 6}`}
                               className="w-full h-full object-cover rounded"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity" />
-                            <div className="absolute bottom-3 right-3 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-foreground opacity-0 group-hover/item:opacity-100 transition-opacity">
+                            <div className="absolute bottom-4 right-4 bg-white/90 px-4 py-2 rounded-full text-sm font-bold text-foreground opacity-0 group-hover/item:opacity-100 transition-opacity">
                               Click para ampliar
                             </div>
                           </div>
@@ -301,19 +336,19 @@ export default function ViewExperience() {
                     {/* Botón siguiente */}
                     <button
                       onClick={() => scrollCarousel('next')}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-accent/90 hover:bg-accent text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-1/2"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-accent/90 hover:bg-accent text-white p-4 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-1/2"
                       aria-label="Siguiente"
                     >
-                      <FaChevronRight size={20} />
+                      <FaChevronRight size={24} />
                     </button>
                   </div>
                   
                   {/* Indicador de scroll */}
-                  <div className="mt-4 flex justify-center gap-2">
+                  <div className="mt-6 flex justify-center gap-2">
                     {carouselImages.map((_, index) => (
                       <div
                         key={index}
-                        className="h-1.5 w-1.5 rounded-full bg-muted/30"
+                        className="h-2 w-2 rounded-full bg-muted/30"
                       />
                     ))}
                   </div>
@@ -321,58 +356,6 @@ export default function ViewExperience() {
               )}
             </article>
           </div>
-
-          {/* Sidebar con Instagram */}
-          <aside className="order-2 flex flex-col gap-8 rounded-lg border border-gray-200 bg-white p-6 md:p-8 shadow-clean lg:sticky lg:top-28 h-fit">
-            {instagramUrl && (
-              <div>
-                <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-foreground">
-                  {t('viewExperience.socialMedia') ?? 'Redes Sociales'}
-                </h3>
-                <div className="mt-4">
-                  <a
-                    href={instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 px-4 py-3 text-sm font-bold uppercase tracking-[0.2em] text-white transition duration-300 hover:shadow-lg hover:scale-105"
-                  >
-                    <FaInstagram size={18} />
-                    {t('experiences.instagram.viewButton') ?? 'Ver en Instagram'}
-                  </a>
-                  <p className="mt-3 text-xs text-muted italic text-center">
-                    {t('experiences.instagram.relatedPost') ?? 'Publicación relacionada con esta experiencia'}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Información adicional */}
-            <div>
-              <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-foreground">
-                {t('viewExperience.details') ?? 'Detalles'}
-              </h3>
-              <div className="mt-4 space-y-3">
-                <div className="rounded-lg border border-gray-200 bg-white px-4 py-4 text-left shadow-clean">
-                  <p className="text-[0.65rem] uppercase tracking-[0.4em] text-muted">
-                    {t('viewExperience.category') ?? 'Categoría'}
-                  </p>
-                  <p className="mt-2 text-sm font-semibold text-foreground">{categoryLabel}</p>
-                </div>
-                <div className="rounded-lg border border-gray-200 bg-white px-4 py-4 text-left shadow-clean">
-                  <p className="text-[0.65rem] uppercase tracking-[0.4em] text-muted">
-                    {t('viewExperience.date') ?? 'Fecha'}
-                  </p>
-                  <p className="mt-2 text-sm font-semibold text-foreground">{date}</p>
-                </div>
-                <div className="rounded-lg border border-gray-200 bg-white px-4 py-4 text-left shadow-clean">
-                  <p className="text-[0.65rem] uppercase tracking-[0.4em] text-muted">
-                    {t('viewExperience.location') ?? 'Ubicación'}
-                  </p>
-                  <p className="mt-2 text-sm font-semibold text-foreground break-words">{location}</p>
-                </div>
-              </div>
-            </div>
-          </aside>
         </section>
       </div>
 
