@@ -79,27 +79,29 @@ export default function About() {
           </div>
 
           {/* Right Column: Photo with tape effect */}
-          <div className="relative order-first lg:order-none">
-            <div className="relative">
-              {/* Tape effect decorations */}
+          <div className="relative order-first lg:order-none flex justify-center">
+            {/* Photo container */}
+            <div className="relative inline-block overflow-hidden rounded-lg shadow-clean-lg bg-white p-2">
+              {/* Tape effect decorations - cinta adhesiva translúcida tipo scotch */}
+              {/* POSICIONAMIENTO RELATIVO AL MARCO: El tape está dentro del contenedor del marco */}
+              {/* para que rote y escale junto con él. Usa porcentajes para adaptarse al tamaño. */}
+              {/* PERSONALIZACIÓN: Ajusta left-[25%] right-[25%] para posición horizontal relativa */}
+              {/* Ajusta -top-4 -bottom-4 para separación vertical del borde del marco */}
               <div 
-                className="absolute -top-4 left-1/4 w-24 h-8 bg-blue-200/40 rotate-[-8deg] z-10"
+                className="absolute -top-4 left-[25%] w-24 h-8 bg-blue-200/40 rotate-[-8deg] z-10"
                 style={{ backdropFilter: 'blur(1px)' }}
               />
               <div 
-                className="absolute -bottom-4 right-1/4 w-24 h-8 bg-blue-200/40 rotate-[12deg] z-10"
+                className="absolute -bottom-4 right-[25%] w-24 h-8 bg-blue-200/40 rotate-[12deg] z-10"
                 style={{ backdropFilter: 'blur(1px)' }}
               />
               
-              {/* Photo container */}
-              <div className="relative overflow-hidden rounded-lg shadow-clean-lg bg-white p-2">
-                <div className="aspect-[3/4] bg-gray-200 rounded flex items-center justify-center">
-                  <img
-                    src="/images/foto.png"
-                    alt="Fernando Ramírez"
-                    className="w-full h-full object-cover rounded"
-                  />
-                </div>
+              <div className="aspect-[3/4] bg-gray-200 rounded flex items-center justify-center">
+                <img
+                  src="/images/foto.png"
+                  alt="Fernando Ramírez"
+                  className="w-full h-full object-cover rounded"
+                />
               </div>
             </div>
           </div>

@@ -348,34 +348,35 @@ export default function ViewExperience() {
                               </div>
                               <div 
                                 key={`img-right-${pIndex}-${rotationIndex}`}
-                                className="mt-6 md:mt-0 relative"
+                                className="mt-6 md:mt-0 flex justify-center md:justify-start"
                               >
-                                {/* Tape effect decorations - cinta adhesiva translúcida tipo scotch */}
-                                {/* PERSONALIZACIÓN: Cambia left-4 right-4 para posición horizontal */}
-                                {/* Cambia -top-3 -bottom-3 para posición vertical */}
-                                <div 
-                                  className="absolute -top-4 left-8 w-20 h-8 bg-yellow-100/60 rotate-[-8deg] z-10 shadow-sm"
-                                  style={{ 
-                                    backdropFilter: 'blur(0.5px)',
-                                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
-                                  }}
-                                />
-                                <div 
-                                  className="absolute -bottom-4 right-8 w-20 h-8 bg-yellow-100/60 rotate-[12deg] z-10 shadow-sm"
-                                  style={{ 
-                                    backdropFilter: 'blur(0.5px)',
-                                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
-                                  }}
-                                />
-                                
                                 <div
-                                  className="group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:rotate-1 animate-fadeInScale"
+                                  className="group cursor-pointer relative transform transition-all duration-300 hover:scale-105 hover:rotate-1 animate-fadeInScale"
                                   onClick={() => openLightbox(storyImages[pIndex])}
                                 >
                                   {/* CONTENEDOR ADAPTATIVO: Se ajusta al tamaño natural de cada imagen */}
                                   {/* PERSONALIZACIÓN: Cambia max-w-md para ancho máximo, max-h-96 para alto máximo */}
                                   {/* MARCO: Cambia p-2 para grosor del marco blanco, shadow-clean-lg para sombra */}
                                   <div className="relative inline-block rounded-lg shadow-clean-lg bg-white p-2 transform rotate-2">
+                                    {/* Tape effect decorations - cinta adhesiva translúcida tipo scotch */}
+                                    {/* POSICIONAMIENTO RELATIVO AL MARCO: El tape está dentro del contenedor del marco */}
+                                    {/* para que rote y escale junto con él. Usa porcentajes para adaptarse al tamaño. */}
+                                    {/* PERSONALIZACIÓN: Ajusta left-[10%] right-[10%] para posición horizontal relativa */}
+                                    {/* Ajusta -top-4 -bottom-4 para separación vertical del borde del marco */}
+                                    <div 
+                                      className="absolute -top-4 left-[10%] w-20 h-8 bg-yellow-100/60 rotate-[-8deg] z-10 shadow-sm"
+                                      style={{ 
+                                        backdropFilter: 'blur(0.5px)',
+                                        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
+                                      }}
+                                    />
+                                    <div 
+                                      className="absolute -bottom-4 right-[10%] w-20 h-8 bg-yellow-100/60 rotate-[12deg] z-10 shadow-sm"
+                                      style={{ 
+                                        backdropFilter: 'blur(0.5px)',
+                                        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
+                                      }}
+                                    />
                                     <img 
                                       src={storyImages[pIndex]} 
                                       alt={`${title} - Momento ${pIndex + 1}`}
@@ -392,34 +393,35 @@ export default function ViewExperience() {
                             <div className="md:grid md:grid-cols-[1fr_1.5fr] gap-10 items-center">
                               <div 
                                 key={`img-left-${pIndex}-${rotationIndex}`}
-                                className="mb-6 md:mb-0 relative"
+                                className="mb-6 md:mb-0 flex justify-center md:justify-end"
                               >
-                                {/* Tape effect decorations - cinta adhesiva translúcida tipo scotch */}
-                                {/* PERSONALIZACIÓN: Cambia left-4 right-4 para posición horizontal */}
-                                {/* Cambia -top-3 -bottom-3 para posición vertical */}
-                                <div 
-                                  className="absolute -top-4 right-8 w-20 h-8 bg-yellow-100/60 rotate-[8deg] z-10 shadow-sm"
-                                  style={{ 
-                                    backdropFilter: 'blur(0.5px)',
-                                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
-                                  }}
-                                />
-                                <div 
-                                  className="absolute -bottom-4 left-8 w-20 h-8 bg-yellow-100/60 rotate-[-12deg] z-10 shadow-sm"
-                                  style={{ 
-                                    backdropFilter: 'blur(0.5px)',
-                                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
-                                  }}
-                                />
-                                
                                 <div
-                                  className="group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-rotate-1 animate-fadeInScale"
+                                  className="group cursor-pointer relative transform transition-all duration-300 hover:scale-105 hover:-rotate-1 animate-fadeInScale"
                                   onClick={() => openLightbox(storyImages[pIndex])}
                                 >
                                   {/* CONTENEDOR ADAPTATIVO: Se ajusta al tamaño natural de cada imagen */}
                                   {/* PERSONALIZACIÓN: Cambia max-w-md para ancho máximo, max-h-96 para alto máximo */}
                                   {/* MARCO: Cambia p-2 para grosor del marco blanco, shadow-clean-lg para sombra */}
                                   <div className="relative inline-block rounded-lg shadow-clean-lg bg-white p-2 transform -rotate-2">
+                                    {/* Tape effect decorations - cinta adhesiva translúcida tipo scotch */}
+                                    {/* POSICIONAMIENTO RELATIVO AL MARCO: El tape está dentro del contenedor del marco */}
+                                    {/* para que rote y escale junto con él. Usa porcentajes para adaptarse al tamaño. */}
+                                    {/* PERSONALIZACIÓN: Ajusta left-[10%] right-[10%] para posición horizontal relativa */}
+                                    {/* Ajusta -top-4 -bottom-4 para separación vertical del borde del marco */}
+                                    <div 
+                                      className="absolute -top-4 right-[10%] w-20 h-8 bg-yellow-100/60 rotate-[8deg] z-10 shadow-sm"
+                                      style={{ 
+                                        backdropFilter: 'blur(0.5px)',
+                                        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
+                                      }}
+                                    />
+                                    <div 
+                                      className="absolute -bottom-4 left-[10%] w-20 h-8 bg-yellow-100/60 rotate-[-12deg] z-10 shadow-sm"
+                                      style={{ 
+                                        backdropFilter: 'blur(0.5px)',
+                                        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
+                                      }}
+                                    />
                                     <img 
                                       src={storyImages[pIndex]} 
                                       alt={`${title} - Momento ${pIndex + 1}`}
