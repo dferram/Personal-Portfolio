@@ -5,6 +5,7 @@ import PortfolioHome from '@/pages/HomePortfolio';
 import ViewProject from '@/pages/ViewProject';
 import CertificatesPage from '@/pages/CertificatesPage';
 import ExperiencesPage from '@/pages/ExperiencesPage';
+import ViewExperience from '@/pages/ViewExperience';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/proyecto/:id" element={<ViewProject />} />
           <Route path="/certificados" element={<CertificatesPage />} />
           <Route path="/experiencias" element={<ExperiencesPage />} />
+          <Route path="/experiencia/:id" element={<ViewExperience />} />
           <Route path="*" element={<PortfolioHome />} />
 
         </Routes>
