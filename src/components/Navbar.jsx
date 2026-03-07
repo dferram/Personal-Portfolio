@@ -45,9 +45,9 @@ export default function Navbar() {
   }, [location]);
 
   return (
-    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur border-b border-gray-200 z-50 shadow-clean">
+    <nav className="fixed top-0 w-full backdrop-blur border-b z-50 shadow-clean" style={{ backgroundColor: 'var(--color-header-bg)', borderColor: 'var(--color-header-border)' }}>
       <div className="flex w-full items-center justify-between px-4 py-4 md:px-6">
-        <Link to="/" className="text-2xl font-bold text-foreground hover:text-accent transition-colors z-50">
+        <Link to="/" className="text-2xl font-bold hover:text-accent transition-colors z-50" style={{ color: 'var(--color-header-text)' }}>
           {brand}
         </Link>
 
@@ -61,7 +61,8 @@ export default function Navbar() {
               const hash = isAnchor ? href : undefined;
 
               const commonClasses =
-                'relative text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-foreground-light transition duration-300 ease-out hover:text-accent';
+                'relative text-xs md:text-sm font-semibold uppercase tracking-[0.2em] transition duration-300 ease-out hover:text-accent';
+              const linkStyle = { color: 'var(--color-header-text)' };
 
               const destination = isAnchor ? { pathname: '/', hash } : href;
 
@@ -81,14 +82,14 @@ export default function Navbar() {
               };
 
               return (
-                <Link key={label} to={destination} className={commonClasses} onClick={handleClick}>
+                <Link key={label} to={destination} className={commonClasses} style={linkStyle} onClick={handleClick}>
                   {label}
                 </Link>
               );
             })}
           </div>
 
-          <div className="flex items-center gap-2 rounded-full border border-accent/30 bg-primary-dark px-2 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
+          <div className="flex items-center gap-2 rounded-full border border-accent/30 bg-primary-dark px-2 py-1 text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: 'var(--color-header-text)' }}>
             {LANG_OPTIONS.map((lang) => (
               <button
                 key={lang}
@@ -109,7 +110,8 @@ export default function Navbar() {
 
         {/* Mobile Toggle Button */}
         <button
-          className="md:hidden z-50 p-2 text-foreground focus:outline-none"
+          className="md:hidden z-50 p-2 focus:outline-none"
+          style={{ color: 'var(--color-header-text)' }}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
         >
@@ -124,8 +126,8 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-0 left-0 w-full h-screen bg-white flex flex-col items-center justify-center gap-8 md:hidden shadow-lg"
-              style={{ paddingTop: '80px' }} // Offset for fixed navbar height
+              className="absolute top-0 left-0 w-full h-screen flex flex-col items-center justify-center gap-8 md:hidden shadow-lg"
+              style={{ backgroundColor: 'var(--color-header-bg)', paddingTop: '80px' }}
             >
               <div className="flex flex-col items-center gap-8 w-full px-6">
                 {links.map((item) => {
@@ -155,7 +157,8 @@ export default function Navbar() {
                     <Link 
                       key={label} 
                       to={destination} 
-                      className="text-2xl font-bold uppercase tracking-widest text-foreground hover:text-accent transition-colors"
+                      className="text-2xl font-bold uppercase tracking-widest hover:text-accent transition-colors"
+                      style={{ color: 'var(--color-header-text)' }}
                       onClick={handleClick}
                     >
                       {label}

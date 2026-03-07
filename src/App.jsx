@@ -6,6 +6,7 @@ import ViewProject from '@/pages/ViewProject';
 import CertificatesPage from '@/pages/CertificatesPage';
 import ExperiencesPage from '@/pages/ExperiencesPage';
 import ViewExperience from '@/pages/ViewExperience';
+import ThemeAdminPanel from '@/pages/ThemeAdminPanel';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/certificados" element={<CertificatesPage />} />
           <Route path="/experiencias" element={<ExperiencesPage />} />
           <Route path="/experiencia/:id" element={<ViewExperience />} />
+          <Route path="/estilos" element={<ThemeAdminPanel />} />
           <Route path="*" element={<PortfolioHome />} />
 
         </Routes>

@@ -24,7 +24,7 @@ export default function Hero() {
             className="absolute font-black select-none leading-none"
             style={{
               fontSize: 'clamp(5rem, 24vw, 26rem)',
-              color: '#E5F0FF',
+              color: 'var(--color-hero-layer-1)',
               opacity: 0.12,
               transform: 'translateY(-35%)',
               letterSpacing: '-0.05em',
@@ -39,7 +39,7 @@ export default function Hero() {
             className="absolute font-black select-none leading-none"
             style={{
               fontSize: 'clamp(4.5rem, 22vw, 24rem)',
-              color: '#B3D4FF',
+              color: 'var(--color-hero-layer-2)',
               opacity: 0.25,
               transform: 'translateY(-15%)',
               letterSpacing: '-0.05em',
@@ -54,7 +54,7 @@ export default function Hero() {
             className="absolute font-black select-none leading-none"
             style={{
               fontSize: 'clamp(4rem, 20vw, 22rem)',
-              color: '#6BA3FF',
+              color: 'var(--color-hero-layer-3)',
               opacity: 0.45,
               transform: 'translateY(-5%)',
               letterSpacing: '-0.05em',
@@ -69,7 +69,7 @@ export default function Hero() {
             className="absolute font-black select-none leading-none"
             style={{
               fontSize: 'clamp(3.5rem, 18vw, 20rem)',
-              color: '#3D7FFF',
+              color: 'var(--color-hero-layer-4)',
               opacity: 0.65,
               transform: 'translateY(0%)',
               letterSpacing: '-0.05em',
@@ -79,12 +79,12 @@ export default function Hero() {
             "portfolio"
           </div>
           
-          {/* FOREGROUND LAYER - Main sharp Electric Blue text */}
+          {/* FOREGROUND LAYER - Main sharp text (theme color) */}
           <div 
             className="absolute font-black select-none leading-none"
             style={{
               fontSize: 'clamp(3rem, 16vw, 18rem)',
-              color: '#0022FF',
+              color: 'var(--color-hero-layer-5)',
               opacity: 1,
               transform: 'translateY(2%)',
               letterSpacing: '-0.03em',
@@ -94,12 +94,12 @@ export default function Hero() {
             "portfolio"
           </div>
           
-          {/* Year '2026' - White with subtle drop shadow, aligned with baseline */}
+          {/* Year '2026' - Theme color with subtle drop shadow */}
           <div 
             className="absolute font-bold select-none"
             style={{ 
               fontSize: 'clamp(1rem, 2.5vw, 2.5rem)',
-              color: '#FFFFFF',
+              color: 'var(--color-hero-year)',
               opacity: 0.9,
               transform: 'translateY(15px) sm:translateY(20px)',
               letterSpacing: '0.05em',
