@@ -305,28 +305,6 @@ export default function ViewExperience() {
                 )}
               </div>
 
-              {/* Hero Image - Imagen principal exclusiva (no se repite en otras partes) */}
-              {heroImage && (
-                <div className="mb-12">
-                  <div 
-                    className="group cursor-pointer transform transition-all duration-300 hover:scale-[1.02]"
-                    onClick={() => openLightbox(heroImage)}
-                  >
-                    <div className="relative overflow-hidden rounded-2xl border-8 border-white shadow-2xl bg-white p-4">
-                      <img 
-                        src={heroImage} 
-                        alt={`${title} - Imagen principal`}
-                        className="w-full h-[400px] md:h-[600px] object-cover rounded-lg"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <div className="absolute bottom-6 right-6 bg-white/95 px-6 py-3 rounded-full text-sm font-bold text-foreground opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
-                        Click para ampliar
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
               {/* Historia con imágenes integradas estilo scrapbook */}
               {story && (
                 <div>
@@ -344,41 +322,81 @@ export default function ViewExperience() {
                       return (
                         <div key={pIndex} className="relative">
                           {hasImage && imagePosition === 'right' ? (
-                            // Imagen a la derecha con animación de entrada
+                            // Imagen a la derecha con animación de entrada y efecto tape
+                            // PERSONALIZACIÓN: Cambia colores de tape en 'bg-blue-200/40' o rotación en 'rotate-[]'
                             <div className="md:grid md:grid-cols-[1.5fr_1fr] gap-10 items-center">
                               <div>
                                 <p className="text-lg md:text-xl leading-relaxed text-muted">{paragraph}</p>
                               </div>
                               <div 
                                 key={`img-right-${pIndex}-${rotationIndex}`}
-                                className="mt-6 md:mt-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:rotate-1 animate-fadeInScale"
-                                onClick={() => openLightbox(storyImages[pIndex])}
+                                className="mt-6 md:mt-0 relative"
                               >
-                                <div className="relative overflow-hidden rounded-xl border-4 border-white shadow-xl bg-white p-3 transform rotate-2">
-                                  <img 
-                                    src={storyImages[pIndex]} 
-                                    alt={`${title} - Momento ${pIndex + 1}`}
-                                    className="w-full h-64 md:h-80 object-cover rounded"
-                                  />
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                {/* Tape effect decorations - cuadrados que simulan cinta adhesiva */}
+                                {/* PERSONALIZACIÓN: Cambia left-4 right-4 para posición horizontal */}
+                                {/* Cambia -top-3 -bottom-3 para posición vertical */}
+                                <div 
+                                  className="absolute -top-3 left-4 w-16 h-6 bg-blue-200/40 rotate-[-8deg] z-10"
+                                  style={{ backdropFilter: 'blur(1px)' }}
+                                />
+                                <div 
+                                  className="absolute -bottom-3 right-4 w-16 h-6 bg-blue-200/40 rotate-[12deg] z-10"
+                                  style={{ backdropFilter: 'blur(1px)' }}
+                                />
+                                
+                                <div
+                                  className="group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:rotate-1 animate-fadeInScale"
+                                  onClick={() => openLightbox(storyImages[pIndex])}
+                                >
+                                  {/* CONTENEDOR ADAPTATIVO: Se ajusta al tamaño natural de cada imagen */}
+                                  {/* PERSONALIZACIÓN: Cambia max-w-md para ancho máximo, max-h-96 para alto máximo */}
+                                  {/* MARCO: Cambia p-2 para grosor del marco blanco, shadow-clean-lg para sombra */}
+                                  <div className="relative inline-block rounded-lg shadow-clean-lg bg-white p-2 transform rotate-2">
+                                    <img 
+                                      src={storyImages[pIndex]} 
+                                      alt={`${title} - Momento ${pIndex + 1}`}
+                                      className="max-w-full max-h-80 md:max-h-96 w-auto h-auto object-contain rounded"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-lg" />
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           ) : hasImage && imagePosition === 'left' ? (
-                            // Imagen a la izquierda con animación de entrada
+                            // Imagen a la izquierda con animación de entrada y efecto tape
+                            // PERSONALIZACIÓN: Cambia colores de tape en 'bg-blue-200/40' o rotación en 'rotate-[]'
                             <div className="md:grid md:grid-cols-[1fr_1.5fr] gap-10 items-center">
                               <div 
                                 key={`img-left-${pIndex}-${rotationIndex}`}
-                                className="mb-6 md:mb-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-rotate-1 animate-fadeInScale"
-                                onClick={() => openLightbox(storyImages[pIndex])}
+                                className="mb-6 md:mb-0 relative"
                               >
-                                <div className="relative overflow-hidden rounded-xl border-4 border-white shadow-xl bg-white p-3 transform -rotate-2">
-                                  <img 
-                                    src={storyImages[pIndex]} 
-                                    alt={`${title} - Momento ${pIndex + 1}`}
-                                    className="w-full h-64 md:h-80 object-cover rounded"
-                                  />
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                {/* Tape effect decorations - cuadrados que simulan cinta adhesiva */}
+                                {/* PERSONALIZACIÓN: Cambia left-4 right-4 para posición horizontal */}
+                                {/* Cambia -top-3 -bottom-3 para posición vertical */}
+                                <div 
+                                  className="absolute -top-3 right-4 w-16 h-6 bg-blue-200/40 rotate-[8deg] z-10"
+                                  style={{ backdropFilter: 'blur(1px)' }}
+                                />
+                                <div 
+                                  className="absolute -bottom-3 left-4 w-16 h-6 bg-blue-200/40 rotate-[-12deg] z-10"
+                                  style={{ backdropFilter: 'blur(1px)' }}
+                                />
+                                
+                                <div
+                                  className="group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-rotate-1 animate-fadeInScale"
+                                  onClick={() => openLightbox(storyImages[pIndex])}
+                                >
+                                  {/* CONTENEDOR ADAPTATIVO: Se ajusta al tamaño natural de cada imagen */}
+                                  {/* PERSONALIZACIÓN: Cambia max-w-md para ancho máximo, max-h-96 para alto máximo */}
+                                  {/* MARCO: Cambia p-2 para grosor del marco blanco, shadow-clean-lg para sombra */}
+                                  <div className="relative inline-block rounded-lg shadow-clean-lg bg-white p-2 transform -rotate-2">
+                                    <img 
+                                      src={storyImages[pIndex]} 
+                                      alt={`${title} - Momento ${pIndex + 1}`}
+                                      className="max-w-full max-h-80 md:max-h-96 w-auto h-auto object-contain rounded"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-lg" />
+                                  </div>
                                 </div>
                               </div>
                               <div>
@@ -421,7 +439,9 @@ export default function ViewExperience() {
                       <FaChevronLeft size={24} />
                     </button>
                     
-                    {/* Carrusel con imágenes responsive (sin recortes) */}
+                    {/* Carrusel con imágenes responsive (sin espacios blancos excesivos) */}
+                    {/* PERSONALIZACIÓN DE BORDE: Cambia 'border-2' a border-3 para grosor */}
+                    {/* Cambia 'border-gray-300' por otro color (ej: border-white, border-gray-400) */}
                     <div 
                       ref={carouselRef}
                       className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-6"
@@ -433,21 +453,17 @@ export default function ViewExperience() {
                           className="flex-shrink-0 snap-center group/item cursor-pointer transform transition-all duration-300 hover:scale-105"
                           onClick={() => openLightbox(image)}
                         >
-                          {/* Contenedor con altura fija y padding para el marco blanco */}
-                          <div className="relative w-80 md:w-[500px] overflow-hidden rounded-xl border-4 border-white shadow-xl bg-white p-3">
-                            {/* Contenedor interno con altura fija para la imagen */}
-                            <div className="relative w-full h-64 md:h-[400px] flex items-center justify-center bg-gray-50 rounded">
-                              <img
-                                src={image}
-                                alt={`${title} - Galería ${index + 1}`}
-                                className="max-w-full max-h-full object-contain rounded"
-                                style={{
-                                  width: 'auto',
-                                  height: 'auto',
-                                }}
-                              />
-                            </div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                          {/* CONTENEDOR ADAPTATIVO: Cada imagen se muestra en su tamaño y proporción natural */}
+                          {/* LÍMITES DE TAMAÑO: Cambia max-w-md md:max-w-2xl para ancho máximo */}
+                          {/* Cambia max-h-80 md:max-h-[500px] para alto máximo */}
+                          {/* MARCO: Cambia p-2 para grosor, bg-white para color, shadow-clean-lg para sombra */}
+                          <div className="relative inline-block rounded-lg shadow-clean-lg bg-white p-2">
+                            <img
+                              src={image}
+                              alt={`${title} - Galería ${index + 1}`}
+                              className="max-w-xs md:max-w-2xl max-h-80 md:max-h-[500px] w-auto h-auto object-contain rounded"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity rounded-lg" />
                             <div className="absolute bottom-4 right-4 bg-white/90 px-4 py-2 rounded-full text-sm font-bold text-foreground opacity-0 group-hover/item:opacity-100 transition-opacity">
                               Click para ampliar
                             </div>
