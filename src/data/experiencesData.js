@@ -54,6 +54,53 @@
 // - images: Objeto con 'hero' (imagen principal) y 'gallery' (array de imágenes)
 //
 // Si estos campos NO están presentes, la experiencia solo se mostrará en la lista.
+//
+// SISTEMA DE IMÁGENES CON ROTACIÓN AUTOMÁTICA:
+// ---------------------------------------------
+// Las imágenes se organizan en dos secciones:
+//
+// 1. HERO IMAGE (Imagen Principal):
+//    - Se muestra al inicio de la página de detalle
+//    - Es EXCLUSIVA, no se repite en otras partes
+//    - Debe ser una imagen representativa de alta calidad
+//    - Ejemplo: images: { hero: '/images/mi-experiencia/principal.jpg', ... }
+//
+// 2. GALLERY (Galería):
+//    - Array de imágenes que se distribuyen automáticamente
+//    - Las imágenes ROTAN AUTOMÁTICAMENTE cada 10 segundos
+//    - NO se repiten entre cartas visibles al mismo tiempo
+//    - Usa algoritmo shuffle para mostrar todas antes de repetir
+//    - Se distribuyen entre:
+//      a) Cartas del scrapbook (integradas con el texto de la historia)
+//      b) Carrusel inferior (imágenes restantes)
+//
+// CÓMO AGREGAR MÁS IMÁGENES:
+// ---------------------------
+// 1. Coloca tus imágenes en la carpeta: public/images/experiences/[nombre-experiencia]/
+// 2. Agrega las rutas al array 'gallery' en el formato:
+//    '/images/experiences/[nombre-experiencia]/imagen.jpg'
+// 3. Puedes agregar tantas imágenes como quieras
+// 4. El sistema automáticamente:
+//    - Las mezclará aleatoriamente
+//    - Las rotará cada 10 segundos
+//    - Evitará repeticiones entre cartas
+//    - Las mostrará completas en el carrusel (sin recortes)
+//
+// CONFIGURACIÓN DE VELOCIDAD DE ROTACIÓN:
+// ----------------------------------------
+// Para cambiar la velocidad de rotación, edita la constante ROTATION_INTERVAL
+// en el archivo: src/pages/ViewExperience.jsx (línea ~136)
+// - Valor actual: 10000 (10 segundos)
+// - Para más rápido: 5000 (5 segundos)
+// - Para más lento: 15000 (15 segundos)
+//
+// RECOMENDACIONES:
+// ----------------
+// - Usa imágenes de buena calidad (mínimo 1200px de ancho)
+// - Formatos recomendados: JPG, PNG, WebP
+// - Optimiza las imágenes antes de subirlas (usa herramientas como TinyPNG)
+// - Mantén nombres de archivo descriptivos (ej: conferencia-1.jpg, grupo-2.jpg)
+// - Asegúrate de tener al menos 5-10 imágenes para una buena experiencia
 // ============================================================================
 
 export const EXPERIENCES_DATA = [
@@ -110,8 +157,10 @@ export const EXPERIENCES_DATA = [
       ],
     },
     
+    instagramUrl: 'https://www.instagram.com/p/DQPVWIeDm1NK5g4zzYzmWZFc0NORYpCv5VEaNU0/',
+    
     images: {
-      hero: '/images/experiences/cdmx-tech-week/20.jpeg',
+      hero: '/images/experiences/cdmx-tech-week/5.jpeg',
       gallery: [
         '/images/experiences/cdmx-tech-week/1.jpeg',
         '/images/experiences/cdmx-tech-week/10.jpeg',

@@ -25,11 +25,11 @@ function ListSection({ title, items }) {
 
   return (
     <div>
-      <h3 className="text-base md:text-lg font-semibold uppercase tracking-[0.25em] text-accent">{title}</h3>
-      <ul className="mt-6 space-y-4 text-base md:text-lg leading-relaxed text-muted">
+      <h3 className="text-lg md:text-xl font-semibold uppercase tracking-[0.2em] text-accent">{title}</h3>
+      <ul className="mt-6 space-y-5 text-lg md:text-xl leading-relaxed text-muted">
         {items.map((item, index) => (
           <li key={`${title}-${index}`} className="flex gap-4">
-            <span className="mt-2 inline-flex h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
+            <span className="mt-2.5 inline-flex h-2.5 w-2.5 flex-shrink-0 rounded-full bg-accent" />
             <span>{item}</span>
           </li>
         ))}
@@ -88,9 +88,14 @@ export default function ViewExperience() {
     const get = (value) => getLocalizedValue(value, language);
     const getList = (value) => getLocalizedList(value, language);
 
+    // IMPORTANTE: Separar imagen Hero de la galería para evitar duplicación
     const heroImage = experience.images?.hero ?? null;
     const galleryImages = Array.isArray(experience.images?.gallery) ? experience.images.gallery : [];
-    const gallery = heroImage ? [heroImage, ...galleryImages] : galleryImages;
+    
+    // Filtrar la imagen hero de la galería para que no se repita
+    const gallery = heroImage 
+      ? galleryImages.filter(img => img !== heroImage)
+      : galleryImages;
 
     return {
       title: get(experience.title) ?? experience.title,
@@ -99,6 +104,7 @@ export default function ViewExperience() {
       description: get(experience.description) ?? experience.description,
       story: get(experience.story) ?? experience.story,
       learnings: getList(experience.learnings),
+      heroImage,
       gallery,
       category: experience.category,
       instagramUrl: experience.instagramUrl,
@@ -111,6 +117,7 @@ export default function ViewExperience() {
     location,
     story,
     learnings,
+    heroImage,
     gallery,
     category,
     instagramUrl,
@@ -118,13 +125,97 @@ export default function ViewExperience() {
 
   const hasGallery = gallery.length > 0;
   
-  // Dividir imágenes: primeras 5 para integrar con texto, resto para carrusel
-  const storyImages = gallery.slice(0, 5);
-  const carouselImages = gallery.slice(5);
+  // ============================================================================
+  // SISTEMA DE ROTACIÓN AUTOMÁTICA DE IMÁGENES
+  // ============================================================================
+  // Configuración del intervalo de rotación (en milisegundos)
+  // Cambia este valor para ajustar la velocidad de rotación:
+  // - 10000 = 10 segundos (valor actual)
+  // - 5000 = 5 segundos (más rápido)
+  // - 15000 = 15 segundos (más lento)
+  const ROTATION_INTERVAL = 10000;
+  
+  // Estado para controlar el índice de rotación actual
+  const [rotationIndex, setRotationIndex] = useState(0);
+  
+  // Mezclar imágenes usando algoritmo Fisher-Yates (shuffle perfecto)
+  // Esto asegura que todas las imágenes se muestren antes de repetir
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+  
+  // Estado para las imágenes mezcladas (se inicializa una sola vez)
+  const [shuffledImages, setShuffledImages] = useState([]);
+  
+  // Inicializar imágenes mezcladas cuando cambia la galería
+  useEffect(() => {
+    if (gallery.length > 0) {
+      const shuffled = shuffleArray(gallery);
+      setShuffledImages(shuffled);
+      setRotationIndex(0);
+    }
+  }, [gallery]);
+  
+  // Efecto para rotación automática de imágenes
+  useEffect(() => {
+    if (shuffledImages.length === 0) return;
+    
+    const interval = setInterval(() => {
+      setRotationIndex((prevIndex) => {
+        // Cuando llegamos al final, volver a mezclar y empezar de nuevo
+        if (prevIndex >= shuffledImages.length - 5) {
+          setShuffledImages(shuffleArray(gallery));
+          return 0;
+        }
+        return prevIndex + 1;
+      });
+    }, ROTATION_INTERVAL);
+    
+    return () => clearInterval(interval);
+  }, [shuffledImages, gallery]);
+  
+  // Calcular cuántas imágenes necesitamos para las cartas del scrapbook
+  // Dividir la historia en párrafos para saber cuántas cartas habrá
+  const storyParagraphs = story ? story.split('\n\n').filter(p => p.trim()) : [];
+  const numCards = storyParagraphs.length;
+  
+  // Obtener las imágenes actuales para las cartas (sin repeticiones)
+  // Usamos rotationIndex para rotar el conjunto de imágenes
+  const getStoryImages = () => {
+    if (shuffledImages.length === 0) return [];
+    
+    // Si no hay suficientes imágenes para todas las cartas, mostrar advertencia
+    if (shuffledImages.length < numCards) {
+      console.warn(`⚠️ Advertencia: Solo hay ${shuffledImages.length} imágenes pero se necesitan ${numCards} para las cartas. Algunas cartas no tendrán imagen.`);
+    }
+    
+    // Crear un array circular para evitar errores si hay menos imágenes que cartas
+    const images = [];
+    for (let i = 0; i < numCards; i++) {
+      const imageIndex = (rotationIndex + i) % shuffledImages.length;
+      images.push(shuffledImages[imageIndex]);
+    }
+    return images;
+  };
+  
+  const storyImages = getStoryImages();
+  
+  // Imágenes restantes para el carrusel (las que no se usan en las cartas)
+  const carouselImages = shuffledImages.filter((img, idx) => {
+    const usedIndices = [];
+    for (let i = 0; i < numCards; i++) {
+      usedIndices.push((rotationIndex + i) % shuffledImages.length);
+    }
+    return !usedIndices.includes(idx);
+  });
+  
   const hasCarousel = carouselImages.length > 0;
   
-  // Dividir la historia en párrafos
-  const storyParagraphs = story ? story.split('\n\n').filter(p => p.trim()) : [];
   
   const openLightbox = (image) => {
     setLightboxImage(image);
@@ -180,24 +271,24 @@ export default function ViewExperience() {
           <div className="flex flex-col gap-12 min-w-0">
             <article className="space-y-10 min-w-0">
               {/* Información básica inline */}
-              <div className="flex flex-wrap gap-6 pb-8 border-b border-gray-200">
+              <div className="flex flex-wrap gap-8 pb-10 border-b border-gray-200">
                 <div className="flex flex-col">
-                  <p className="text-sm uppercase tracking-[0.2em] text-muted font-medium">
+                  <p className="text-base uppercase tracking-[0.15em] text-muted font-medium">
                     {t('viewExperience.category') ?? 'Categoría'}
                   </p>
-                  <p className="mt-1 text-lg font-bold text-foreground">{categoryLabel}</p>
+                  <p className="mt-2 text-xl font-bold text-foreground">{categoryLabel}</p>
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-sm uppercase tracking-[0.2em] text-muted font-medium">
+                  <p className="text-base uppercase tracking-[0.15em] text-muted font-medium">
                     {t('viewExperience.date') ?? 'Fecha'}
                   </p>
-                  <p className="mt-1 text-lg font-bold text-foreground">{date}</p>
+                  <p className="mt-2 text-xl font-bold text-foreground">{date}</p>
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-sm uppercase tracking-[0.2em] text-muted font-medium">
+                  <p className="text-base uppercase tracking-[0.15em] text-muted font-medium">
                     {t('viewExperience.location') ?? 'Ubicación'}
                   </p>
-                  <p className="mt-1 text-lg font-bold text-foreground">{location}</p>
+                  <p className="mt-2 text-xl font-bold text-foreground">{location}</p>
                 </div>
                 {instagramUrl && (
                   <div className="flex items-end">
@@ -205,45 +296,68 @@ export default function ViewExperience() {
                       href={instagramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 px-5 py-2.5 text-sm font-bold uppercase tracking-[0.2em] text-white transition duration-300 hover:shadow-lg hover:scale-105"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 px-6 py-3 text-base font-bold uppercase tracking-[0.15em] text-white transition duration-300 hover:shadow-lg hover:scale-105"
                     >
-                      <FaInstagram size={18} />
+                      <FaInstagram size={20} />
                       {t('experiences.instagram.viewButton') ?? 'Ver en Instagram'}
                     </a>
                   </div>
                 )}
               </div>
 
+              {/* Hero Image - Imagen principal exclusiva (no se repite en otras partes) */}
+              {heroImage && (
+                <div className="mb-12">
+                  <div 
+                    className="group cursor-pointer transform transition-all duration-300 hover:scale-[1.02]"
+                    onClick={() => openLightbox(heroImage)}
+                  >
+                    <div className="relative overflow-hidden rounded-2xl border-8 border-white shadow-2xl bg-white p-4">
+                      <img 
+                        src={heroImage} 
+                        alt={`${title} - Imagen principal`}
+                        className="w-full h-[400px] md:h-[600px] object-cover rounded-lg"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute bottom-6 right-6 bg-white/95 px-6 py-3 rounded-full text-sm font-bold text-foreground opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                        Click para ampliar
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Historia con imágenes integradas estilo scrapbook */}
               {story && (
                 <div>
-                  <h2 className="text-base md:text-lg font-bold uppercase tracking-[0.25em] text-accent mb-8">
+                  <h2 className="text-lg md:text-2xl font-bold uppercase tracking-[0.2em] text-accent mb-10">
                     {t('viewExperience.story') ?? 'Historia'}
                   </h2>
                   
-                  {/* Contenedor tipo álbum de recuerdos */}
-                  <div className="space-y-10">
+                  {/* Contenedor tipo álbum de recuerdos con rotación automática */}
+                  <div className="space-y-12">
                     {storyParagraphs.map((paragraph, pIndex) => {
-                      const imageIndex = Math.floor((pIndex / storyParagraphs.length) * storyImages.length);
-                      const hasImage = storyImages[imageIndex];
+                      // Asignar imagen según el índice del párrafo
+                      const hasImage = storyImages[pIndex];
                       const imagePosition = pIndex % 2 === 0 ? 'right' : 'left';
                       
                       return (
                         <div key={pIndex} className="relative">
                           {hasImage && imagePosition === 'right' ? (
-                            // Imagen a la derecha
-                            <div className="md:grid md:grid-cols-[1.5fr_1fr] gap-8 items-start">
+                            // Imagen a la derecha con animación de entrada
+                            <div className="md:grid md:grid-cols-[1.5fr_1fr] gap-10 items-center">
                               <div>
-                                <p className="text-base md:text-lg leading-relaxed text-muted">{paragraph}</p>
+                                <p className="text-lg md:text-xl leading-relaxed text-muted">{paragraph}</p>
                               </div>
                               <div 
-                                className="mt-6 md:mt-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:rotate-1"
-                                onClick={() => openLightbox(storyImages[imageIndex])}
+                                key={`img-right-${pIndex}-${rotationIndex}`}
+                                className="mt-6 md:mt-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:rotate-1 animate-fadeInScale"
+                                onClick={() => openLightbox(storyImages[pIndex])}
                               >
                                 <div className="relative overflow-hidden rounded-xl border-4 border-white shadow-xl bg-white p-3 transform rotate-2">
                                   <img 
-                                    src={storyImages[imageIndex]} 
-                                    alt={`${title} - Momento ${imageIndex + 1}`}
+                                    src={storyImages[pIndex]} 
+                                    alt={`${title} - Momento ${pIndex + 1}`}
                                     className="w-full h-64 md:h-80 object-cover rounded"
                                   />
                                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -251,29 +365,30 @@ export default function ViewExperience() {
                               </div>
                             </div>
                           ) : hasImage && imagePosition === 'left' ? (
-                            // Imagen a la izquierda
-                            <div className="md:grid md:grid-cols-[1fr_1.5fr] gap-8 items-start">
+                            // Imagen a la izquierda con animación de entrada
+                            <div className="md:grid md:grid-cols-[1fr_1.5fr] gap-10 items-center">
                               <div 
-                                className="mb-6 md:mb-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-rotate-1"
-                                onClick={() => openLightbox(storyImages[imageIndex])}
+                                key={`img-left-${pIndex}-${rotationIndex}`}
+                                className="mb-6 md:mb-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-rotate-1 animate-fadeInScale"
+                                onClick={() => openLightbox(storyImages[pIndex])}
                               >
                                 <div className="relative overflow-hidden rounded-xl border-4 border-white shadow-xl bg-white p-3 transform -rotate-2">
                                   <img 
-                                    src={storyImages[imageIndex]} 
-                                    alt={`${title} - Momento ${imageIndex + 1}`}
+                                    src={storyImages[pIndex]} 
+                                    alt={`${title} - Momento ${pIndex + 1}`}
                                     className="w-full h-64 md:h-80 object-cover rounded"
                                   />
                                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
                               </div>
                               <div>
-                                <p className="text-base md:text-lg leading-relaxed text-muted">{paragraph}</p>
+                                <p className="text-lg md:text-xl leading-relaxed text-muted">{paragraph}</p>
                               </div>
                             </div>
                           ) : (
                             // Solo texto
                             <div>
-                              <p className="text-base md:text-lg leading-relaxed text-muted">{paragraph}</p>
+                              <p className="text-lg md:text-xl leading-relaxed text-muted">{paragraph}</p>
                             </div>
                           )}
                         </div>
@@ -291,8 +406,8 @@ export default function ViewExperience() {
               
               {/* Carrusel de imágenes restantes */}
               {hasCarousel && (
-                <div className="mt-12">
-                  <h2 className="text-base md:text-lg font-bold uppercase tracking-[0.25em] text-accent mb-8">
+                <div className="mt-16">
+                  <h2 className="text-lg md:text-2xl font-bold uppercase tracking-[0.2em] text-accent mb-10">
                     Más Recuerdos
                   </h2>
                   
@@ -306,7 +421,7 @@ export default function ViewExperience() {
                       <FaChevronLeft size={24} />
                     </button>
                     
-                    {/* Carrusel */}
+                    {/* Carrusel con imágenes responsive (sin recortes) */}
                     <div 
                       ref={carouselRef}
                       className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-6"
@@ -314,16 +429,24 @@ export default function ViewExperience() {
                     >
                       {carouselImages.map((image, index) => (
                         <div
-                          key={index}
+                          key={`carousel-${index}-${image}`}
                           className="flex-shrink-0 snap-center group/item cursor-pointer transform transition-all duration-300 hover:scale-105"
                           onClick={() => openLightbox(image)}
                         >
-                          <div className="relative w-80 md:w-[500px] h-64 md:h-[400px] overflow-hidden rounded-xl border-4 border-white shadow-xl bg-white p-3">
-                            <img
-                              src={image}
-                              alt={`${title} - Galería ${index + 6}`}
-                              className="w-full h-full object-cover rounded"
-                            />
+                          {/* Contenedor con altura fija y padding para el marco blanco */}
+                          <div className="relative w-80 md:w-[500px] overflow-hidden rounded-xl border-4 border-white shadow-xl bg-white p-3">
+                            {/* Contenedor interno con altura fija para la imagen */}
+                            <div className="relative w-full h-64 md:h-[400px] flex items-center justify-center bg-gray-50 rounded">
+                              <img
+                                src={image}
+                                alt={`${title} - Galería ${index + 1}`}
+                                className="max-w-full max-h-full object-contain rounded"
+                                style={{
+                                  width: 'auto',
+                                  height: 'auto',
+                                }}
+                              />
+                            </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity" />
                             <div className="absolute bottom-4 right-4 bg-white/90 px-4 py-2 rounded-full text-sm font-bold text-foreground opacity-0 group-hover/item:opacity-100 transition-opacity">
                               Click para ampliar
