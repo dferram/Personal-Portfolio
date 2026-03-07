@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import PortfolioHome from '@/pages/HomePortfolio';
 import ViewProject from '@/pages/ViewProject';
 import CertificatesPage from '@/pages/CertificatesPage';
+import ExperiencesPage from '@/pages/ExperiencesPage';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         
           <Route path="/proyecto/:id" element={<ViewProject />} />
           <Route path="/certificados" element={<CertificatesPage />} />
+          <Route path="/experiencias" element={<ExperiencesPage />} />
           <Route path="*" element={<PortfolioHome />} />
 
         </Routes>

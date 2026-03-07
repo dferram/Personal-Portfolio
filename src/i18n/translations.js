@@ -34,6 +34,7 @@ export const translations = {
         { label: 'Proyectos', href: '#proyectos' },
         { label: 'Contacto', href: '#contacto' },
         { label: 'Certificados', href: '/certificados' },
+        { label: 'Experiencias', href: '/experiencias' },
       ],
     },
     hero: {
@@ -107,6 +108,20 @@ export const translations = {
         'Aquí puedes encontrar las credenciales y certificados de los cursos y tecnologías que he completado.',
       button: 'Ver Credencial',
     },
+    experiences: {
+      title: 'Mis Experiencias',
+      subtitle:
+        'Viajes, hackathones, conferencias y otras experiencias que han enriquecido mi desarrollo profesional y personal.',
+      categories: {
+        travel: 'Viaje',
+        hackathon: 'Hackathon',
+        conference: 'Conferencia',
+        volunteer: 'Voluntariado',
+        workshop: 'Taller',
+        award: 'Premio',
+        other: 'Otro',
+      },
+    },
   },
   en: {
     common: {
@@ -143,6 +158,7 @@ export const translations = {
         { label: 'Projects', href: '#proyectos' },
         { label: 'Contact', href: '#contacto' },
         { label: 'Certificates', href: '/certificados' },
+        { label: 'Experiences', href: '/experiencias' },
       ],
     },
     hero: {
@@ -214,6 +230,20 @@ export const translations = {
       title: 'My Certifications',
       subtitle: 'Here you can find the credentials and certificates for the courses and technologies I have completed.',
       button: 'View Credential',
+    },
+    experiences: {
+      title: 'My Experiences',
+      subtitle:
+        'Trips, hackathons, conferences, and other experiences that have enriched my professional and personal development.',
+      categories: {
+        travel: 'Travel',
+        hackathon: 'Hackathon',
+        conference: 'Conference',
+        volunteer: 'Volunteer',
+        workshop: 'Workshop',
+        award: 'Award',
+        other: 'Other',
+      },
     },
   },
 };
