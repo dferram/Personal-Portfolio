@@ -1,20 +1,21 @@
 // ============================================================================
 // COMPONENTE: ViewExperience
 // ============================================================================
-// Página de detalle para mostrar una experiencia específica con contenido extendido.
-// Sigue el mismo patrón de diseño que ViewProject.jsx para mantener consistencia.
+// Página de detalle con diseño de álbum de recuerdos/scrapbook.
 //
 // CARACTERÍSTICAS:
-// - Galería de imágenes con navegación y lightbox
+// - Diseño tipo álbum de recuerdos con imágenes integradas en el texto
+// - Primeras 5 imágenes distribuidas junto con la historia
+// - Carrusel moderno al final para imágenes restantes (si hay más de 5)
 // - Historia/anécdota extendida de la experiencia
 // - Lista de aprendizajes obtenidos
 // - Integración con Instagram (si está disponible)
 // - Diseño responsive y accesible
 // ============================================================================
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { FaChevronLeft, FaChevronRight, FaImage, FaTimes, FaInstagram } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaTimes, FaInstagram } from 'react-icons/fa';
 import { EXPERIENCES_DATA } from '@/data/experiencesData';
 import { useI18n } from '@/i18n/I18nProvider';
 import { getLocalizedList, getLocalizedValue } from '@/i18n/utils';
@@ -43,12 +44,15 @@ export default function ViewExperience() {
   const navigate = useNavigate();
   const experience = EXPERIENCES_DATA.find((item) => item.id === id);
 
-  const [activeIndex, setActiveIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const carouselRef = useRef(null);
 
   useEffect(() => {
-    setActiveIndex(0);
     setIsLightboxOpen(false);
+    setLightboxImage(null);
+    setCarouselIndex(0);
   }, [experience]);
 
   // Si la experiencia no existe, mostrar error
@@ -113,16 +117,27 @@ export default function ViewExperience() {
   } = localized;
 
   const hasGallery = gallery.length > 0;
-  const activeImage = hasGallery ? gallery[Math.min(activeIndex, gallery.length - 1)] : null;
-
-  const handlePrev = () => {
-    if (!hasGallery) return;
-    setActiveIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
+  
+  // Dividir imágenes: primeras 5 para integrar con texto, resto para carrusel
+  const storyImages = gallery.slice(0, 5);
+  const carouselImages = gallery.slice(5);
+  const hasCarousel = carouselImages.length > 0;
+  
+  // Dividir la historia en párrafos
+  const storyParagraphs = story ? story.split('\n\n').filter(p => p.trim()) : [];
+  
+  const openLightbox = (image) => {
+    setLightboxImage(image);
+    setIsLightboxOpen(true);
   };
-
-  const handleNext = () => {
-    if (!hasGallery) return;
-    setActiveIndex((prev) => (prev + 1) % gallery.length);
+  
+  const scrollCarousel = (direction) => {
+    if (!carouselRef.current) return;
+    const scrollAmount = 300;
+    carouselRef.current.scrollBy({
+      left: direction === 'next' ? scrollAmount : -scrollAmount,
+      behavior: 'smooth'
+    });
   };
 
   const getCategoryLabel = (cat) => {
@@ -160,88 +175,150 @@ export default function ViewExperience() {
           </div>
         </header>
 
-        {/* Contenido principal */}
+        {/* Contenido principal - Diseño de álbum de recuerdos */}
         <section className="mt-8 md:mt-12 w-full overflow-hidden grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)]">
           <div className="order-1 flex flex-col gap-12 min-w-0">
             <article className="space-y-10 min-w-0">
-              {/* Galería de imágenes */}
-              {hasGallery && (
+              {/* Historia con imágenes integradas estilo scrapbook */}
+              {story && (
                 <div>
-                  <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">
-                    {t('viewExperience.gallery') ?? 'Galería'}
+                  <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent mb-8">
+                    {t('viewExperience.story') ?? 'Historia'}
                   </h2>
-                  <div className="mt-4 w-full">
-                    <div className="group relative w-full overflow-hidden rounded-lg border border-gray-200 bg-gray-50 shadow-clean">
-                      <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden">
-                        <img
-                          src={activeImage}
-                          alt={`${title} - ${t('viewExperience.gallery') ?? 'Galería'} ${activeIndex + 1}`}
-                          className="max-h-full max-w-full object-contain p-1 transition duration-300 md:p-0 cursor-pointer"
-                          onClick={() => setIsLightboxOpen(true)}
-                        />
-                      </div>
-                      {gallery.length > 1 && (
-                        <>
-                          <button
-                            type="button"
-                            aria-label="Imagen anterior"
-                            onClick={handlePrev}
-                            className="absolute z-10 left-1 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-full bg-black/60 p-2 text-white backdrop-blur transition duration-300 hover:bg-black/80 md:left-4"
-                          >
-                            <FaChevronLeft aria-hidden="true" size={16} className="md:w-5 md:h-5" />
-                          </button>
-                          <button
-                            type="button"
-                            aria-label="Imagen siguiente"
-                            onClick={handleNext}
-                            className="absolute z-10 right-1 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-full bg-black/60 p-2 text-white backdrop-blur transition duration-300 hover:bg-black/80 md:right-4"
-                          >
-                            <FaChevronRight aria-hidden="true" size={16} className="md:w-5 md:h-5" />
-                          </button>
-                        </>
-                      )}
-                    </div>
-                    {/* Miniaturas */}
-                    {gallery.length > 1 && (
-                      <div className="mt-4 flex gap-3 overflow-x-auto pb-4 snap-x">
-                        {gallery.map((image, index) => (
-                          <button
-                            key={`${id}-thumb-${index}`}
-                            type="button"
-                            onClick={() => setActiveIndex(index)}
-                            className={`relative h-16 w-24 md:h-20 md:w-28 flex-shrink-0 snap-center overflow-hidden rounded-lg border transition duration-300 ${
-                              activeIndex === index 
-                                ? 'border-accent shadow-clean-lg ring-2 ring-accent ring-offset-2' 
-                                : 'border-gray-200 opacity-70 hover:opacity-100'
-                            }`}
-                          >
-                            <span className="sr-only">{`${t('viewExperience.gallery') ?? 'Galería'} ${index + 1}`}</span>
-                            <img src={image} alt={`${title} miniatura ${index + 1}`} className="h-full w-full object-cover" />
-                          </button>
-                        ))}
-                      </div>
-                    )}
+                  
+                  {/* Contenedor tipo álbum de recuerdos */}
+                  <div className="space-y-8">
+                    {storyParagraphs.map((paragraph, pIndex) => {
+                      const imageIndex = Math.floor((pIndex / storyParagraphs.length) * storyImages.length);
+                      const hasImage = storyImages[imageIndex];
+                      const imagePosition = pIndex % 2 === 0 ? 'right' : 'left';
+                      
+                      return (
+                        <div key={pIndex} className="relative">
+                          {hasImage && imagePosition === 'right' ? (
+                            // Imagen a la derecha
+                            <div className="md:grid md:grid-cols-[2fr_1fr] gap-6 items-start">
+                              <div>
+                                <p className="text-sm leading-7 text-muted">{paragraph}</p>
+                              </div>
+                              <div 
+                                className="mt-4 md:mt-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:rotate-1"
+                                onClick={() => openLightbox(storyImages[imageIndex])}
+                              >
+                                <div className="relative overflow-hidden rounded-lg border-4 border-white shadow-xl bg-white p-2 transform rotate-2">
+                                  <img 
+                                    src={storyImages[imageIndex]} 
+                                    alt={`${title} - Momento ${imageIndex + 1}`}
+                                    className="w-full h-48 md:h-56 object-cover rounded"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                </div>
+                              </div>
+                            </div>
+                          ) : hasImage && imagePosition === 'left' ? (
+                            // Imagen a la izquierda
+                            <div className="md:grid md:grid-cols-[1fr_2fr] gap-6 items-start">
+                              <div 
+                                className="mb-4 md:mb-0 group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-rotate-1"
+                                onClick={() => openLightbox(storyImages[imageIndex])}
+                              >
+                                <div className="relative overflow-hidden rounded-lg border-4 border-white shadow-xl bg-white p-2 transform -rotate-2">
+                                  <img 
+                                    src={storyImages[imageIndex]} 
+                                    alt={`${title} - Momento ${imageIndex + 1}`}
+                                    className="w-full h-48 md:h-56 object-cover rounded"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                </div>
+                              </div>
+                              <div>
+                                <p className="text-sm leading-7 text-muted">{paragraph}</p>
+                              </div>
+                            </div>
+                          ) : (
+                            // Solo texto
+                            <div>
+                              <p className="text-sm leading-7 text-muted">{paragraph}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
 
-              {/* Historia/Anécdota */}
-              <div className="space-y-8">
-                {story && (
-                  <div>
-                    <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">
-                      {t('viewExperience.story') ?? 'Historia'}
-                    </h2>
-                    <p className="mt-4 text-sm leading-7 text-muted whitespace-pre-line">{story}</p>
+              {/* Aprendizajes */}
+              <ListSection 
+                title={t('viewExperience.learnings') ?? 'Aprendizajes'} 
+                items={learnings} 
+              />
+              
+              {/* Carrusel de imágenes restantes */}
+              {hasCarousel && (
+                <div className="mt-12">
+                  <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent mb-6">
+                    Más Recuerdos
+                  </h2>
+                  
+                  <div className="relative group">
+                    {/* Botón anterior */}
+                    <button
+                      onClick={() => scrollCarousel('prev')}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-accent/90 hover:bg-accent text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-1/2"
+                      aria-label="Anterior"
+                    >
+                      <FaChevronLeft size={20} />
+                    </button>
+                    
+                    {/* Carrusel */}
+                    <div 
+                      ref={carouselRef}
+                      className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4"
+                      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    >
+                      {carouselImages.map((image, index) => (
+                        <div
+                          key={index}
+                          className="flex-shrink-0 snap-center group/item cursor-pointer transform transition-all duration-300 hover:scale-105"
+                          onClick={() => openLightbox(image)}
+                        >
+                          <div className="relative w-64 md:w-80 h-48 md:h-64 overflow-hidden rounded-lg border-4 border-white shadow-xl bg-white p-2">
+                            <img
+                              src={image}
+                              alt={`${title} - Galería ${index + 6}`}
+                              className="w-full h-full object-cover rounded"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                            <div className="absolute bottom-3 right-3 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-foreground opacity-0 group-hover/item:opacity-100 transition-opacity">
+                              Click para ampliar
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Botón siguiente */}
+                    <button
+                      onClick={() => scrollCarousel('next')}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-accent/90 hover:bg-accent text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-1/2"
+                      aria-label="Siguiente"
+                    >
+                      <FaChevronRight size={20} />
+                    </button>
                   </div>
-                )}
-
-                {/* Aprendizajes */}
-                <ListSection 
-                  title={t('viewExperience.learnings') ?? 'Aprendizajes'} 
-                  items={learnings} 
-                />
-              </div>
+                  
+                  {/* Indicador de scroll */}
+                  <div className="mt-4 flex justify-center gap-2">
+                    {carouselImages.map((_, index) => (
+                      <div
+                        key={index}
+                        className="h-1.5 w-1.5 rounded-full bg-muted/30"
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </article>
           </div>
 
@@ -300,43 +377,30 @@ export default function ViewExperience() {
       </div>
 
       {/* Lightbox para imágenes */}
-      {isLightboxOpen && hasGallery && (
+      {isLightboxOpen && lightboxImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-10"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-10"
           role="dialog"
           aria-modal="true"
           aria-label={`Vista ampliada de ${title}`}
+          onClick={() => setIsLightboxOpen(false)}
         >
           <button
             type="button"
             onClick={() => setIsLightboxOpen(false)}
-            className="absolute right-6 top-6 rounded-full bg-black/70 p-2 text-white transition duration-300 hover:bg-black/90"
+            className="absolute right-6 top-6 rounded-full bg-white/10 backdrop-blur-sm p-3 text-white transition duration-300 hover:bg-white/20"
             aria-label="Cerrar galería"
           >
-            <FaTimes aria-hidden="true" />
+            <FaTimes aria-hidden="true" size={24} />
           </button>
-          <div className="relative w-full max-w-4xl">
-            <img src={activeImage} alt={`${title} imagen ampliada`} className="w-full rounded-3xl object-contain" />
-            {gallery.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/70 p-3 text-white transition duration-300 hover:bg-black/90"
-                  onClick={handlePrev}
-                  aria-label="Imagen anterior"
-                >
-                  <FaChevronLeft aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/70 p-3 text-white transition duration-300 hover:bg-black/90"
-                  onClick={handleNext}
-                  aria-label="Imagen siguiente"
-                >
-                  <FaChevronRight aria-hidden="true" />
-                </button>
-              </>
-            )}
+          <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white p-4 rounded-lg shadow-2xl">
+              <img 
+                src={lightboxImage} 
+                alt={`${title} imagen ampliada`} 
+                className="w-full max-h-[80vh] object-contain rounded" 
+              />
+            </div>
           </div>
         </div>
       )}

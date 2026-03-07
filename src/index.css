@@ -81,3 +81,15 @@
     opacity: 0;
   }
 }
+
+/* Hide scrollbar for carousel */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
