@@ -1,3 +1,36 @@
+// ============================================================================
+// ARCHIVO DE TRADUCCIONES: TEXTOS DEL PORTAFOLIO
+// ============================================================================
+// Este archivo contiene TODOS los textos que aparecen en tu portafolio,
+// tanto en español (es) como en inglés (en).
+//
+// CÓMO PERSONALIZAR:
+// 1. Busca la sección que quieres modificar (hero, about, contact, etc.)
+// 2. Cambia el texto en español (es) con tu información
+// 3. Cambia el texto en inglés (en) con la traducción
+// 4. Guarda el archivo y los cambios se verán automáticamente
+//
+// SECCIONES PRINCIPALES:
+// - common: Textos generales (nombre, etiquetas, etc.)
+// - navbar: Enlaces del menú de navegación
+// - hero: Sección de inicio/presentación
+// - about: Sección "Sobre mí"
+// - skills: Sección de habilidades técnicas
+// - projects: Sección de proyectos
+// - contact: Sección de contacto
+//
+// IMPORTANTE:
+// - Mantén la estructura { es: "texto", en: "text" }
+// - No elimines las llaves { } ni los dos puntos :
+// - Usa comillas dobles " " para los textos
+// - Si no sabes inglés, puedes usar Google Translate o DeepL
+//
+// PERSONALIZACIÓN BÁSICA:
+// - Cambia 'Fernando Ramírez' por TU nombre
+// - Cambia la descripción por la TUYA
+// - Actualiza los enlaces de redes sociales
+// ============================================================================
+
 export const translations = {
   es: {
     common: {
