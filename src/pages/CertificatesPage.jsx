@@ -28,7 +28,8 @@ export default function CertificatesPage() {
             return (
               <article
                 key={certificate.id}
-                className="group flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg"
+                className="group flex h-full flex-col overflow-hidden rounded-lg shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg"
+                style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-muted)', borderWidth: '1px' }}
               >
                 <div className="relative h-48 w-full overflow-hidden">
                   <img

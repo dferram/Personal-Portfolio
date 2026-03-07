@@ -461,11 +461,11 @@ export default function ViewExperience() {
                     Más Recuerdos
                   </h2>
                   
-                  <div className="relative group">
+                  <div className="relative group px-12">
                     {/* Botón anterior */}
                     <button
                       onClick={() => scrollCarousel('prev')}
-                      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-accent/90 hover:bg-accent text-white p-4 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-1/2"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-accent/90 hover:bg-accent text-white p-4 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300"
                       aria-label="Anterior"
                     >
                       <FaChevronLeft size={24} />
@@ -507,7 +507,7 @@ export default function ViewExperience() {
                     {/* Botón siguiente */}
                     <button
                       onClick={() => scrollCarousel('next')}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-accent/90 hover:bg-accent text-white p-4 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-1/2"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-accent/90 hover:bg-accent text-white p-4 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300"
                       aria-label="Siguiente"
                     >
                       <FaChevronRight size={24} />

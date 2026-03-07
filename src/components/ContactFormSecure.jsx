@@ -237,7 +237,8 @@ export default function ContactFormSecure() {
               maxLength={100}
               required
               disabled={loading}
-              className="w-full px-4 py-3 rounded-lg border-2 border-accent/20 bg-white text-foreground placeholder-foreground/40 focus:border-accent focus:outline-none transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-4 py-3 rounded-lg border-2 border-accent/20 text-foreground placeholder-foreground/40 focus:border-accent focus:outline-none transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ backgroundColor: 'var(--color-primary)' }}
               placeholder="Tu nombre completo"
             />
             <p className="mt-1 text-xs text-foreground/50">
@@ -261,7 +262,8 @@ export default function ContactFormSecure() {
               onChange={handleChange}
               required
               disabled={loading}
-              className="w-full px-4 py-3 rounded-lg border-2 border-accent/20 bg-white text-foreground placeholder-foreground/40 focus:border-accent focus:outline-none transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-4 py-3 rounded-lg border-2 border-accent/20 text-foreground placeholder-foreground/40 focus:border-accent focus:outline-none transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ backgroundColor: 'var(--color-primary)' }}
               placeholder="tu@email.com"
             />
           </div>
@@ -283,7 +285,8 @@ export default function ContactFormSecure() {
               rows={6}
               required
               disabled={loading}
-              className="w-full px-4 py-3 rounded-lg border-2 border-accent/20 bg-white text-foreground placeholder-foreground/40 focus:border-accent focus:outline-none transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-4 py-3 rounded-lg border-2 border-accent/20 text-foreground placeholder-foreground/40 focus:border-accent focus:outline-none transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ backgroundColor: 'var(--color-primary)' }}
               placeholder="Escribe tu mensaje aquí..."
             />
             <p className="mt-1 text-xs text-foreground/50">

@@ -59,7 +59,8 @@ export default function Projects() {
             return (
               <article
                 key={project.id}
-                className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg cursor-pointer"
+                className="group relative overflow-hidden rounded-lg shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg cursor-pointer"
+                style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-muted)', borderWidth: '1px' }}
                 role="link"
                 tabIndex={0}
                 aria-label={`${viewDetailLabel} ${title}`}

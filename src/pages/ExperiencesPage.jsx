@@ -90,9 +90,10 @@ export default function ExperiencesPage() {
             return (
               <article
                 key={experience.id}
-                className={`group flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg ${
+                className={`group flex h-full flex-col overflow-hidden rounded-lg shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg ${
                   hasExtendedContent ? 'cursor-pointer' : ''
                 }`}
+                style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-muted)', borderWidth: '1px' }}
                 role={hasExtendedContent ? 'link' : undefined}
                 tabIndex={hasExtendedContent ? 0 : undefined}
                 aria-label={hasExtendedContent ? `Ver detalles de ${localizedTitle}` : undefined}

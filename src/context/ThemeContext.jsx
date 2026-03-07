@@ -9,10 +9,30 @@
  * - Si no hay tema guardado, usa 'classic' por defecto
  * - Aplica los colores del tema como CSS variables en el <html>
  * - Cualquier componente puede cambiar el tema usando setTheme()
+ * - El selector de temas esta integrado en el Navbar (accesible en todas las paginas)
+ * 
+ * COMO AGREGAR UNA NUEVA PALETA:
+ * 1. Crea un nuevo archivo en src/styles/themes/ (ejemplo: mi-tema.js)
+ * 2. Define todos los colores requeridos (usa template.js como guia):
+ *    - primary, primary-dark (fondos)
+ *    - accent, accent-dark, accent-light (colores de acento)
+ *    - foreground, foreground-light, muted (textos)
+ *    - header-bg, header-text, header-border (navbar)
+ *    - hero-layer-1 a hero-layer-5, hero-year (hero section)
+ *    - name: 'Nombre Descriptivo del Tema'
+ * 3. Importa y exporta tu tema en src/styles/themes/index.js
+ * 4. ¡Listo! Aparecera automaticamente en el selector del navbar
+ * 
+ * IMPORTANTE - USO DE VARIABLES CSS:
+ * - TODOS los componentes deben usar var(--color-primary), var(--color-accent), etc.
+ * - NUNCA hardcodear colores como 'bg-white' o '#FFFFFF' en componentes
+ * - Esto asegura que todos los elementos reaccionen al cambio de tema
+ * - Las variables CSS se definen en este contexto y se aplican al <html>
  * 
  * PARA DESARROLLADORES:
  * - El tema se guarda automaticamente en localStorage
- * - Los cambios se aplican instantaneamente en toda la app
+ * - Los cambios se aplican instantaneamente en toda la app sin recargar
+ * - El selector esta en Navbar (desktop y mobile)
  * - Para agregar un nuevo tema, solo agregalo en src/styles/themes/
  */
 

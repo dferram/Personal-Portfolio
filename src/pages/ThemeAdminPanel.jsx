@@ -186,9 +186,9 @@ export default function ThemeAdminPanel() {
     <div className="min-h-screen bg-primary text-foreground py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 mt-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-accent">
-            🎨 Panel de Estilos
+             Panel de Estilos
           </h1>
           <p className="text-lg text-foreground-light mb-6 max-w-2xl mx-auto">
             Bienvenido al panel de administracion de temas. Aqui puedes cambiar 
@@ -295,16 +295,6 @@ export default function ThemeAdminPanel() {
               </div>
             );
           })}
-        </div>
-
-        {/* Footer con informacion adicional */}
-        <div className="mt-12 text-center text-sm text-muted">
-          <p className="mb-2">
-            💡 <strong>Tip:</strong> Esta pagina es solo para ti. No hay enlaces visibles en el portafolio.
-          </p>
-          <p>
-            Para acceder nuevamente, escribe <code className="bg-primary-dark px-2 py-1 rounded text-accent">/estilos</code> en la URL.
-          </p>
         </div>
       </div>
     </div>

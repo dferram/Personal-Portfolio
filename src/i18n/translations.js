@@ -63,7 +63,6 @@ export const translations = {
       links: [
         { label: 'Inicio', href: '#inicio' },
         { label: 'Perfil', href: '#sobre-mí' },
-        { label: 'Habilidades', href: '#habilidades' },
         { label: 'Proyectos', href: '#proyectos' },
         { label: 'Contacto', href: '#contacto' },
         { label: 'Certificados', href: '/certificados' },
@@ -204,7 +203,6 @@ export const translations = {
       links: [
         { label: 'Home', href: '#inicio' },
         { label: 'Profile', href: '#sobre-mí' },
-        { label: 'Skills', href: '#habilidades' },
         { label: 'Projects', href: '#proyectos' },
         { label: 'Contact', href: '#contacto' },
         { label: 'Certificates', href: '/certificados' },

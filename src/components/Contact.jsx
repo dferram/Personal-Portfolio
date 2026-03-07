@@ -38,7 +38,8 @@ export default function Contact() {
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group flex flex-1 items-center justify-center gap-3 rounded-full border-2 border-accent bg-white px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-accent shadow-clean transition-all duration-300 hover:-translate-y-1 hover:bg-accent hover:text-white hover:shadow-clean-lg"
+              className="group flex flex-1 items-center justify-center gap-3 rounded-full border-2 border-accent px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-accent shadow-clean transition-all duration-300 hover:-translate-y-1 hover:bg-accent hover:text-white hover:shadow-clean-lg"
+              style={{ backgroundColor: 'var(--color-primary)' }}
             >
               <span className="transition-all duration-300">{link.icon}</span>
               <span className="transition-all duration-300">{linkLabels?.[link.key] ?? link.key}</span>
