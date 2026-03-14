@@ -118,6 +118,9 @@ export default function ViewProject() {
     const galleryImages = Array.isArray(project.images?.gallery) ? project.images.gallery : [];
     const gallery = heroImage ? [heroImage, ...galleryImages] : galleryImages;
 
+    const filteredLinks = project.links ? { ...project.links } : {};
+    delete filteredLinks.instagram;
+
     return {
       title: get(project.title) ?? project.title,
       subtitle: get(project.subtitle) ?? project.subtitle,
@@ -132,7 +135,7 @@ export default function ViewProject() {
       description: get(project.description) ?? project.description,
       technologies: project.technologies ?? [],
       gallery,
-      links: project.links ?? {},
+      links: filteredLinks,
       isOngoing: Boolean(project.isOngoing),
     };
   }, [language, project]);

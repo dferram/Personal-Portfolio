@@ -13,6 +13,37 @@ export default function Navbar() {
   const links = t('navbar.links') ?? [];
   const location = useLocation();
 
+  const [activeSection, setActiveSection] = useState(location.hash || '#inicio');
+
+  // Spy scroll
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+    
+    const handleScroll = () => {
+      const sections = ['inicio', 'sobre-mí', 'proyectos', 'contacto'];
+      let current = '';
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 2 && rect.bottom >= 100) {
+            current = `#${section}`;
+            break;
+          }
+        }
+      }
+      if (current && current !== activeSection) {
+        setActiveSection(current);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    setTimeout(handleScroll, 100);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname, activeSection]);
+
   // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
@@ -60,8 +91,12 @@ export default function Navbar() {
               const isAnchor = href.startsWith('#');
               const hash = isAnchor ? href : undefined;
 
+              const isActive = isAnchor
+                ? location.pathname === '/' && activeSection === hash
+                : location.pathname.startsWith(href);
+
               const commonClasses =
-                'relative text-xs md:text-sm font-semibold uppercase tracking-[0.2em] transition duration-300 ease-out hover:text-accent';
+                'relative text-xs md:text-sm font-semibold uppercase tracking-[0.2em] transition duration-300 ease-out hover:text-accent py-1';
               const linkStyle = { color: 'var(--color-header-text)' };
 
               const destination = isAnchor ? { pathname: '/', hash } : href;
@@ -77,6 +112,7 @@ export default function Navbar() {
                   if (section) {
                     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     window.history.replaceState(null, '', hash ?? '#');
+                    setActiveSection(hash);
                   }
                 }
               };
@@ -84,6 +120,13 @@ export default function Navbar() {
               return (
                 <Link key={label} to={destination} className={commonClasses} style={linkStyle} onClick={handleClick}>
                   {label}
+                  {isActive && (
+                    <motion.div
+                      layoutId="navbar-indicator-desktop"
+                      className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full"
+                      style={{ backgroundColor: 'var(--color-header-text)' }}
+                    />
+                  )}
                 </Link>
               );
             })}
@@ -145,6 +188,10 @@ export default function Navbar() {
                   const isAnchor = href.startsWith('#');
                   const hash = isAnchor ? href : undefined;
                   const destination = isAnchor ? { pathname: '/', hash } : href;
+                  
+                  const isActive = isAnchor
+                    ? location.pathname === '/' && activeSection === hash
+                    : location.pathname.startsWith(href);
 
                   const handleClick = (event) => {
                     setIsMenuOpen(false); // Close menu
@@ -158,6 +205,7 @@ export default function Navbar() {
                       if (section) {
                         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         window.history.replaceState(null, '', hash ?? '#');
+                        setActiveSection(hash);
                       }
                     }
                   };
@@ -166,11 +214,18 @@ export default function Navbar() {
                     <Link 
                       key={label} 
                       to={destination} 
-                      className="text-2xl font-bold uppercase tracking-widest hover:text-accent transition-colors"
+                      className="text-2xl font-bold uppercase tracking-widest hover:text-accent transition-colors relative py-1"
                       style={{ color: 'var(--color-header-text)' }}
                       onClick={handleClick}
                     >
                       {label}
+                      {isActive && (
+                        <motion.div
+                          layoutId="navbar-indicator-mobile"
+                          className="absolute -bottom-1 left-0 right-0 h-[3px] rounded-full"
+                          style={{ backgroundColor: 'var(--color-header-text)' }}
+                        />
+                      )}
                     </Link>
                   );
                 })}
