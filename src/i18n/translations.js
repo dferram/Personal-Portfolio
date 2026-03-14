@@ -71,7 +71,7 @@ export const translations = {
     },
     hero: {
       title: 'Fernando Ramírez',
-      subtitle: 'Software Engineer | Aspiring Data Scientist',
+      subtitle: 'Ingeniero de Software | Aspirante a Científico de Datos',
       description:
         'Estudiante de 6º semestre de Ingeniería de Software enfocado en construir experiencias digitales robustas y explorar cómo la ciencia de datos potencia decisiones estratégicas basadas en evidencia.',
       cta: 'Ver Proyectos',

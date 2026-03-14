@@ -11,9 +11,9 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html",
-      "status": 200
+      "route": "/*",
+      "serve": "/index.html",
+      "statusCode": 200
     }
   ]
 }
