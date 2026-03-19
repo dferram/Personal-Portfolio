@@ -118,6 +118,7 @@ export const translations = {
       links: {
         linkedin: 'LinkedIn',
         github: 'GitHub',
+        cv: 'Mi CV',
         email: 'Email',
       },
     },
@@ -258,6 +259,7 @@ export const translations = {
       links: {
         linkedin: 'LinkedIn',
         github: 'GitHub',
+        cv: 'My CV',
         email: 'Email',
       },
     },

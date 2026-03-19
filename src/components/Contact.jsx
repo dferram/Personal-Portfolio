@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaWhatsapp, FaFilePdf } from 'react-icons/fa';
 import { useI18n } from '@/i18n/I18nProvider';
 
 const CONTACT_LINKS = [
@@ -11,6 +11,11 @@ const CONTACT_LINKS = [
     key: 'github',
     icon: <FaGithub size={26} />,
     href: 'https://github.com/dferram',
+  },
+  {
+    key: 'cv',
+    icon: <FaFilePdf size={26} />,
+    href: '/cv/CV.pdf',
   },
   {
     key: 'whatsapp',

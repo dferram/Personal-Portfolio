@@ -83,7 +83,7 @@ export const PROJECTS_DATA = [
     },
     technologies: ["Spark", "SQL", "Data Analysis", "Big Data"],
     links: {
-      github: "https://github.com/ferramdr/ANIEI-Data-Analysis-SPARK-SQL-",
+      github: "https://github.com/dferram/ANIEI-Data-Analysis-SPARK-SQL-",
     },
     images: {
       hero: "/images/ANIEI_1.png",
