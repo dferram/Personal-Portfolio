@@ -43,7 +43,7 @@ export const SKILLS_DATA = [
   },
   {
     id: 'data',
-    title: 'Análisis de Datos (En aprendizaje)',
+    title: 'Analítica de Datos',
     items: [
       { name: 'Python', icon: '/images/python.png' },
       { name: 'Pandas', icon: '/images/pandas.png' },

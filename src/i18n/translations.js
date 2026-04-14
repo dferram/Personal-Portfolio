@@ -71,34 +71,34 @@ export const translations = {
     },
     hero: {
       title: 'Fernando Ramírez',
-      subtitle: 'Ingeniero de Software | Aspirante a Científico de Datos',
+      subtitle: 'Fullstack Developer | Apasionado por la Analítica de Datos',
       description:
-        'Estudiante de 6º semestre de Ingeniería de Software enfocado en construir experiencias digitales robustas y explorar cómo la ciencia de datos potencia decisiones estratégicas basadas en evidencia.',
+        'Estudiante de 6º semestre de Ingeniería de Software especializado en el desarrollo de experiencias digitales robustas y en extraer valor de los datos para guiar decisiones estratégicas.',
       cta: 'Ver Proyectos',
     },
     about: {
       title: 'Sobre Mí',
       paragraphs: [
-        'Soy estudiante de sexto semestre de Ingeniería de Software apasionado por construir soluciones digitales end-to-end. Mi experiencia abarca el desarrollo full-stack con un enfoque en experiencias modernas y accesibles que generen impacto.',
-        'Actualmente estoy interesado en el análisis de datos y la ciencia de datos, combinando mi conocimiento técnico con la curiosidad por entender cómo la información guía decisiones estratégicas. Busco proyectos que me permitan unir ambas disciplinas.',
+        'Soy estudiante de sexto semestre de Ingeniería de Software apasionado por construir soluciones digitales end-to-end. Mi experiencia abarca el desarrollo full-stack con un enfoque en interfaces modernas y sistemas escalables que generan impacto.',
+        'Me apasiona la intersección entre el desarrollo web y la ciencia de datos. Busco crear productos digitales que no solo funcionen a la perfección, sino que también aprovechen el poder de la información para optimizar resultados y resolver problemas complejos.',
       ],
     },
     skills: {
       tag: 'Skillset',
       title: 'Habilidades Técnicas',
       description:
-        'Tecnologías que domino para crear productos digitales end-to-end y herramientas que estoy adoptando para impulsar el análisis basado en datos.',
+        'Mi stack tecnológico combina el desarrollo fullstack con herramientas avanzadas de analítica para crear soluciones integrales e inteligentes.',
       categories: {
         web: {
-          title: 'Desarrollo Web (Full-Stack)',
+          title: 'Desarrollo Full-Stack',
           description:
-            'Construcción de experiencias completas: desde interfaces accesibles hasta APIs escalables y bases de datos robustas.',
+            'Construcción de experiencias completas: desde interfaces dinámicas hasta APIs escalables y bases de datos robustas.',
           items: ['React', 'Node.js', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'PostgreSQL', 'MongoDB'],
         },
         data: {
-          title: 'Análisis de Datos (En aprendizaje)',
+          title: 'Analítica de Datos',
           description:
-            'Herramientas y librerías que utilizo para limpiar, analizar y visualizar información que apoya la toma de decisiones.',
+            'Herramientas y librerías que utilizo para procesar, analizar y visualizar información que apoya la toma de decisiones estratégicas.',
           items: ['Python', 'Pandas', 'NumPy', 'SQL', 'Scikit-learn', 'Matplotlib'],
         },
       },
@@ -107,14 +107,14 @@ export const translations = {
       tag: 'Work',
       title: 'Proyectos Destacados',
       description:
-        'Selección de trabajos recientes que combinan ingeniería de software y el potencial de los datos para generar valor.',
+        'Una selección de trabajos que demuestran mi capacidad para integrar la ingeniería de software con el potencial del análisis de datos.',
       viewDetail: 'Ver Detalle',
     },
     contact: {
       tag: 'Contacto',
       title: 'Construyamos algo increíble',
       description:
-        'Estoy abierto a oportunidades, colaboraciones y proyectos que unan desarrollo de software con el poder del análisis de datos. Escríbeme y exploremos ideas juntos.',
+        '¿Buscas a alguien que domine el desarrollo fullstack y entienda el valor de los datos? Estoy abierto a colaboraciones y nuevos desafíos. ¡Hablemos!',
       links: {
         linkedin: 'LinkedIn',
         github: 'GitHub',
