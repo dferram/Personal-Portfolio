@@ -1,0 +1,262 @@
+import React, { useState, useEffect } from 'react';
+import { GitHubCalendar } from 'react-github-calendar';
+import {
+  Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend
+} from 'recharts';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useI18n } from '@/i18n/I18nProvider';
+import { useTheme } from '@/context/ThemeContext';
+import { FaGithub, FaStar, FaCodeBranch, FaExternalLinkAlt, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+
+export default function GitHubStats({ username = 'dferram' }) {
+  const { t } = useI18n();
+  const { currentTheme, availableThemes } = useTheme();
+  const [repos, setRepos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [languageData, setLanguageData] = useState([]);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Colores dinámicos basados en el tema
+  const theme = availableThemes[currentTheme] || availableThemes['classic'];
+  const accentColor = theme.accent;
+  const accentDarkColor = theme['accent-dark'];
+  const foregroundColor = theme.foreground;
+
+  useEffect(() => {
+    const fetchGitHubData = async () => {
+      try {
+        setLoading(true);
+        const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+        if (!reposResponse.ok) throw new Error('Error al cargar repositorios');
+        const reposData = await reposResponse.json();
+
+        const sortedRepos = reposData
+          .filter(repo => !repo.fork)
+          .sort((a, b) => (b.stargazers_count + b.forks_count) - (a.stargazers_count + a.forks_count))
+          .slice(0, 6);
+
+        setRepos(sortedRepos);
+
+        const langs = {};
+        reposData.forEach(repo => {
+          if (repo.language) {
+            langs[repo.language] = (langs[repo.language] || 0) + 1;
+          }
+        });
+
+        const langChartData = Object.keys(langs)
+          .map(name => ({ name, value: langs[name] }))
+          .sort((a, b) => b.value - a.value)
+          .slice(0, 5);
+
+        setLanguageData(langChartData);
+        setLoading(false);
+      } catch (err) {
+        console.error('GitHub API Error:', err);
+        setLoading(false);
+      }
+    };
+
+    fetchGitHubData();
+  }, [username]);
+
+  // Detect if current theme has a dark background
+  const isDarkTheme = (() => {
+    const hex = theme.primary.replace('#', '');
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    return (r * 0.299 + g * 0.587 + b * 0.114) < 128;
+  })();
+
+  // Build a vivid 4-step gradient from a muted tint → full accent
+  const buildGradient = (accent, accentLight, isDark) => {
+    // Parse hex to RGB helper
+    const hex2rgb = (h) => {
+      const c = h.replace('#', '');
+      return [parseInt(c.substring(0,2),16), parseInt(c.substring(2,4),16), parseInt(c.substring(4,6),16)];
+    };
+    const rgb2hex = (r,g,b) => '#' + [r,g,b].map(x => Math.max(0,Math.min(255,Math.round(x))).toString(16).padStart(2,'0')).join('');
+    const [ar,ag,ab] = hex2rgb(accent);
+    const [lr,lg,lb] = hex2rgb(accentLight);
+
+    if (isDark) {
+      // For dark themes: level1 = very dim, level4 = full bright accent
+      return [
+        rgb2hex(Math.round(ar*0.2), Math.round(ag*0.2), Math.round(ab*0.2)),  // Level 1: barely visible
+        rgb2hex(Math.round(ar*0.45), Math.round(ag*0.45), Math.round(ab*0.45)), // Level 2: dim
+        rgb2hex(Math.round(ar*0.7), Math.round(ag*0.7), Math.round(ab*0.7)),  // Level 3: medium
+        accent,                                                                  // Level 4: full vibrant
+      ];
+    } else {
+      // For light themes: level1 = soft pastel, level4 = full dark accent
+      return [
+        rgb2hex(lr + Math.round((255-lr)*0.5), lg + Math.round((255-lg)*0.5), lb + Math.round((255-lb)*0.5)), // Level 1: very light
+        accentLight,                                                              // Level 2: light accent
+        accent,                                                                   // Level 3: full accent
+        accentDarkColor,                                                          // Level 4: dark accent
+      ];
+    }
+  };
+
+  const gradient = buildGradient(accentColor, theme['accent-light'], isDarkTheme);
+  const emptyColor = isDarkTheme ? '#161b22' : '#ebedf0';
+  
+  const calendarTheme = {
+    light: [emptyColor, ...gradient],
+    dark: [emptyColor, ...gradient],
+  };
+
+  if (loading) return (
+    <div className="flex justify-center items-center py-20">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
+    </div>
+  );
+
+  return (
+    <section id="github" className="relative py-24 bg-primary overflow-hidden">
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        
+        {/* Header */}
+        <div className="mb-12 space-y-4">
+          <div className="flex items-center gap-4">
+            <div className="h-2 w-20 rounded-full bg-accent" />
+            <span className="inline-block rounded-full border-2 border-accent px-4 py-1 text-xs font-bold uppercase tracking-[0.3em] text-accent">
+              {t('github.tag')}
+            </span>
+          </div>
+          <h2 className="text-4xl font-black uppercase tracking-tight text-foreground md:text-5xl">
+            {t('github.contributions')}
+          </h2>
+        </div>
+
+        {/* Contributions Wall - Minimal View */}
+        <div className="mb-8 p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl overflow-x-auto">
+          <div className="min-w-[800px] flex justify-center">
+            <GitHubCalendar 
+              username={username}
+              theme={calendarTheme}
+              fontSize={14}
+              blockSize={14}
+              blockMargin={5}
+              loading={loading}
+              labels={{
+                totalCount: `contribuciones en el último año`,
+              }}
+            />
+          </div>
+        </div>
+
+        {/* CTA Button to Expand */}
+        <div className="flex justify-center mb-12">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="group flex items-center gap-3 px-8 py-4 rounded-full bg-accent text-primary-dark font-black uppercase tracking-widest hover:scale-105 transition-all duration-300 shadow-lg shadow-accent/20"
+          >
+            {isExpanded ? (
+              <>
+                <FaChevronUp /> {t('common.viewProjects')}
+              </>
+            ) : (
+              <>
+                <FaChevronDown /> {t('github.viewMore')}
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Expanded Content: Metrics & Repos */}
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.5, ease: "circOut" }}
+              className="overflow-hidden"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                {/* Languages Pie Chart */}
+                <div className="p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl h-[400px] flex flex-col">
+                  <h3 className="text-xl font-bold text-foreground mb-6">{t('github.languages')}</h3>
+                  <div className="flex-1 w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={languageData}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={60}
+                          outerRadius={100}
+                          paddingAngle={5}
+                          dataKey="value"
+                        >
+                          {languageData.map((entry, index) => (
+                            <Cell 
+                              key={`cell-${index}`} 
+                              fill={[accentColor, accentDarkColor, theme['accent-light'], '#6366f1', '#a855f7'][index % 5]} 
+                            />
+                          ))}
+                        </Pie>
+                        <Tooltip 
+                          contentStyle={{ backgroundColor: theme.primary, border: `1px solid ${accentColor}` }}
+                          itemStyle={{ color: foregroundColor }}
+                        />
+                        <Legend verticalAlign="bottom" height={36}/>
+                      </PieChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+
+                {/* Top Repositories */}
+                <div className="p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl">
+                  <h3 className="text-xl font-bold text-foreground mb-6">{t('github.topRepos')}</h3>
+                  <div className="space-y-4">
+                    {repos.map((repo) => (
+                      <motion.a
+                        key={repo.id}
+                        href={repo.html_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ x: 10 }}
+                        className="flex items-center justify-between p-4 rounded-xl bg-primary border border-white/5 hover:border-accent transition-colors"
+                      >
+                        <div className="flex flex-col">
+                          <span className="font-bold text-foreground">{repo.name}</span>
+                          <span className="text-xs text-muted truncate max-w-[200px]">{repo.description || 'No description'}</span>
+                        </div>
+                        <div className="flex items-center gap-4 text-sm">
+                          <div className="flex items-center gap-1 text-accent">
+                            <FaStar />
+                            <span>{repo.stargazers_count}</span>
+                          </div>
+                          <div className="flex items-center gap-1 text-muted">
+                            <FaCodeBranch />
+                            <span>{repo.forks_count}</span>
+                          </div>
+                          <FaExternalLinkAlt className="text-xs text-muted/50" />
+                        </div>
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <a 
+                  href={`https://github.com/${username}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-accent hover:underline font-bold"
+                >
+                  {t('github.viewAll')} <FaExternalLinkAlt size={12} />
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+      </div>
+    </section>
+  );
+}
