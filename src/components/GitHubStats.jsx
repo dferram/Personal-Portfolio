@@ -60,9 +60,51 @@ export default function GitHubStats({ username = 'dferram' }) {
     fetchGitHubData();
   }, [username]);
 
+  // Detect if current theme has a dark background
+  const isDarkTheme = (() => {
+    const hex = theme.primary.replace('#', '');
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    return (r * 0.299 + g * 0.587 + b * 0.114) < 128;
+  })();
+
+  // Build a vivid 4-step gradient from a muted tint → full accent
+  const buildGradient = (accent, accentLight, isDark) => {
+    // Parse hex to RGB helper
+    const hex2rgb = (h) => {
+      const c = h.replace('#', '');
+      return [parseInt(c.substring(0,2),16), parseInt(c.substring(2,4),16), parseInt(c.substring(4,6),16)];
+    };
+    const rgb2hex = (r,g,b) => '#' + [r,g,b].map(x => Math.max(0,Math.min(255,Math.round(x))).toString(16).padStart(2,'0')).join('');
+    const [ar,ag,ab] = hex2rgb(accent);
+    const [lr,lg,lb] = hex2rgb(accentLight);
+
+    if (isDark) {
+      // For dark themes: level1 = very dim, level4 = full bright accent
+      return [
+        rgb2hex(Math.round(ar*0.2), Math.round(ag*0.2), Math.round(ab*0.2)),  // Level 1: barely visible
+        rgb2hex(Math.round(ar*0.45), Math.round(ag*0.45), Math.round(ab*0.45)), // Level 2: dim
+        rgb2hex(Math.round(ar*0.7), Math.round(ag*0.7), Math.round(ab*0.7)),  // Level 3: medium
+        accent,                                                                  // Level 4: full vibrant
+      ];
+    } else {
+      // For light themes: level1 = soft pastel, level4 = full dark accent
+      return [
+        rgb2hex(lr + Math.round((255-lr)*0.5), lg + Math.round((255-lg)*0.5), lb + Math.round((255-lb)*0.5)), // Level 1: very light
+        accentLight,                                                              // Level 2: light accent
+        accent,                                                                   // Level 3: full accent
+        accentDarkColor,                                                          // Level 4: dark accent
+      ];
+    }
+  };
+
+  const gradient = buildGradient(accentColor, theme['accent-light'], isDarkTheme);
+  const emptyColor = isDarkTheme ? '#161b22' : '#ebedf0';
+  
   const calendarTheme = {
-    light: ['#ebedf0', accentDarkColor, accentColor, accentColor, accentColor],
-    dark: ['#161b22', accentDarkColor, accentColor, accentColor, accentColor],
+    light: [emptyColor, ...gradient],
+    dark: [emptyColor, ...gradient],
   };
 
   if (loading) return (
