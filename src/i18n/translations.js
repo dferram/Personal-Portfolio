@@ -1,63 +1,20 @@
 // ============================================================================
 // ARCHIVO DE TRADUCCIONES: TEXTOS DEL PORTAFOLIO
 // ============================================================================
-// Este archivo contiene TODOS los textos que aparecen en tu portafolio,
-// tanto en español (es) como en inglés (en).
-//
-// CÓMO PERSONALIZAR:
-// 1. Busca la sección que quieres modificar (hero, about, contact, etc.)
-// 2. Cambia el texto en español (es) con tu información
-// 3. Cambia el texto en inglés (en) con la traducción
-// 4. Guarda el archivo y los cambios se verán automáticamente
-//
-// SECCIONES PRINCIPALES:
-// - common: Textos generales (nombre, etiquetas, etc.)
-// - navbar: Enlaces del menú de navegación
-// - hero: Sección de inicio/presentación
-// - about: Sección "Sobre mí"
-// - skills: Sección de habilidades técnicas
-// - projects: Sección de proyectos
-// - contact: Sección de contacto
-//
-// IMPORTANTE:
-// - Mantén la estructura { es: "texto", en: "text" }
-// - No elimines las llaves { } ni los dos puntos :
-// - Usa comillas dobles " " para los textos
-// - Si no sabes inglés, puedes usar Google Translate o DeepL
-//
-// PERSONALIZACIÓN BÁSICA:
-// - Cambia 'Fernando Ramírez' por TU nombre
-// - Cambia la descripción por la TUYA
-// - Actualiza los enlaces de redes sociales
-// ============================================================================
 
 export const translations = {
   es: {
     common: {
       brand: 'Fernando Ramírez',
       languageLabel: 'Idioma',
-      languageOptions: {
-        es: 'ES',
-        en: 'EN',
-      },
+      languageOptions: { es: 'ES', en: 'EN' },
       portfolioBadge: 'Portafolio 2025',
       viewProjects: 'Ver Proyectos',
       backToProjects: '← Volver a Proyectos',
       notFoundTitle: 'Proyecto no encontrado',
-      notFoundDescription:
-        'No pudimos encontrar un proyecto con el identificador proporcionado. Revisa el enlace o regresa a la página principal.',
-      metrics: {
-        heading: 'Ficha técnica',
-        role: 'Rol',
-        duration: 'Duración',
-        team: 'Equipo',
-        year: 'Año',
-      },
-      linkLabels: {
-        github: 'Código',
-        demo: 'Demo',
-        certificate: 'Certificado',
-      },
+      notFoundDescription: 'No pudimos encontrar un proyecto con el identificador proporcionado.',
+      metrics: { heading: 'Ficha técnica', role: 'Rol', duration: 'Duración', team: 'Equipo', year: 'Año' },
+      linkLabels: { github: 'Código', demo: 'Demo', certificate: 'Certificado' },
     },
     navbar: {
       links: [
@@ -72,68 +29,50 @@ export const translations = {
     hero: {
       title: 'Fernando Ramírez',
       subtitle: 'Fullstack Developer | Apasionado por la Analítica de Datos',
-      description:
-        'Estudiante de 6º semestre de Ingeniería de Software especializado en el desarrollo de experiencias digitales robustas y en extraer valor de los datos para guiar decisiones estratégicas.',
+      description: 'Estudiante de 6º semestre de Ingeniería de Software especializado en el desarrollo de experiencias digitales robustas.',
       cta: 'Ver Proyectos',
     },
     about: {
       title: 'Sobre Mí',
       paragraphs: [
-        'Soy estudiante de sexto semestre de Ingeniería de Software apasionado por construir soluciones digitales end-to-end. Mi experiencia abarca el desarrollo full-stack con un enfoque en interfaces modernas y sistemas escalables que generan impacto.',
-        'Me apasiona la intersección entre el desarrollo web y la ciencia de datos. Busco crear productos digitales que no solo funcionen a la perfección, sino que también aprovechen el poder de la información para optimizar resultados y resolver problemas complejos.',
+        'Soy estudiante de sexto semestre de Ingeniería de Software apasionado por construir soluciones digitales end-to-end.',
+        'Me apasiona la intersección entre el desarrollo web y la ciencia de datos.',
       ],
     },
     skills: {
       tag: 'Skillset',
       title: 'Habilidades Técnicas',
-      description:
-        'Mi stack tecnológico combina el desarrollo fullstack con herramientas avanzadas de analítica para crear soluciones integrales e inteligentes.',
+      description: 'Mi stack tecnológico combina el desarrollo fullstack con herramientas avanzadas de analítica.',
       categories: {
-        web: {
-          title: 'Desarrollo Full-Stack',
-          description:
-            'Construcción de experiencias completas: desde interfaces dinámicas hasta APIs escalables y bases de datos robustas.',
-          items: ['React', 'Node.js', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'PostgreSQL', 'MongoDB'],
-        },
-        data: {
-          title: 'Analítica de Datos',
-          description:
-            'Herramientas y librerías que utilizo para procesar, analizar y visualizar información que apoya la toma de decisiones estratégicas.',
-          items: ['Python', 'Pandas', 'NumPy', 'SQL', 'Scikit-learn', 'Matplotlib'],
-        },
+        web: { title: 'Desarrollo Full-Stack', description: 'Construcción de experiencias completas.', items: [] },
+        data: { title: 'Analítica de Datos', description: 'Herramientas para procesar información.', items: [] },
       },
     },
     projects: {
       tag: 'Work',
       title: 'Proyectos Destacados',
-      description:
-        'Una selección de trabajos que demuestran mi capacidad para integrar la ingeniería de software con el potencial del análisis de datos.',
+      description: 'Una selección de trabajos que demuestran mi capacidad técnica.',
       viewDetail: 'Ver Detalle',
     },
     github: {
       tag: 'Actividad',
       title: 'Ecosistema GitHub',
-      description: 'Métricas en tiempo real, contribuciones al código abierto y actividad reciente en mis repositorios.',
+      description: 'Métricas en tiempo real, contribuciones al código abierto y actividad reciente.',
       contributions: 'Muro de Contribuciones',
       stats: 'Métricas de Desarrollo',
       topRepos: 'Repositorios Destacados',
       languages: 'Lenguajes Predominantes',
       activity: 'Intensidad de Trabajo',
       viewAll: 'Ver Perfil Completo',
+      viewMore: 'Ver más métricas',
       stars: 'Estrellas',
       forks: 'Forks',
     },
     contact: {
       tag: 'Contacto',
       title: 'Construyamos algo increíble',
-      description:
-        '¿Buscas a alguien que domine el desarrollo fullstack y entienda el valor de los datos? Estoy abierto a colaboraciones y nuevos desafíos. ¡Hablemos!',
-      links: {
-        linkedin: 'LinkedIn',
-        github: 'GitHub',
-        cv: 'Mi CV',
-        email: 'Email',
-      },
+      description: '¿Buscas a alguien que domine el desarrollo fullstack? ¡Hablemos!',
+      links: { linkedin: 'LinkedIn', github: 'GitHub', cv: 'Mi CV', email: 'Email' },
     },
     viewProject: {
       gallery: 'Galería',
@@ -150,32 +89,19 @@ export const translations = {
     },
     certificates: {
       title: 'Mis Certificaciones',
-      subtitle:
-        'Aquí puedes encontrar las credenciales y certificados de los cursos y tecnologías que he completado.',
+      subtitle: 'Aquí puedes encontrar las credenciales y certificados.',
       button: 'Ver Credencial',
     },
     experiences: {
       title: 'Mis Experiencias',
-      subtitle:
-        'Viajes, hackathones, conferencias y otras experiencias que han enriquecido mi desarrollo profesional y personal.',
-      categories: {
-        travel: 'Viaje',
-        hackathon: 'Hackathon',
-        conference: 'Conferencia',
-        volunteer: 'Voluntariado',
-        workshop: 'Taller',
-        award: 'Premio',
-        other: 'Otro',
-      },
-      instagram: {
-        viewButton: 'Ver en Instagram',
-        relatedPost: 'Publicación relacionada con esta experiencia',
-      },
+      subtitle: 'Viajes, hackathones y conferencias.',
+      categories: { travel: 'Viaje', hackathon: 'Hackathon', conference: 'Conferencia', other: 'Otro' },
+      instagram: { viewButton: 'Ver en Instagram', relatedPost: 'Publicación relacionada' },
     },
     viewExperience: {
       backToExperiences: '← Volver a Experiencias',
       notFoundTitle: 'Experiencia no encontrada',
-      notFoundDescription: 'No pudimos encontrar una experiencia con el identificador proporcionado.',
+      notFoundDescription: 'No pudimos encontrar la experiencia.',
       gallery: 'Galería',
       story: 'Historia',
       learnings: 'Aprendizajes',
@@ -190,28 +116,14 @@ export const translations = {
     common: {
       brand: 'Fernando Ramírez',
       languageLabel: 'Language',
-      languageOptions: {
-        es: 'ES',
-        en: 'EN',
-      },
+      languageOptions: { es: 'ES', en: 'EN' },
       portfolioBadge: 'Portfolio 2025',
       viewProjects: 'See Projects',
       backToProjects: '← Back to Projects',
       notFoundTitle: 'Project not found',
-      notFoundDescription:
-        'We could not find a project with the provided identifier. Please verify the link or go back to the main page.',
-      metrics: {
-        heading: 'Tech brief',
-        role: 'Role',
-        duration: 'Duration',
-        team: 'Team',
-        year: 'Year',
-      },
-      linkLabels: {
-        github: 'Code',
-        demo: 'Demo',
-        certificate: 'Certificate',
-      },
+      notFoundDescription: 'We could not find a project with the provided identifier.',
+      metrics: { heading: 'Tech brief', role: 'Role', duration: 'Duration', team: 'Team', year: 'Year' },
+      linkLabels: { github: 'Code', demo: 'Demo', certificate: 'Certificate' },
     },
     navbar: {
       links: [
@@ -226,55 +138,50 @@ export const translations = {
     hero: {
       title: 'Fernando Ramírez',
       subtitle: 'Software Engineer | Aspiring Data Scientist',
-      description:
-        'Sixth-semester Software Engineering student focused on building robust digital experiences while exploring how data science powers evidence-based strategic decisions.',
+      description: 'Sixth-semester Software Engineering student focused on building robust digital experiences.',
       cta: 'See Projects',
     },
     about: {
       title: 'About Me',
       paragraphs: [
-        'I am a sixth-semester Software Engineering student passionate about building end-to-end digital solutions. My experience spans full-stack development with a focus on modern, accessible experiences that drive impact.',
-        'I am currently interested in data and analytics, combining my technical background with curiosity about how information informs strategic decisions. I seek projects where both disciplines converge.',
+        'I am a sixth-semester Software Engineering student passionate about building end-to-end digital solutions.',
+        'I am currently interested in data and analytics.',
       ],
     },
     skills: {
       tag: 'Skillset',
       title: 'Technical Skills',
-      description:
-        'Technologies I master to deliver end-to-end digital products and the tools I am adopting to power data-driven analysis.',
+      description: 'Technologies I master to deliver end-to-end digital products.',
       categories: {
-        web: {
-          title: 'Web Development (Full-Stack)',
-          description:
-            'Building complete experiences: from accessible interfaces to scalable APIs and robust databases.',
-          items: ['React', 'Node.js', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'PostgreSQL', 'MongoDB'],
-        },
-        data: {
-          title: 'Data Analysis (In progress)',
-          description:
-            'Tools and libraries I rely on to clean, analyze, and visualize information that supports decision-making.',
-          items: ['Python', 'Pandas', 'NumPy', 'SQL', 'Scikit-learn', 'Matplotlib'],
-        },
+        web: { title: 'Web Development', description: 'Building complete experiences.', items: [] },
+        data: { title: 'Data Analysis', description: 'Tools for decision-making.', items: [] },
       },
     },
     projects: {
       tag: 'Work',
       title: 'Featured Projects',
-      description:
-        'A selection of recent work that blends software engineering with the power of data to create value.',
+      description: 'A selection of recent work that blends software engineering with data.',
       viewDetail: 'View Detail',
+    },
+    github: {
+      tag: 'Activity',
+      title: 'GitHub Ecosystem',
+      description: 'Real-time metrics, open-source contributions, and recent activity.',
+      contributions: 'Contribution Wall',
+      stats: 'Development Metrics',
+      topRepos: 'Featured Repositories',
+      languages: 'Top Languages',
+      activity: 'Work Intensity',
+      viewAll: 'View Full Profile',
+      viewMore: 'View full metrics',
+      stars: 'Stars',
+      forks: 'Forks',
     },
     contact: {
       tag: 'Contact',
       title: 'Let’s build something great',
-      description:
-        'I am open to opportunities, collaborations, and projects that bring software development together with the power of data analysis. Reach out and let’s explore ideas together.',
-      links: {
-        linkedin: 'LinkedIn',
-        github: 'GitHub',
-        cv: 'My CV',
-        email: 'Email',
-      },
+      description: 'I am open to opportunities and collaborations. Reach out!',
+      links: { linkedin: 'LinkedIn', github: 'GitHub', cv: 'My CV', email: 'Email' },
     },
     viewProject: {
       gallery: 'Gallery',
@@ -291,31 +198,19 @@ export const translations = {
     },
     certificates: {
       title: 'My Certifications',
-      subtitle: 'Here you can find the credentials and certificates for the courses and technologies I have completed.',
+      subtitle: 'Credentials and certificates for completed courses.',
       button: 'View Credential',
     },
     experiences: {
       title: 'My Experiences',
-      subtitle:
-        'Trips, hackathons, conferences, and other experiences that have enriched my professional and personal development.',
-      categories: {
-        travel: 'Travel',
-        hackathon: 'Hackathon',
-        conference: 'Conference',
-        volunteer: 'Volunteer',
-        workshop: 'Workshop',
-        award: 'Award',
-        other: 'Other',
-      },
-      instagram: {
-        viewButton: 'View on Instagram',
-        relatedPost: 'Related post about this experience',
-      },
+      subtitle: 'Trips, hackathons, and conferences.',
+      categories: { travel: 'Travel', hackathon: 'Hackathon', conference: 'Conference', other: 'Other' },
+      instagram: { viewButton: 'View on Instagram', relatedPost: 'Related post' },
     },
     viewExperience: {
       backToExperiences: '← Back to Experiences',
       notFoundTitle: 'Experience not found',
-      notFoundDescription: 'We could not find an experience with the provided identifier.',
+      notFoundDescription: 'We could not find the experience.',
       gallery: 'Gallery',
       story: 'Story',
       learnings: 'Learnings',
