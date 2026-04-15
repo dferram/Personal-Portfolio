@@ -6,7 +6,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n } from '@/i18n/I18nProvider';
 import { useTheme } from '@/context/ThemeContext';
-import { FaGithub, FaStar, FaCodeBranch, FaExternalLinkAlt, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaGithub, FaStar, FaCodeBranch, FaExternalLinkAlt, FaChevronDown, FaChevronUp, FaTrophy } from 'react-icons/fa';
 
 export default function GitHubStats({ username = 'dferram' }) {
   const { t } = useI18n();
@@ -38,14 +38,20 @@ export default function GitHubStats({ username = 'dferram' }) {
         setRepos(sortedRepos);
 
         const langs = {};
+        let total = 0;
         reposData.forEach(repo => {
           if (repo.language) {
             langs[repo.language] = (langs[repo.language] || 0) + 1;
+            total++;
           }
         });
 
         const langChartData = Object.keys(langs)
-          .map(name => ({ name, value: langs[name] }))
+          .map(name => ({ 
+            name, 
+            value: langs[name],
+            percentage: Math.round((langs[name] / total) * 100)
+          }))
           .sort((a, b) => b.value - a.value)
           .slice(0, 5);
 
@@ -69,9 +75,7 @@ export default function GitHubStats({ username = 'dferram' }) {
     return (r * 0.299 + g * 0.587 + b * 0.114) < 128;
   })();
 
-  // Build a vivid 4-step gradient from a muted tint → full accent
   const buildGradient = (accent, accentLight, isDark) => {
-    // Parse hex to RGB helper
     const hex2rgb = (h) => {
       const c = h.replace('#', '');
       return [parseInt(c.substring(0,2),16), parseInt(c.substring(2,4),16), parseInt(c.substring(4,6),16)];
@@ -81,20 +85,18 @@ export default function GitHubStats({ username = 'dferram' }) {
     const [lr,lg,lb] = hex2rgb(accentLight);
 
     if (isDark) {
-      // For dark themes: level1 = very dim, level4 = full bright accent
       return [
-        rgb2hex(Math.round(ar*0.2), Math.round(ag*0.2), Math.round(ab*0.2)),  // Level 1: barely visible
-        rgb2hex(Math.round(ar*0.45), Math.round(ag*0.45), Math.round(ab*0.45)), // Level 2: dim
-        rgb2hex(Math.round(ar*0.7), Math.round(ag*0.7), Math.round(ab*0.7)),  // Level 3: medium
-        accent,                                                                  // Level 4: full vibrant
+        rgb2hex(Math.round(ar*0.2), Math.round(ag*0.2), Math.round(ab*0.2)),
+        rgb2hex(Math.round(ar*0.45), Math.round(ag*0.45), Math.round(ab*0.45)),
+        rgb2hex(Math.round(ar*0.7), Math.round(ag*0.7), Math.round(ab*0.7)),
+        accent,
       ];
     } else {
-      // For light themes: level1 = soft pastel, level4 = full dark accent
       return [
-        rgb2hex(lr + Math.round((255-lr)*0.5), lg + Math.round((255-lg)*0.5), lb + Math.round((255-lb)*0.5)), // Level 1: very light
-        accentLight,                                                              // Level 2: light accent
-        accent,                                                                   // Level 3: full accent
-        accentDarkColor,                                                          // Level 4: dark accent
+        rgb2hex(lr + Math.round((255-lr)*0.5), lg + Math.round((255-lg)*0.5), lb + Math.round((255-lb)*0.5)),
+        accentLight,
+        accent,
+        accentDarkColor,
       ];
     }
   };
@@ -107,7 +109,6 @@ export default function GitHubStats({ username = 'dferram' }) {
     dark: [emptyColor, ...gradient],
   };
 
-  // Mapeo de temas de GitHub Streak Stats
   const getStreakTheme = () => {
     if (currentTheme === 'darkElegant') return 'dark';
     if (currentTheme === 'midnightPurple') return 'tokyonight';
@@ -118,6 +119,16 @@ export default function GitHubStats({ username = 'dferram' }) {
     if (currentTheme === 'sunsetWarm') return 'dracula';
     if (currentTheme === 'techPastel') return 'onedark';
     return isDarkTheme ? 'dark' : 'default';
+  };
+
+  const getTrophyTheme = () => {
+    if (currentTheme === 'darkElegant') return 'dark';
+    if (currentTheme === 'midnightPurple') return 'tokyonight';
+    if (currentTheme === 'oceanBreeze') return 'oceanhub';
+    if (currentTheme === 'forestGreen') return 'gruvbox';
+    if (currentTheme === 'racingRed') return 'radical';
+    if (currentTheme === 'retroSolar') return 'solarized_light';
+    return 'flat';
   };
 
   if (loading) return (
@@ -143,8 +154,8 @@ export default function GitHubStats({ username = 'dferram' }) {
           </h2>
         </div>
 
-        {/* Contributions Wall - Minimal View */}
-        <div className="mb-8 p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl overflow-x-auto">
+        {/* Contributions Wall */}
+        <div className="mb-12 p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl overflow-x-auto">
           <div className="min-w-[800px] flex justify-center">
             <GitHubCalendar 
               username={username}
@@ -159,6 +170,20 @@ export default function GitHubStats({ username = 'dferram' }) {
             />
           </div>
         </div>
+
+        {/* GitHub Trophies */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="mb-12 flex justify-center overflow-x-auto pb-4"
+        >
+          <img 
+            src={`https://github-profile-trophy.vercel.app/?username=${username}&theme=${getTrophyTheme()}&no-frame=true&column=4`} 
+            alt="GitHub Trophies"
+            className="min-w-[700px] h-auto pointer-events-none filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]"
+          />
+        </motion.div>
 
         {/* CTA Button to Expand */}
         <div className="flex justify-center mb-12">
@@ -191,39 +216,65 @@ export default function GitHubStats({ username = 'dferram' }) {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
                 {/* Left Column: Languages & Streak */}
                 <div className="space-y-8">
-                  {/* Languages Pie Chart */}
-                  <div className="p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl h-[400px] flex flex-col">
+                  {/* Languages Card */}
+                  <div className="p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl flex flex-col">
                     <h3 className="text-xl font-bold text-foreground mb-6">{t('github.languages')}</h3>
-                    <div className="flex-1 w-full">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <PieChart>
-                          <Pie
-                            data={languageData}
-                            cx="50%"
-                            cy="50%"
-                            innerRadius={60}
-                            outerRadius={100}
-                            paddingAngle={5}
-                            dataKey="value"
-                          >
-                            {languageData.map((entry, index) => (
-                              <Cell 
-                                key={`cell-${index}`} 
-                                fill={[accentColor, accentDarkColor, theme['accent-light'], '#6366f1', '#a855f7'][index % 5]} 
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                      <div className="h-[250px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <PieChart>
+                            <Pie
+                              data={languageData}
+                              cx="50%"
+                              cy="50%"
+                              innerRadius={60}
+                              outerRadius={80}
+                              paddingAngle={5}
+                              dataKey="value"
+                            >
+                              {languageData.map((entry, index) => (
+                                <Cell 
+                                  key={`cell-${index}`} 
+                                  fill={[accentColor, accentDarkColor, theme['accent-light'], '#6366f1', '#a855f7'][index % 5]} 
+                                />
+                              ))}
+                            </Pie>
+                            <Tooltip 
+                              contentStyle={{ backgroundColor: theme.primary, border: `1px solid ${accentColor}`, borderRadius: '12px' }}
+                              itemStyle={{ color: foregroundColor }}
+                            />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      {/* Glowing Language Bars */}
+                      <div className="space-y-4">
+                        {languageData.map((lang, index) => (
+                          <div key={lang.name} className="space-y-1">
+                            <div className="flex justify-between text-sm">
+                              <span className="text-foreground font-bold">{lang.name}</span>
+                              <span className="text-muted">{lang.percentage}%</span>
+                            </div>
+                            <div className="h-2 w-full bg-primary rounded-full overflow-hidden">
+                              <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: `${lang.percentage}%` }}
+                                transition={{ duration: 1, delay: index * 0.1 }}
+                                className="h-full rounded-full relative"
+                                style={{ 
+                                  backgroundColor: [accentColor, accentDarkColor, theme['accent-light'], '#6366f1', '#a855f7'][index % 5],
+                                  boxShadow: `0 0 10px ${[accentColor, accentDarkColor, theme['accent-light'], '#6366f1', '#a855f7'][index % 5]}80`
+                                }}
                               />
-                            ))}
-                          </Pie>
-                          <Tooltip 
-                            contentStyle={{ backgroundColor: theme.primary, border: `1px solid ${accentColor}` }}
-                            itemStyle={{ color: foregroundColor }}
-                          />
-                          <Legend verticalAlign="bottom" height={36}/>
-                        </PieChart>
-                      </ResponsiveContainer>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Streak Stats - Dynamic Theme */}
+                  {/* Streak Stats */}
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -252,8 +303,8 @@ export default function GitHubStats({ username = 'dferram' }) {
                         href={repo.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        whileHover={{ x: 10 }}
-                        className="flex items-center justify-between p-4 rounded-xl bg-primary border border-white/5 hover:border-accent transition-colors"
+                        whileHover={{ x: 10, backgroundColor: 'rgba(255,255,255,0.03)' }}
+                        className="flex items-center justify-between p-4 rounded-xl bg-primary border border-white/5 hover:border-accent/50 transition-all duration-300"
                       >
                         <div className="flex flex-col">
                           <span className="font-bold text-foreground">{repo.name}</span>
