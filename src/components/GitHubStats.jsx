@@ -6,7 +6,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n } from '@/i18n/I18nProvider';
 import { useTheme } from '@/context/ThemeContext';
-import { FaGithub, FaStar, FaCodeBranch, FaExternalLinkAlt, FaChevronDown, FaChevronUp, FaTrophy } from 'react-icons/fa';
+import { FaGithub, FaStar, FaCodeBranch, FaExternalLinkAlt, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 export default function GitHubStats({ username = 'dferram' }) {
   const { t } = useI18n();
@@ -109,27 +109,45 @@ export default function GitHubStats({ username = 'dferram' }) {
     dark: [emptyColor, ...gradient],
   };
 
-  const getStreakTheme = () => {
-    if (currentTheme === 'darkElegant') return 'dark';
-    if (currentTheme === 'midnightPurple') return 'tokyonight';
-    if (currentTheme === 'oceanBreeze') return 'ocean';
-    if (currentTheme === 'forestGreen') return 'gruvbox';
-    if (currentTheme === 'racingRed') return 'radical';
-    if (currentTheme === 'retroSolar') return 'solarized-light';
-    if (currentTheme === 'sunsetWarm') return 'dracula';
-    if (currentTheme === 'techPastel') return 'onedark';
-    return isDarkTheme ? 'dark' : 'default';
+  // Colores personalizados para Streak Stats basados en el tema activo
+  const getStreakCustomParams = () => {
+    const strip = (hex) => hex.replace('#', '');
+    const hex2rgb = (h) => {
+      const c = h.replace('#', '');
+      return [parseInt(c.substring(0,2),16), parseInt(c.substring(2,4),16), parseInt(c.substring(4,6),16)];
+    };
+    const rgb2hex = (r,g,b) => [r,g,b].map(x => Math.max(0,Math.min(255,Math.round(x))).toString(16).padStart(2,'0')).join('');
+
+    // Mezclar primary-dark al 50% sobre primary (simula bg-primary-dark/50)
+    const [pr, pg, pb] = hex2rgb(theme.primary);
+    const [dr, dg, db] = hex2rgb(theme['primary-dark'] || theme.primary);
+    const blendedBg = rgb2hex(
+      Math.round(dr * 0.5 + pr * 0.5),
+      Math.round(dg * 0.5 + pg * 0.5),
+      Math.round(db * 0.5 + pb * 0.5)
+    );
+
+    const accent = strip(accentColor);
+    const accentLt = strip(theme['accent-light'] || accentColor);
+    const fg = strip(foregroundColor);
+    const muted = strip(theme.muted || foregroundColor);
+
+    return [
+      `background=${blendedBg}`,
+      `border=${blendedBg}`,
+      `stroke=${blendedBg}`,
+      `ring=${accent}`,
+      `fire=${accent}`,
+      `currStreakNum=${accent}`,
+      `sideNums=${fg}`,
+      `currStreakLabel=${accentLt}`,
+      `sideLabels=${muted}`,
+      `dates=${muted}`,
+    ].join('&');
   };
 
-  const getTrophyTheme = () => {
-    if (currentTheme === 'darkElegant') return 'dark';
-    if (currentTheme === 'midnightPurple') return 'tokyonight';
-    if (currentTheme === 'oceanBreeze') return 'oceanhub';
-    if (currentTheme === 'forestGreen') return 'gruvbox';
-    if (currentTheme === 'racingRed') return 'radical';
-    if (currentTheme === 'retroSolar') return 'solarized_light';
-    return 'flat';
-  };
+  // Paleta de colores para gráficos, derivada del tema activo
+  const chartColors = [accentColor, accentDarkColor, theme['accent-light'], gradient[1], gradient[2]];
 
   if (loading) return (
     <div className="flex justify-center items-center py-20">
@@ -222,7 +240,7 @@ export default function GitHubStats({ username = 'dferram' }) {
                               {languageData.map((entry, index) => (
                                 <Cell 
                                   key={`cell-${index}`} 
-                                  fill={[accentColor, accentDarkColor, theme['accent-light'], '#6366f1', '#a855f7'][index % 5]} 
+                                  fill={chartColors[index % 5]} 
                                 />
                               ))}
                             </Pie>
@@ -249,8 +267,8 @@ export default function GitHubStats({ username = 'dferram' }) {
                                 transition={{ duration: 1, delay: index * 0.1 }}
                                 className="h-full rounded-full relative"
                                 style={{ 
-                                  backgroundColor: [accentColor, accentDarkColor, theme['accent-light'], '#6366f1', '#a855f7'][index % 5],
-                                  boxShadow: `0 0 10px ${[accentColor, accentDarkColor, theme['accent-light'], '#6366f1', '#a855f7'][index % 5]}80`
+                                  backgroundColor: chartColors[index % 5],
+                                  boxShadow: `0 0 10px ${chartColors[index % 5]}80`
                                 }}
                               />
                             </div>
@@ -270,10 +288,9 @@ export default function GitHubStats({ username = 'dferram' }) {
                     <h3 className="text-xl font-bold text-foreground mb-6 w-full text-left">{t('github.activity')}</h3>
                     <div className="w-full flex justify-center">
                       <img 
-                        src={`https://streak-stats.demolab.com?user=${username}&theme=${getStreakTheme()}&hide_border=true&timezone=America/Mexico_City`} 
+                        src={`https://streak-stats.demolab.com?user=${username}&hide_border=true&timezone=America/Mexico_City&${getStreakCustomParams()}`} 
                         alt="GitHub Streak"
-                        className="max-w-full h-auto rounded-xl"
-                        style={{ height: '170px' }}
+                        className="w-full h-auto rounded-xl"
                       />
                     </div>
                   </motion.div>
