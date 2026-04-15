@@ -150,14 +150,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Theme Button - Desktop */}
-          <Link
-            to="/estilos"
-            className="flex items-center gap-2 rounded-full border border-accent/30 bg-primary-dark px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition duration-300 hover:bg-accent hover:text-white"
-            style={{ color: 'var(--color-header-text)' }}
-          >
-            <span className="hidden md:inline">Tema</span>
-          </Link>
         </div>
 
         {/* Mobile Toggle Button */}
@@ -251,17 +243,7 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                {/* Theme Button - Mobile */}
-                <div className="mt-4">
-                  <Link
-                    to="/estilos"
-                    className="flex items-center justify-center gap-2 rounded-full border border-accent/30 bg-primary-dark px-6 py-3 text-sm font-bold uppercase tracking-widest transition duration-300 hover:bg-accent hover:text-white"
-                    style={{ color: 'var(--color-header-text)' }}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Tema
-                  </Link>
-                </div>
+
               </div>
             </motion.div>
           )}
