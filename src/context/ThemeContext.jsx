@@ -36,8 +36,9 @@
  * - Para agregar un nuevo tema, solo agregalo en src/styles/themes/
  */
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { allThemes } from '@/styles/themes';
+import { useEclipse, EclipseOverlay } from '@/components/EclipseOverlay';
 
 const ThemeContext = createContext();
 
@@ -55,6 +56,8 @@ export const ThemeProvider = ({ children }) => {
     const savedTheme = localStorage.getItem('portfolio-theme');
     return savedTheme && allThemes[savedTheme] ? savedTheme : 'classic';
   });
+
+  const { eclipse, triggerEclipse } = useEclipse();
 
   // Aplicar el tema actual como CSS variables cada vez que cambie
   useEffect(() => {
@@ -91,13 +94,41 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem('portfolio-theme', currentTheme);
   }, [currentTheme]);
 
-  const setTheme = (themeName) => {
-    if (allThemes[themeName]) {
-      setCurrentTheme(themeName);
-    } else {
+  // setTheme con animación Eclipse
+  const setTheme = useCallback((themeName, originEvent) => {
+    if (!allThemes[themeName]) {
       console.warn(`Tema "${themeName}" no encontrado. Temas disponibles:`, Object.keys(allThemes));
+      return;
     }
-  };
+
+    const newTheme = allThemes[themeName];
+
+    // Determinar origen de la onda
+    let ox = window.innerWidth / 2;
+    let oy = window.innerHeight / 2;
+
+    if (originEvent) {
+      // Si es un MouseEvent (click en un botón de tema)
+      if (originEvent.clientX !== undefined) {
+        ox = originEvent.clientX;
+        oy = originEvent.clientY;
+      }
+      // Si es un elemento DOM (referencia al botón)
+      else if (originEvent.getBoundingClientRect) {
+        const rect = originEvent.getBoundingClientRect();
+        ox = rect.left + rect.width / 2;
+        oy = rect.top + rect.height / 2;
+      }
+    }
+
+    // Disparar el eclipse con el color de acento del NUEVO tema
+    triggerEclipse(ox, oy, newTheme.accent);
+
+    // Aplicar el tema después de un pequeño delay para que la onda cubra primero
+    setTimeout(() => {
+      setCurrentTheme(themeName);
+    }, 250);
+  }, [triggerEclipse]);
 
   // Resetear al tema por defecto
   const resetTheme = () => {
@@ -116,6 +147,7 @@ export const ThemeProvider = ({ children }) => {
   return (
     <ThemeContext.Provider value={value}>
       {children}
+      <EclipseOverlay eclipse={eclipse} />
     </ThemeContext.Provider>
   );
 };

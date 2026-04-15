@@ -66,8 +66,8 @@ export default function ThemeSelector() {
     };
   }, [isOpen]);
 
-  const handleThemeSelect = (themeName) => {
-    setTheme(themeName);
+  const handleThemeSelect = (themeName, event) => {
+    setTheme(themeName, event);
     setIsOpen(false);
   };
 
@@ -129,7 +129,7 @@ export default function ThemeSelector() {
                 return (
                   <button
                     key={themeName}
-                    onClick={() => handleThemeSelect(themeName)}
+                    onClick={(e) => handleThemeSelect(themeName, e)}
                     className="w-full px-4 py-3 text-left transition duration-200 hover:bg-primary-dark flex items-center justify-between gap-3"
                     style={{ 
                       backgroundColor: isActive ? 'var(--color-accent-light)' : 'transparent'

@@ -171,20 +171,6 @@ export default function GitHubStats({ username = 'dferram' }) {
           </div>
         </div>
 
-        {/* GitHub Trophies */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="mb-12 flex justify-center overflow-x-auto pb-4"
-        >
-          <img 
-            src={`https://github-profile-trophy.vercel.app/?username=${username}&theme=${getTrophyTheme()}&no-frame=true&column=4`} 
-            alt="GitHub Trophies"
-            className="min-w-[700px] h-auto pointer-events-none filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]"
-          />
-        </motion.div>
-
         {/* CTA Button to Expand */}
         <div className="flex justify-center mb-12">
           <button
