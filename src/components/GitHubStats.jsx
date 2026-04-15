@@ -107,6 +107,19 @@ export default function GitHubStats({ username = 'dferram' }) {
     dark: [emptyColor, ...gradient],
   };
 
+  // Mapeo de temas de GitHub Streak Stats
+  const getStreakTheme = () => {
+    if (currentTheme === 'darkElegant') return 'dark';
+    if (currentTheme === 'midnightPurple') return 'tokyonight';
+    if (currentTheme === 'oceanBreeze') return 'ocean';
+    if (currentTheme === 'forestGreen') return 'gruvbox';
+    if (currentTheme === 'racingRed') return 'radical';
+    if (currentTheme === 'retroSolar') return 'solarized-light';
+    if (currentTheme === 'sunsetWarm') return 'dracula';
+    if (currentTheme === 'techPastel') return 'onedark';
+    return isDarkTheme ? 'dark' : 'default';
+  };
+
   if (loading) return (
     <div className="flex justify-center items-center py-20">
       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
@@ -176,39 +189,60 @@ export default function GitHubStats({ username = 'dferram' }) {
               className="overflow-hidden"
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                {/* Languages Pie Chart */}
-                <div className="p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl h-[400px] flex flex-col">
-                  <h3 className="text-xl font-bold text-foreground mb-6">{t('github.languages')}</h3>
-                  <div className="flex-1 w-full">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={languageData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={60}
-                          outerRadius={100}
-                          paddingAngle={5}
-                          dataKey="value"
-                        >
-                          {languageData.map((entry, index) => (
-                            <Cell 
-                              key={`cell-${index}`} 
-                              fill={[accentColor, accentDarkColor, theme['accent-light'], '#6366f1', '#a855f7'][index % 5]} 
-                            />
-                          ))}
-                        </Pie>
-                        <Tooltip 
-                          contentStyle={{ backgroundColor: theme.primary, border: `1px solid ${accentColor}` }}
-                          itemStyle={{ color: foregroundColor }}
-                        />
-                        <Legend verticalAlign="bottom" height={36}/>
-                      </PieChart>
-                    </ResponsiveContainer>
+                {/* Left Column: Languages & Streak */}
+                <div className="space-y-8">
+                  {/* Languages Pie Chart */}
+                  <div className="p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl h-[400px] flex flex-col">
+                    <h3 className="text-xl font-bold text-foreground mb-6">{t('github.languages')}</h3>
+                    <div className="flex-1 w-full">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                          <Pie
+                            data={languageData}
+                            cx="50%"
+                            cy="50%"
+                            innerRadius={60}
+                            outerRadius={100}
+                            paddingAngle={5}
+                            dataKey="value"
+                          >
+                            {languageData.map((entry, index) => (
+                              <Cell 
+                                key={`cell-${index}`} 
+                                fill={[accentColor, accentDarkColor, theme['accent-light'], '#6366f1', '#a855f7'][index % 5]} 
+                              />
+                            ))}
+                          </Pie>
+                          <Tooltip 
+                            contentStyle={{ backgroundColor: theme.primary, border: `1px solid ${accentColor}` }}
+                            itemStyle={{ color: foregroundColor }}
+                          />
+                          <Legend verticalAlign="bottom" height={36}/>
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </div>
                   </div>
+
+                  {/* Streak Stats - Dynamic Theme */}
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl flex flex-col items-center justify-center"
+                  >
+                    <h3 className="text-xl font-bold text-foreground mb-6 w-full text-left">{t('github.activity')}</h3>
+                    <div className="w-full flex justify-center">
+                      <img 
+                        src={`https://streak-stats.demolab.com?user=${username}&theme=${getStreakTheme()}&hide_border=true&timezone=America/Mexico_City`} 
+                        alt="GitHub Streak"
+                        className="max-w-full h-auto rounded-xl"
+                        style={{ height: '170px' }}
+                      />
+                    </div>
+                  </motion.div>
                 </div>
 
-                {/* Top Repositories */}
+                {/* Right Column: Top Repositories */}
                 <div className="p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl">
                   <h3 className="text-xl font-bold text-foreground mb-6">{t('github.topRepos')}</h3>
                   <div className="space-y-4">
