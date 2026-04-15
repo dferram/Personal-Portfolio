@@ -16,28 +16,25 @@ import midnightPurpleTheme from './midnight-purple';
 import racingRedTheme from './racing-red';
 
 /* 
- * TEMA ACTIVO
- * 
- * INSTRUCCIONES PARA CAMBIAR EL TEMA:
- * 
- * 1. Busca la linea que dice "export const activeTheme = ..."
- * 2. Cambia el nombre del tema por cualquiera de las opciones disponibles:
- *    - classicTheme (Clasico Profesional - blanco y azul)
- *    - darkElegantTheme (Oscuro Elegante - negro con dorado)
- *    - retroSolarTheme (Retro Solar - crema y naranja)
- *    - techPastelTheme (Tech Pastel - azul claro y lila)
- *    - oceanBreezeTheme (Brisa Marina - azul aqua)
- *    - forestGreenTheme (Bosque Verde - verdes naturales)
- *    - sunsetWarmTheme (Atardecer Calido - rosas y naranjas)
- *    - midnightPurpleTheme (Medianoche Purpura - purpura oscuro)
- * 
- * 3. Guarda el archivo y recarga tu navegador
- * 
- * Ejemplo:
- *   export const activeTheme = darkElegantTheme;  // Cambia a tema oscuro
+ * ════════════════════════════════════════════════════════
+ *  PARA CAMBIAR EL TEMA — EDITA SOLO ESTA LINEA (linea 40):
+ * ════════════════════════════════════════════════════════
+ *
+ *  OPCIONES DISPONIBLES:
+ *    classicTheme        → Clasico Profesional  (blanco y azul)
+ *    darkElegantTheme    → Oscuro Elegante       (negro con dorado)
+ *    retroSolarTheme     → Retro Solar           (crema y naranja)
+ *    techPastelTheme     → Tech Pastel           (azul claro y lila)
+ *    oceanBreezeTheme    → Brisa Marina          (azul aqua)
+ *    forestGreenTheme    → Bosque Verde          (verdes naturales)
+ *    sunsetWarmTheme     → Atardecer Calido      (rosas y naranjas)
+ *    midnightPurpleTheme → Medianoche Purpura    (purpura oscuro)
+ *    racingRedTheme      → Racing Red            (rojo F1 y negro)
+ *
+ *  Para ver una preview de cada tema, abre /estilos en el navegador.
  */
 
-export const activeTheme = classicTheme;
+export const activeTheme = retroSolarTheme;
 
 /* 
  * EXPORTACION DE TODOS LOS TEMAS

@@ -10,14 +10,15 @@ import { FaGithub, FaStar, FaCodeBranch, FaExternalLinkAlt, FaChevronDown, FaChe
 
 export default function GitHubStats({ username = 'dferram' }) {
   const { t } = useI18n();
-  const { currentTheme, availableThemes } = useTheme();
+  const { currentTheme } = useTheme();
+
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [languageData, setLanguageData] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Colores dinámicos basados en el tema
-  const theme = availableThemes[currentTheme] || availableThemes['classic'];
+  const theme = currentTheme;
   const accentColor = theme.accent;
   const accentDarkColor = theme['accent-dark'];
   const foregroundColor = theme.foreground;
