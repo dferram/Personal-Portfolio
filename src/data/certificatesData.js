@@ -1,6 +1,7 @@
 // ============================================================================
 // ARCHIVO DE DATOS: CERTIFICADOS Y DIPLOMAS
 // ============================================================================
+import { processImagePaths } from '@/utils/paths';
 // Aquí agregas todos los certificados, diplomas y reconocimientos que has obtenido.
 // Pueden ser de cursos online, talleres, conferencias, competencias, etc.
 //
@@ -29,7 +30,7 @@
 // - Mantén el formato { es: "texto", en: "text" } para multiidioma
 // ============================================================================
 
-export const CERTIFICATES_DATA = [
+const certificatesDataRaw = [
   {
     id: 'Santander-Data-Science',
     title: {
@@ -48,6 +49,8 @@ export const CERTIFICATES_DATA = [
   },
  
 ];
+
+export const CERTIFICATES_DATA = processImagePaths(certificatesDataRaw);
 
 // ============================================================================
 // PLANTILLA PARA AGREGAR UN NUEVO CERTIFICADO
