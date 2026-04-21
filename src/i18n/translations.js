@@ -147,6 +147,7 @@ export const translations = {
       categories: {
         web: { title: 'Web Development', description: 'Building complete experiences.', items: [] },
         data: { title: 'Databases & Backend', description: 'Persistence, APIs, and server-side services.', items: [] },
+        analysis: { title: 'Data Analysis', description: 'Data analysis and visualization.', items: [] },
       },
     },
     projects: {

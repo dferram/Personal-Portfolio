@@ -52,8 +52,8 @@ const skillsDataRaw = [
     ],
   },
   {
-    id: 'tools',
-    title: 'Herramientas & Scripts',
+    id: 'analysis',
+    title: 'Análisis de datos',
     items: [
       { name: 'Python',        icon: `/images/${SKILLS_ICONS.python}` },
       { name: 'Google Colab',  icon: `/images/${SKILLS_ICONS.colab}` },

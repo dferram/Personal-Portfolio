@@ -21,14 +21,21 @@ export default function Navbar() {
     
     const handleScroll = () => {
       const sections = ['inicio', 'sobre-mí', 'proyectos', 'contacto'];
-      let current = '';
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+      if (atBottom) {
+        if (activeSection !== '#contacto') setActiveSection('#contacto');
+        return;
+      }
+
+      let current = '';
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i]);
         if (element) {
           const rect = element.getBoundingClientRect();
           if (rect.top <= window.innerHeight / 2 && rect.bottom >= 100) {
-            current = `#${section}`;
+            current = `#${sections[i]}`;
             break;
           }
         }
@@ -97,7 +104,7 @@ export default function Navbar() {
 
               const commonClasses =
                 'relative text-xs md:text-sm font-semibold uppercase tracking-[0.2em] transition duration-300 ease-out hover:text-accent py-1';
-              const linkStyle = { color: 'var(--color-header-text)' };
+              const linkStyle = { color: isActive ? 'var(--color-accent)' : 'var(--color-header-text)' };
 
               const destination = isAnchor ? { pathname: '/', hash } : href;
 
@@ -120,13 +127,6 @@ export default function Navbar() {
               return (
                 <Link key={label} to={destination} className={commonClasses} style={linkStyle} onClick={handleClick}>
                   {label}
-                  {isActive && (
-                    <motion.div
-                      layoutId="navbar-indicator-desktop"
-                      className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full"
-                      style={{ backgroundColor: 'var(--color-header-text)' }}
-                    />
-                  )}
                 </Link>
               );
             })}
@@ -207,17 +207,10 @@ export default function Navbar() {
                       key={label} 
                       to={destination} 
                       className="text-2xl font-bold uppercase tracking-widest hover:text-accent transition-colors relative py-1"
-                      style={{ color: 'var(--color-header-text)' }}
+                      style={{ color: isActive ? 'var(--color-accent)' : 'var(--color-header-text)' }}
                       onClick={handleClick}
                     >
                       {label}
-                      {isActive && (
-                        <motion.div
-                          layoutId="navbar-indicator-mobile"
-                          className="absolute -bottom-1 left-0 right-0 h-[3px] rounded-full"
-                          style={{ backgroundColor: 'var(--color-header-text)' }}
-                        />
-                      )}
                     </Link>
                   );
                 })}
