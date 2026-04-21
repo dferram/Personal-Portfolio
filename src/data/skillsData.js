@@ -1,6 +1,7 @@
 // ============================================================================
 // ARCHIVO DE DATOS: HABILIDADES TÉCNICAS
 // ============================================================================
+import { processImagePaths } from '@/utils/paths';
 // Aquí defines las tecnologías, lenguajes y herramientas que conoces.
 // Se organizan en categorías (por ejemplo: Desarrollo Web, Análisis de Datos, etc.)
 //
@@ -26,7 +27,7 @@
 // - Puedes indicar tu nivel en el título (ej: "En aprendizaje", "Avanzado")
 // ============================================================================
 
-export const SKILLS_DATA = [
+const skillsDataRaw = [
   {
     id: 'web',
     title: 'Desarrollo Web (Full-Stack)',
@@ -54,6 +55,8 @@ export const SKILLS_DATA = [
     ],
   },
 ];
+
+export const SKILLS_DATA = processImagePaths(skillsDataRaw);
 
 // ============================================================================
 // PLANTILLA PARA AGREGAR UNA NUEVA CATEGORÍA DE HABILIDADES

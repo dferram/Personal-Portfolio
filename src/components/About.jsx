@@ -98,7 +98,7 @@ export default function About() {
               
               <div className="aspect-[3/4] bg-gray-200 rounded flex items-center justify-center">
                 <img
-                  src="/images/foto.png"
+                  src={`${import.meta.env.BASE_URL}images/foto.png`}
                   alt="Fernando Ramírez"
                   className="w-full h-full object-cover rounded"
                 />

@@ -1,6 +1,7 @@
 // ============================================================================
 // ARCHIVO DE DATOS: EXPERIENCIAS
 // ============================================================================
+import { processImagePaths } from '@/utils/paths';
 // Este archivo contiene todas las experiencias (viajes, hackathones, conferencias, 
 // voluntariados, etc.) que se mostrarán en la sección "Experiencias" del portafolio.
 //
@@ -103,7 +104,7 @@
 // - Asegúrate de tener al menos 5-10 imágenes para una buena experiencia
 // ============================================================================
 
-export const EXPERIENCES_DATA = [
+const experiencesDataRaw = [
   {
     id: 'cdmx-tech-week-2025',
     
@@ -284,6 +285,8 @@ export const EXPERIENCES_DATA = [
     },
   },  
 ];
+
+export const EXPERIENCES_DATA = processImagePaths(experiencesDataRaw);
 
 // ============================================================================
 // EJEMPLO DE NUEVA EXPERIENCIA (COPIA ESTE BLOQUE PARA AGREGAR MÁS)

@@ -1,6 +1,7 @@
 // ============================================================================
 // ARCHIVO DE DATOS: PROYECTOS
 // ============================================================================
+import { processImagePaths } from '@/utils/paths';
 // Aquí defines todos los proyectos que aparecerán en tu portafolio.
 // Cada proyecto es un objeto con información en español (es) e inglés (en).
 //
@@ -26,7 +27,7 @@
 // EJEMPLO AL FINAL: Copia el ejemplo y personalízalo con tu proyecto
 // ============================================================================
 
-export const PROJECTS_DATA = [
+const projectsDataRaw = [
   {
     id: "analisis-spark-sql",
     title: {
@@ -256,6 +257,8 @@ export const PROJECTS_DATA = [
     },
   },
 ];
+
+export const PROJECTS_DATA = processImagePaths(projectsDataRaw);
 
 // ============================================================================
 // PLANTILLA PARA AGREGAR UN NUEVO PROYECTO
