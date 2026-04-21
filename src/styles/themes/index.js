@@ -17,7 +17,7 @@ import racingRedTheme from './racing-red';
 
 /* 
  * ════════════════════════════════════════════════════════
- *  PARA CAMBIAR EL TEMA — EDITA SOLO ESTA LINEA (linea 40):
+ *  PARA CAMBIAR EL TEMA — EDITA SOLO ESTA LINEA (linea 37):
  * ════════════════════════════════════════════════════════
  *
  *  OPCIONES DISPONIBLES:
