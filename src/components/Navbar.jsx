@@ -93,7 +93,7 @@ export default function Navbar() {
 
               const isActive = isAnchor
                 ? location.pathname === '/' && activeSection === hash
-                : location.pathname.startsWith(href);
+                : location.pathname === href || location.pathname.startsWith(href + '/');
 
               const commonClasses =
                 'relative text-xs md:text-sm font-semibold uppercase tracking-[0.2em] transition duration-300 ease-out hover:text-accent py-1';
@@ -183,7 +183,7 @@ export default function Navbar() {
                   
                   const isActive = isAnchor
                     ? location.pathname === '/' && activeSection === hash
-                    : location.pathname.startsWith(href);
+                    : location.pathname === href || location.pathname.startsWith(href + '/');
 
                   const handleClick = (event) => {
                     setIsMenuOpen(false); // Close menu
