@@ -1,7 +1,9 @@
 # Personal Portfolio
 
-A lightweight, JavaScript-first personal portfolio project. This repository is built primarily with JavaScript (97%), with small amounts of CSS and HTML. It provides a single-page or multi-section portfolio you can host as a static site or build with a JavaScript toolchain depending on how the repo is structured.
-This README explains how the portfolio is put together, the common tech stack choices, how to download and run it locally, deployment options, and how to customize and contribute.
+> **Proyecto Educativo para Curso de Git & GitHub**  
+> Este repositorio está diseñado para enseñar Git, GitHub y desarrollo web mediante la personalización de un portafolio profesional.
+
+A lightweight, JavaScript-first personal portfolio project built with React and Vite. Perfect for learning Git/GitHub workflows while creating your own professional portfolio.
 
 ---
 
@@ -93,8 +95,8 @@ Depending on the exact implementation, you will usually find:
 
 Clone the repository:
 
-git clone https://github.com/ferramdr/Personal-Portfolio-.git
-cd Personal-Portfolio-
+git clone https://github.com/dferram/Personal-Portfolio.git
+cd Personal-Portfolio
 
 (Or download ZIP from GitHub -> Code -> Download ZIP)
 
