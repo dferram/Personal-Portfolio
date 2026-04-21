@@ -1,328 +1,336 @@
 # Personal Portfolio
 
 > **Proyecto Educativo para Curso de Git & GitHub**
-> Este repositorio está diseñado para enseñar Git, GitHub y desarrollo web mediante la personalización de un portafolio profesional.
-
-A lightweight, JavaScript-first personal portfolio project built with React and Vite. Perfect for learning Git/GitHub workflows while creating your own professional portfolio.
+> Portafolio profesional construido con React y Vite. Diseñado para que los alumnos practiquen Git/GitHub personalizándolo con su propia información.
 
 ---
 
-## Table of contents
+## Tabla de contenidos
 
-- [What this repo contains](#what-this-repo-contains)
-- [Tech stack](#tech-stack)
-- [Project structure (typical layout)](#project-structure-typical-layout)
-- [Getting started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Clone & download](#clone--download)
-  - [If this is a static site (no build system)](#if-this-is-a-static-site-no-build-system)
-  - [If this is a Node-based project (React/Vite/Next/etc.)](#if-this-is-a-node-based-project-reactvite-nextetc)
-- [Theming system](#theming-system)
-- [Security](#security)
-- [Deployment options](#deployment-options)
-- [How the portfolio is made up — content & components](#how-the-portfolio-is-made-up---content--components)
-- [Customizing content](#customizing-content)
-- [Performance & accessibility tips](#performance--accessibility-tips)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License & contact](#license--contact)
+- [Requisitos previos](#requisitos-previos)
+- [Paso 1: Fork y clone](#paso-1-fork-y-clone)
+- [Paso 2: Instalar y correr localmente](#paso-2-instalar-y-correr-localmente)
+- [Paso 3: Personalizar tu portafolio](#paso-3-personalizar-tu-portafolio)
+  - [Información personal y textos](#información-personal-y-textos)
+  - [Imágenes y fotos](#imágenes-y-fotos)
+  - [Proyectos](#proyectos)
+  - [Habilidades](#habilidades)
+  - [Certificados](#certificados)
+  - [Experiencias](#experiencias)
+  - [Tema de colores](#tema-de-colores)
+- [Paso 4: Guardar cambios con Git](#paso-4-guardar-cambios-con-git)
+- [Paso 5: Publicar en GitHub Pages](#paso-5-publicar-en-github-pages)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Solución de problemas](#solución-de-problemas)
 
 ---
 
-## What this repo contains
+## Requisitos previos
 
-Depending on the exact implementation, you will usually find:
+Antes de comenzar, asegúrate de tener instalado:
 
-- JavaScript code powering interactive sections, animations, routing, or a framework app (React, Vue, Svelte, etc.).
-- CSS (or preprocessor output) for styling.
-- HTML (static index.html or framework entry point).
-- Assets such as images, icons and fonts.
-
----
-
-## Tech stack
-
-- Primary language: JavaScript (interactive logic and/or framework)
-- Styling: CSS
-- Markup: HTML
-- Plain static site: vanilla JavaScript + HTML + CSS
-- SPA frameworks: React, Vue, or Svelte (bundled with Vite, Webpack, Create React App)
-- Static site frameworks: Next.js, Astro, Gatsby
-- Build tools / package manager: Node + npm or Yarn
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/) (versión 18 o superior)
+- Un editor de código (se recomienda [VS Code](https://code.visualstudio.com/))
 
 ---
 
-## Project structure (typical layout)
+## Paso 1: Fork y clone
 
-1) Static site (no build)
-- index.html
-- /assets
-  - /images
-  - /icons
-- /js
-  - main.js
-- /css
-  - styles.css
+1. Haz clic en **Fork** en la esquina superior derecha de este repositorio
+2. Clona **tu fork** en tu computadora:
 
-2) Framework-based (React / Vite / CRA)
-- package.json
-- /src
-  - index.js / main.jsx
-  - App.jsx
-  - /components
-  - /styles
-  - /assets
-- /public
-  - index.html
-
-3) Next.js
-- package.json
-- /pages
-  - index.js
-- /public
-- /styles
-
----
-
-## Getting started
-### Prerequisites
-
-- Git (to clone)
-- Node.js >= 14 (if the repo uses npm/yarn)
-- A modern browser for local testing
-
-### Clone & download
-
-Clone the repository:
-
-git clone https://github.com/dferram/Personal-Portfolio.git
+```bash
+git clone https://github.com/TU-USUARIO/Personal-Portfolio.git
 cd Personal-Portfolio
-
-(Or download ZIP from GitHub -> Code -> Download ZIP)
-
----
-
-## Theming system
-
-This portfolio includes a flexible theming system with **8 pre-designed color palettes** that you can switch between easily. Perfect for learning Git/GitHub while customizing your portfolio.
-
-### Available themes
-
-1. **Clasico Profesional** - Clean white and blue (default)
-2. **Oscuro Elegante** - Dark with golden accents
-3. **Retro Solar** - Warm cream and orange vintage style
-4. **Tech Pastel** - Soft blue and purple modern look
-5. **Brisa Marina** - Fresh ocean blues and aqua
-6. **Bosque Verde** - Natural greens
-7. **Atardecer Calido** - Energetic pinks and oranges
-8. **Medianoche Purpura** - Deep purple tech style
-
-### Quick start - Change theme
-
-1. Open `src/styles/themes/index.js`
-2. Find the line: `export const activeTheme = classicTheme;`
-3. Change to any theme: `export const activeTheme = darkElegantTheme;`
-4. Save and reload your browser
-
-### Create your own theme
-
-1. Copy any theme file from `src/styles/themes/`
-2. Rename it (e.g., `my-theme.js`)
-3. Edit the colors
-4. Import and activate it in `index.js`
-
-### Complete theming guide
-
-For detailed instructions, color psychology tips, and best practices, see **[GUIA_TEMAS.md](./GUIA_TEMAS.md)**
-
-This guide includes:
-- Detailed description of each theme
-- Step-by-step customization instructions
-- Color selection tips and tools
-- Accessibility and contrast guidelines
-- Git workflow examples for theme changes
-- Troubleshooting common issues
+```
 
 ---
 
-## Security
+## Paso 2: Instalar y correr localmente
 
-This portfolio includes a secure backend server with multiple security layers to protect against common web attacks. **Even though the site is mostly static, any functionality that receives user input (like contact forms) needs proper security measures.**
-
-### 🔒 Security measures implemented
-
-- **Rate Limiting:** Prevents spam and DoS attacks by limiting requests per IP
-- **CORS:** Controls which domains can access your API
-- **Helmet:** Configures secure HTTP headers (XSS, clickjacking, MIME sniffing protection)
-- **CSRF Protection:** Prevents cross-site request forgery attacks
-- **Data Sanitization:** Cleans malicious input (XSS, NoSQL injection)
-- **Input Validation:** Validates email format, field lengths, and required fields
-- **HTTPS Ready:** Configured for SSL/TLS in production
-
-### 📚 Complete security documentation
-
-For detailed explanations, examples, and customization guides, see **[SEGURIDAD.md](./SEGURIDAD.md)**
-
-This guide includes:
-- What each security measure does and why it's important
-- Real-world examples and attack scenarios
-- Step-by-step configuration instructions
-- How to customize security settings for your needs
-- Best practices and common pitfalls
-- FAQ section with practical answers
-
-### 🚀 Quick start with the secure server
-
-1. **Install server dependencies:**
 ```bash
-cd server
 npm install
-```
-
-2. **Configure environment variables:**
-```bash
-cp .env.example .env
-# Edit .env with your credentials
-```
-
-3. **Start the server:**
-```bash
-# Development
 npm run dev
-
-# Production
-npm start
 ```
 
-4. **Test the security:**
+Abre tu navegador en `http://localhost:5000` para ver el portafolio.
+
+---
+
+## Paso 3: Personalizar tu portafolio
+
+Solo necesitas editar **2 archivos** para personalizar todo:
+
+| Archivo | Que contiene |
+|---|---|
+| `src/i18n/translations.js` | Nombre, descripción, contacto, redes sociales, textos |
+| `src/data/config.js` | Nombres de archivos de todas las imágenes |
+
+Para agregar proyectos, certificados y experiencias, edita también sus archivos de datos respectivos (ver secciones abajo).
+
+---
+
+### Información personal y textos
+
+**Archivo:** `src/i18n/translations.js`
+
+Aquí cambias todo el texto del portafolio. El archivo tiene dos secciones: `es` (español) y `en` (inglés). Busca y edita los campos con tu información:
+
+```js
+name: "Tu Nombre Completo",
+role: "Tu Título Profesional",
+email: "tu@email.com",
+github: "https://github.com/tu-usuario",
+linkedin: "https://linkedin.com/in/tu-perfil",
+```
+
+---
+
+### Imágenes y fotos
+
+**Archivo:** `src/data/config.js`
+
+Coloca tus imágenes en la carpeta `public/images/` y actualiza los nombres en este archivo.
+
+**Foto de perfil:**
+```js
+export const PROFILE_PHOTO = 'tu-foto.png'; // nombre de tu imagen en public/images/
+```
+
+**Iconos de habilidades:**
+```js
+export const SKILLS_ICONS = {
+  react: 'react.png',       // cambia por el nombre de tu icono
+  nodejs: 'nodeJS.png',
+  // ...
+};
+```
+
+**Descarga iconos gratis en:** [icons8.com](https://icons8.com) o [flaticon.com](https://www.flaticon.com)
+
+---
+
+### Proyectos
+
+**Archivo:** `src/data/projects.js`
+
+Cada proyecto sigue esta estructura. Copia el bloque de ejemplo al final del archivo y edita los valores:
+
+```js
+{
+  id: "nombre-proyecto",          // identificador unico (sin espacios)
+  title: {
+    es: "Nombre del Proyecto",
+    en: "Project Name",
+  },
+  subtitle: {
+    es: "Descripcion breve",
+    en: "Short description",
+  },
+  overview: {
+    es: "Descripcion completa del proyecto...",
+    en: "Full project description...",
+  },
+  technologies: ["React", "Node.js", "PostgreSQL"],
+  links: {
+    github: "https://github.com/tu-usuario/tu-repo",
+  },
+  // Las imagenes se configuran en src/data/config.js -> PROJECT_IMAGES
+}
+```
+
+Agrega las imagenes del proyecto en `src/data/config.js`:
+
+```js
+export const PROJECT_IMAGES = {
+  'mi-proyecto': {
+    hero:    'mi-proyecto-principal.png',
+    gallery: ['mi-proyecto-1.png', 'mi-proyecto-2.png'],
+  },
+};
+```
+
+---
+
+### Habilidades
+
+**Archivo:** `src/data/skillsData.js`
+
+Modifica las listas de tecnologías. Cada item tiene un nombre y un icono:
+
+```js
+{ name: 'React', icon: `/images/${SKILLS_ICONS.react}` },
+```
+
+Para agregar una nueva tecnología:
+1. Agrega el icono en `public/images/`
+2. Registra el nombre del archivo en `src/data/config.js` dentro de `SKILLS_ICONS`
+3. Agrega el item en `src/data/skillsData.js`
+
+---
+
+### Certificados
+
+**Archivo:** `src/data/certificatesData.js`
+
+```js
+{
+  id: 'mi-certificado',
+  title: {
+    es: 'Nombre del Certificado',
+    en: 'Certificate Name',
+  },
+  issuer: {
+    es: 'Institución',
+    en: 'Institution',
+  },
+  date: {
+    es: 'Enero 2025',
+    en: 'January 2025',
+  },
+  // La imagen se configura en src/data/config.js -> CERTIFICATE_IMAGES
+}
+```
+
+Registra la imagen en `src/data/config.js`:
+
+```js
+export const CERTIFICATE_IMAGES = {
+  miCertificado: 'mi-certificado.png',
+};
+```
+
+---
+
+### Experiencias
+
+**Archivo:** `src/data/experiencesData.js`
+
+Agrega eventos, conferencias, hackathones, viajes, etc. Estructura básica:
+
+```js
+{
+  id: 'mi-experiencia-2025',
+  title: { es: 'Nombre del Evento', en: 'Event Name' },
+  date:  { es: 'Enero 2025',       en: 'January 2025' },
+  location: { es: 'Ciudad, País',  en: 'City, Country' },
+  description: {
+    es: 'Descripción breve del evento...',
+    en: 'Brief event description...',
+  },
+  category: 'conference', // travel | hackathon | conference | workshop | award
+  // Las imagenes se configuran en src/data/config.js -> EXPERIENCE_IMAGES
+}
+```
+
+Registra las imágenes en `src/data/config.js`:
+
+```js
+export const EXPERIENCE_IMAGES = {
+  'mi-experiencia-2025': {
+    imageUrl: 'experiences/mi-experiencia/portada.jpeg',
+    hero:     'experiences/mi-experiencia/principal.jpeg',
+    gallery: [
+      'experiences/mi-experiencia/1.jpeg',
+      'experiences/mi-experiencia/2.jpeg',
+    ],
+  },
+};
+```
+
+Coloca las fotos en `public/images/experiences/mi-experiencia/`.
+
+---
+
+### Tema de colores
+
+**Archivo:** `src/styles/themes/index.js`
+
+El portafolio incluye 8 temas de colores prediseñados. Para cambiar el tema:
+
+```js
+// Cambia esta línea por el tema que prefieras:
+export const activeTheme = classicTheme;        // Clasico Profesional (default)
+// export const activeTheme = darkElegantTheme; // Oscuro Elegante
+// export const activeTheme = retroSolarTheme;  // Retro Solar
+// export const activeTheme = techPastelTheme;  // Tech Pastel
+// export const activeTheme = marinaBreezeTheme;// Brisa Marina
+// export const activeTheme = greenForestTheme; // Bosque Verde
+// export const activeTheme = warmSunsetTheme;  // Atardecer Calido
+// export const activeTheme = midnightPurpleTheme; // Medianoche Purpura
+```
+
+---
+
+## Paso 4: Guardar cambios con Git
+
+Cada vez que hagas cambios, guárdalos con:
+
 ```bash
-# Health check
-curl http://localhost:3001/api/health
-
-# Get CSRF token
-curl http://localhost:3001/api/csrf-token
+git add .
+git commit -m "descripcion de lo que cambiaste"
+git push origin main
 ```
 
-### 🛡️ Key security concepts explained simply
+---
 
-**Rate Limiting:**  
-Prevents someone from sending 1000 messages through your contact form in one minute. Example: limit to 5 messages per hour per IP.
+## Paso 5: Publicar en GitHub Pages
 
-**CORS (Cross-Origin Resource Sharing):**  
-Controls which websites can make requests to your API. Only your domain (e.g., `https://your-portfolio.com`) can send requests, blocking malicious sites.
-
-**XSS (Cross-Site Scripting) Protection:**  
-Prevents attackers from injecting malicious JavaScript through your forms. All user input is sanitized automatically.
-
-**CSRF (Cross-Site Request Forgery) Protection:**  
-Prevents malicious sites from making requests on behalf of your users. Uses secure tokens to validate requests.
-
-**Data Sanitization:**  
-Cleans all user input to remove dangerous characters and code before processing.
-
-### 📖 Learn more
-
-If you're new to web security, don't worry! The concepts might seem complex at first, but you'll learn them gradually as you work with the code. The important thing is to have these protections in place from the start.
-
-For in-depth explanations with examples, see **[SEGURIDAD.md](./SEGURIDAD.md)**
+1. En tu repositorio de GitHub, ve a **Settings → Pages**
+2. En **Source**, selecciona **GitHub Actions**
+3. El sitio se publicará automáticamente en cada push a `main`
+4. Tu portafolio estará disponible en: `https://TU-USUARIO.github.io/Personal-Portfolio/`
 
 ---
 
-## Deployment options
+## Estructura del proyecto
 
-This portfolio can be deployed as a static site or via serverless platforms:
-
-- GitHub Pages
-  - For static sites or builds: push static output to `gh-pages` branch or use GitHub Pages from `gh-pages` via a tool like `gh-pages`.
-- Vercel
-  - Automatic deployments for Next.js, Vite, or other Node builds — connect the repo in Vercel and it will detect build settings.
-- Netlify
-  - Connect repo, set build command (e.g., `npm run build`) and publish folder (`dist` or `build`).
-- Static hosting (S3, Firebase Hosting, Surge)
-
-Quick example — GitHub Pages (static):
-1. Build (if you have a build step): npm run build
-2. Copy contents of `build/` or `dist/` to gh-pages branch (or use `gh-pages` package)
-
----
-
-## How the portfolio is made up — content & components
-
-- Header / Navigation
-  - Links to sections (About, Projects, Skills, Contact)
-  - Mobile responsive navigation (hamburger)
-- Hero / Intro
-  - Short intro, name, headline, call-to-action
-- About
-  - Short bio, links to resume
-- Projects / Work
-  - Cards or list with screenshots, description, tech used, live/demo link, repo link
-- Skills / Tech
-  - Icons or chips for languages, frameworks, tools
-- Contact
-  - Email link, optional contact form (may use serverless form provider)
-- Footer
-  - Social links, copyright
-
-Interactivity is handled by JavaScript:
-- Smooth scrolling
-- Lightbox for project images
-- Modal/responsive nav
-- Animated counters or skill bars
-- Dark mode toggle (localStorage)
+```
+Personal-Portfolio/
+├── public/
+│   └── images/              <- Todas tus imágenes van aqui
+│       ├── foto.png         <- Foto de perfil
+│       ├── react.png        <- Iconos de habilidades
+│       ├── experiences/     <- Fotos de experiencias
+│       └── ...
+├── src/
+│   ├── data/
+│   │   ├── config.js        <- Nombres de archivos de imagenes
+│   │   ├── projects.js      <- Datos de proyectos
+│   │   ├── certificatesData.js  <- Datos de certificados
+│   │   ├── skillsData.js    <- Habilidades tecnicas
+│   │   └── experiencesData.js   <- Experiencias
+│   ├── i18n/
+│   │   └── translations.js  <- Textos e informacion personal
+│   └── styles/
+│       └── themes/
+│           └── index.js     <- Tema de colores activo
+└── README.md
+```
 
 ---
 
-## Customizing content
+## Solución de problemas
 
-1. Update text/content
-   - Edit files in `src/` or the HTML files (e.g., `index.html` or `src/pages/index.js`).
-2. Add/replace project entries
-   - Update the projects data JSON, JavaScript array, or CMS connection the site uses.
-3. Replace images
-   - Put image files in `assets/images/` (or `public/`) and update image paths.
-4. Change styles
-   - Edit CSS files in `css/` or `src/styles/`; if a preprocessor is used, update SCSS/LESS source files.
+**El sitio se ve en blanco en GitHub Pages:**
+- Ve a Settings → Pages y asegúrate de que Source sea "GitHub Actions"
+- Espera 2-3 minutos después de hacer push para que se complete el deploy
 
----
+**Las imágenes no se ven:**
+- Verifica que el nombre del archivo en `config.js` coincida exactamente con el archivo en `public/images/` (incluyendo mayúsculas y extensión)
 
-## Performance & accessibility tips
+**Error al correr `npm install`:**
+- Verifica que tienes Node.js 18 o superior: `node --version`
+- Intenta: `npm cache clean --force` y luego `npm install`
 
-- Optimize images (use WebP/AVIF if possible).
-- Use responsive images (`<picture>` or `srcset`) for different screen sizes.
-- Minify CSS/JS in production build.
-- Add ARIA attributes to interactive controls (menus, modals, forms).
-- Ensure keyboard navigation works for the nav and project list.
-- Run Lighthouse in Chrome to check performance, accessibility, and SEO.
+**Los cambios no se ven en el sitio publicado:**
+- Verifica que hiciste `git push origin main`
+- Revisa la pestaña **Actions** en GitHub para ver si el deploy terminó correctamente
 
 ---
 
-## Troubleshooting
+## Contacto del instructor
 
-- “npm install” fails: Ensure Node.js version meets the project requirement. Try clearing cache: `npm cache clean --force`.
-- Dev server not starting: Check for port conflicts; try `PORT=3000 npm start`.
-- Assets not loading in production: Verify correct base path. For single-page apps hosted on a subpath, set `homepage` in package.json or the equivalent base path in the build tool.
-
-If you run into a specific error, paste the error message here and I can help debug.
-
----
-
-## Contributing
-
-If you want to contribute to this portfolio (improvements, accessibility, new features):
-
-1. Fork the repo
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Make changes and commit
-4. Open a pull request describing your change
-
-Guidelines:
-- Keep changes focused (one logical change per PR).
-- Include screenshots or recording for visual changes.
-- Run any available linters/formatters before submitting.
-
----
-
-## Contact
-- GitHub: [ferramdr](https://github.com/ferramdr)
+- GitHub: [dferram](https://github.com/dferram)
 - Email: dferramm@gmail.com
