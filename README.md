@@ -1,6 +1,6 @@
 # Personal Portfolio
 
-> **Proyecto Educativo para Curso de Git & GitHub**  
+> **Proyecto Educativo para Curso de Git & GitHub**
 > Este repositorio está diseñado para enseñar Git, GitHub y desarrollo web mediante la personalización de un portafolio profesional.
 
 A lightweight, JavaScript-first personal portfolio project built with React and Vite. Perfect for learning Git/GitHub workflows while creating your own professional portfolio.
