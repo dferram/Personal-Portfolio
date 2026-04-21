@@ -28,36 +28,32 @@ export const translations = {
     },
     hero: {
       title: 'Fernando Ramírez',
-      subtitle: 'Fullstack Developer | Apasionado por la Analítica de Datos',
-      description: 'Estudiante de 6º semestre de Ingeniería de Software especializado en el desarrollo de experiencias digitales robustas.',
+      subtitle: 'Desarrollador Fullstack · Ing. Software',
+      description: 'Estudiante de 6º semestre con gusto por construir soluciones digitales y resolver problemas',
       cta: 'Ver Proyectos',
     },
     about: {
       title: 'Sobre Mí',
       paragraphs: [
-        'Soy estudiante de sexto semestre de Ingeniería de Software apasionado por construir soluciones digitales end-to-end.',
-        'Me apasiona la intersección entre el desarrollo web y la ciencia de datos.',
+        'Estudiante de Ingeniería de Software con enfoque en desarrollo fullstack y con interes en el analísis de datos, me apasiona resolver problemas usando mis conociemientos en el desarrollo de software y experiencias de usuario, para no solo desarrollar algo que funcione si no que también se vea bien.',
       ],
     },
     skills: {
       tag: 'Skillset',
       title: 'Habilidades Técnicas',
-      description: 'Mi stack tecnológico combina el desarrollo fullstack con herramientas avanzadas de analítica.',
       categories: {
         web: { title: 'Desarrollo Full-Stack', description: 'Construcción de experiencias completas.', items: [] },
-        data: { title: 'Analítica de Datos', description: 'Herramientas para procesar información.', items: [] },
+        data: { title: 'Bases de Datos & Backend', description: 'Persistencia, APIs y servicios del lado del servidor.', items: [] },
       },
     },
     projects: {
       tag: 'Work',
       title: 'Proyectos Destacados',
-      description: 'Una selección de trabajos que demuestran mi capacidad técnica.',
       viewDetail: 'Ver Detalle',
     },
     github: {
       tag: 'Actividad',
       title: 'Ecosistema GitHub',
-      description: 'Métricas en tiempo real, contribuciones al código abierto y actividad reciente.',
       contributions: 'Muro de Contribuciones',
       stats: 'Métricas de Desarrollo',
       topRepos: 'Repositorios Destacados',
@@ -70,8 +66,6 @@ export const translations = {
     },
     contact: {
       tag: 'Contacto',
-      title: 'Construyamos algo increíble',
-      description: '¿Buscas a alguien que domine el desarrollo fullstack? ¡Hablemos!',
       links: { linkedin: 'LinkedIn', github: 'GitHub', cv: 'Mi CV', email: 'Email' },
     },
     viewProject: {
@@ -137,36 +131,32 @@ export const translations = {
     },
     hero: {
       title: 'Fernando Ramírez',
-      subtitle: 'Software Engineer | Aspiring Data Scientist',
-      description: 'Sixth-semester Software Engineering student focused on building robust digital experiences.',
+      subtitle: 'Fullstack Developer · Software Engineering',
+      description: 'Sixth-semester Software Engineering student. I like building things that actually work, from UI to database.',
       cta: 'See Projects',
     },
     about: {
       title: 'About Me',
       paragraphs: [
-        'I am a sixth-semester Software Engineering student passionate about building end-to-end digital solutions.',
-        'I am currently interested in data and analytics.',
+        'Software Engineering student with a focus on fullstack development and an interest in data analysis. I am passionate about solving problems using my knowledge in software development and user experience, to not only build something that works but also looks good.',
       ],
     },
     skills: {
       tag: 'Skillset',
       title: 'Technical Skills',
-      description: 'Technologies I master to deliver end-to-end digital products.',
       categories: {
         web: { title: 'Web Development', description: 'Building complete experiences.', items: [] },
-        data: { title: 'Data Analysis', description: 'Tools for decision-making.', items: [] },
+        data: { title: 'Databases & Backend', description: 'Persistence, APIs, and server-side services.', items: [] },
       },
     },
     projects: {
       tag: 'Work',
       title: 'Featured Projects',
-      description: 'A selection of recent work that blends software engineering with data.',
       viewDetail: 'View Detail',
     },
     github: {
       tag: 'Activity',
       title: 'GitHub Ecosystem',
-      description: 'Real-time metrics, open-source contributions, and recent activity.',
       contributions: 'Contribution Wall',
       stats: 'Development Metrics',
       topRepos: 'Featured Repositories',
@@ -179,8 +169,6 @@ export const translations = {
     },
     contact: {
       tag: 'Contact',
-      title: 'Let’s build something great',
-      description: 'I am open to opportunities and collaborations. Reach out!',
       links: { linkedin: 'LinkedIn', github: 'GitHub', cv: 'My CV', email: 'Email' },
     },
     viewProject: {
