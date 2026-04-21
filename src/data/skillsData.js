@@ -2,6 +2,7 @@
 // ARCHIVO DE DATOS: HABILIDADES TÉCNICAS
 // ============================================================================
 import { processImagePaths } from '@/utils/paths';
+import { SKILLS_ICONS } from '@/data/config';
 // Aquí defines las tecnologías, lenguajes y herramientas que conoces.
 // Se organizan en categorías (por ejemplo: Desarrollo Web, Análisis de Datos, etc.)
 //
@@ -32,26 +33,26 @@ const skillsDataRaw = [
     id: 'web',
     title: 'Desarrollo Web (Full-Stack)',
     items: [
-      { name: 'React', icon: '/images/react.png' },
-      { name: 'Node.js', icon: '/images/nodeJS.png' },
-      { name: 'JavaScript', icon: '/images/JavaScript.png' },
-      { name: 'HTML5', icon: '/images/html.png' },
-      { name: 'CSS3', icon: '/images/css.png' },
-      { name: 'Tailwind CSS', icon: '/images/tailwind.png' },
-      { name: 'PostgreSQL', icon: '/images/pgSQL.png' },
-      { name: 'MongoDB', icon: '/images/icons8-mongodb-48.png' },
+      { name: 'React',        icon: `/images/${SKILLS_ICONS.react}` },
+      { name: 'Node.js',      icon: `/images/${SKILLS_ICONS.nodejs}` },
+      { name: 'JavaScript',   icon: `/images/${SKILLS_ICONS.javascript}` },
+      { name: 'HTML5',        icon: `/images/${SKILLS_ICONS.html}` },
+      { name: 'CSS3',         icon: `/images/${SKILLS_ICONS.css}` },
+      { name: 'Tailwind CSS', icon: `/images/${SKILLS_ICONS.tailwind}` },
+      { name: 'PostgreSQL',   icon: `/images/${SKILLS_ICONS.postgresql}` },
+      { name: 'MongoDB',      icon: `/images/${SKILLS_ICONS.mongodb}` },
     ],
   },
   {
     id: 'data',
     title: 'Analítica de Datos',
     items: [
-      { name: 'Python', icon: '/images/python.png' },
-      { name: 'Pandas', icon: '/images/pandas.png' },
-      { name: 'Apache Spark', icon: '/images/apacheSpark.png' },
-      { name: 'Matplotlib', icon: '/images/Matplotlib.png' },
-      { name: 'Oracle SQL', icon: '/images/oracle.png' },
-      { name: 'SQL', icon: '/images/sql.png' }
+      { name: 'Python',       icon: `/images/${SKILLS_ICONS.python}` },
+      { name: 'Pandas',       icon: `/images/${SKILLS_ICONS.pandas}` },
+      { name: 'Apache Spark', icon: `/images/${SKILLS_ICONS.spark}` },
+      { name: 'Matplotlib',   icon: `/images/${SKILLS_ICONS.matplotlib}` },
+      { name: 'Oracle SQL',   icon: `/images/${SKILLS_ICONS.oracle}` },
+      { name: 'SQL',          icon: `/images/${SKILLS_ICONS.sql}` },
     ],
   },
 ];

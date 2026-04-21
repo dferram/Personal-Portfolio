@@ -2,6 +2,7 @@
 // ARCHIVO DE DATOS: PROYECTOS
 // ============================================================================
 import { processImagePaths } from '@/utils/paths';
+import { PROJECT_IMAGES } from '@/data/config';
 // Aquí defines todos los proyectos que aparecerán en tu portafolio.
 // Cada proyecto es un objeto con información en español (es) e inglés (en).
 //
@@ -87,12 +88,8 @@ const projectsDataRaw = [
       github: "https://github.com/dferram/ANIEI-Data-Analysis-SPARK-SQL-",
     },
     images: {
-      hero: "/images/ANIEI_1.png",
-      gallery: [
-        "/images/ANIEI_2.png",
-        "/images/ANIEI_3.png",
-        "/images/ANIEI_4.png",
-      ],
+      hero:    `/images/${PROJECT_IMAGES.aniei.hero}`,
+      gallery: PROJECT_IMAGES.aniei.gallery.map(img => `/images/${img}`),
     },
   },
   {
@@ -171,14 +168,8 @@ const projectsDataRaw = [
       instagram: "https://www.instagram.com/razoconnect/",
     },
     images: {
-      hero: "/images/RazoConnect.png",
-      gallery: [
-        "/images/RC_admin.png",
-        "/images/RC_Inicio.png",
-        "/images/RC_Productos.png",
-        "/images/RC_Carrito.png",
-        "/images/RC_Pedidos.png",
-      ],
+      hero:    `/images/${PROJECT_IMAGES.razoconnect.hero}`,
+      gallery: PROJECT_IMAGES.razoconnect.gallery.map(img => `/images/${img}`),
     },
   },
   {
@@ -240,20 +231,8 @@ const projectsDataRaw = [
       github: "#",
     },
     images: {
-      hero: "/images/TaskKey.png",
-      gallery: [
-        "/images/TK_AsignarTarea.png",
-        "/images/TK_capibara.png",
-        "/images/TK_Logros.png",
-        "/images/TK_Niño.png",
-        "/images/TK_Notificaciones.png",
-        "/images/TK_PerfilesNiños.png",
-        "/images/TK_PerfilNiño.png",
-        "/images/TK_PerfilPadre.png",
-        "/images/TK_tareaCompletada.png",
-        "/images/TK_tareas.png",
-        "/images/TK_TareasPendientes.png",
-      ],
+      hero:    `/images/${PROJECT_IMAGES.taskkey.hero}`,
+      gallery: PROJECT_IMAGES.taskkey.gallery.map(img => `/images/${img}`),
     },
   },
 ];

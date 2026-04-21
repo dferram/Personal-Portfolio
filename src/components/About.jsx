@@ -1,5 +1,7 @@
 import { useI18n } from '@/i18n/I18nProvider';
 import { SKILLS_DATA } from '@/data/skillsData';
+import { PROFILE_PHOTO } from '@/data/config';
+import { getImagePath } from '@/utils/paths';
 
 export default function About() {
   const { t } = useI18n();
@@ -98,7 +100,7 @@ export default function About() {
               
               <div className="aspect-[3/4] bg-gray-200 rounded flex items-center justify-center">
                 <img
-                  src={`${import.meta.env.BASE_URL}images/foto.png`}
+                  src={getImagePath(`images/${PROFILE_PHOTO}`)}
                   alt="Fernando Ramírez"
                   className="w-full h-full object-cover rounded"
                 />

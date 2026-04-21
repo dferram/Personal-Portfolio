@@ -2,6 +2,7 @@
 // ARCHIVO DE DATOS: CERTIFICADOS Y DIPLOMAS
 // ============================================================================
 import { processImagePaths } from '@/utils/paths';
+import { CERTIFICATE_IMAGES } from '@/data/config';
 // Aquí agregas todos los certificados, diplomas y reconocimientos que has obtenido.
 // Pueden ser de cursos online, talleres, conferencias, competencias, etc.
 //
@@ -45,7 +46,7 @@ const certificatesDataRaw = [
       es: 'Octubre 2025',
       en: 'October 2025',
     },
-    imageUrl: '/images/Ctf_SAO_DS.png',
+    imageUrl: `/images/${CERTIFICATE_IMAGES.santanderDataScience}`,
   },
  
 ];
