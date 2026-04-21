@@ -22,7 +22,6 @@ export const PROFILE_PHOTO = 'foto.png';
 // ----------------------------------------------------------------------------
 // Coloca los íconos en public/images/ y cambia los nombres aquí
 export const SKILLS_ICONS = {
-  // Desarrollo Web
   react:      'react.png',
   nodejs:     'nodeJS.png',
   javascript: 'JavaScript.png',
@@ -31,14 +30,9 @@ export const SKILLS_ICONS = {
   tailwind:   'tailwind.png',
   postgresql: 'pgSQL.png',
   mongodb:    'icons8-mongodb-48.png',
-
-  // Analítica de Datos
-  python:      'python.png',
-  pandas:      'pandas.png',
-  spark:       'apacheSpark.png',
-  matplotlib:  'Matplotlib.png',
-  oracle:      'oracle.png',
-  sql:         'sql.png',
+  python:     'python.png',
+  sql:        'sql.png',
+  colab:      'colab.png',
 };
 
 // ----------------------------------------------------------------------------
@@ -46,19 +40,19 @@ export const SKILLS_ICONS = {
 // ----------------------------------------------------------------------------
 // Coloca las imágenes en public/images/ y cambia los nombres aquí
 export const PROJECT_IMAGES = {
-  // Proyecto 1: Análisis Spark SQL
+  // Proyecto 1
   aniei: {
     hero:    'ANIEI_1.png',
     gallery: ['ANIEI_2.png', 'ANIEI_3.png', 'ANIEI_4.png'],
   },
 
-  // Proyecto 2: RazoConnect
+  // Proyecto 2 
   razoconnect: {
     hero:    'RazoConnect.png',
     gallery: ['RC_admin.png', 'RC_Inicio.png', 'RC_Productos.png', 'RC_Carrito.png', 'RC_Pedidos.png'],
   },
 
-  // Proyecto 3: TaskKey
+  // Proyecto 3
   taskkey: {
     hero:    'TaskKey.png',
     gallery: [

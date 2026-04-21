@@ -39,20 +39,25 @@ const skillsDataRaw = [
       { name: 'HTML5',        icon: `/images/${SKILLS_ICONS.html}` },
       { name: 'CSS3',         icon: `/images/${SKILLS_ICONS.css}` },
       { name: 'Tailwind CSS', icon: `/images/${SKILLS_ICONS.tailwind}` },
-      { name: 'PostgreSQL',   icon: `/images/${SKILLS_ICONS.postgresql}` },
-      { name: 'MongoDB',      icon: `/images/${SKILLS_ICONS.mongodb}` },
     ],
   },
   {
     id: 'data',
-    title: 'Analítica de Datos',
+    title: 'Bases de Datos & Backend',
     items: [
-      { name: 'Python',       icon: `/images/${SKILLS_ICONS.python}` },
-      { name: 'Pandas',       icon: `/images/${SKILLS_ICONS.pandas}` },
-      { name: 'Apache Spark', icon: `/images/${SKILLS_ICONS.spark}` },
-      { name: 'Matplotlib',   icon: `/images/${SKILLS_ICONS.matplotlib}` },
-      { name: 'Oracle SQL',   icon: `/images/${SKILLS_ICONS.oracle}` },
+      { name: 'PostgreSQL',   icon: `/images/${SKILLS_ICONS.postgresql}` },
+      { name: 'MongoDB',      icon: `/images/${SKILLS_ICONS.mongodb}` },
+      { name: 'Node.js',      icon: `/images/${SKILLS_ICONS.nodejs}` },
       { name: 'SQL',          icon: `/images/${SKILLS_ICONS.sql}` },
+    ],
+  },
+  {
+    id: 'tools',
+    title: 'Herramientas & Scripts',
+    items: [
+      { name: 'Python',        icon: `/images/${SKILLS_ICONS.python}` },
+      { name: 'Google Colab',  icon: `/images/${SKILLS_ICONS.colab}` },
+      { name: 'SQL',           icon: `/images/${SKILLS_ICONS.sql}` },
     ],
   },
 ];
