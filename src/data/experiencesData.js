@@ -2,6 +2,7 @@
 // ARCHIVO DE DATOS: EXPERIENCIAS
 // ============================================================================
 import { processImagePaths } from '@/utils/paths';
+import { EXPERIENCE_IMAGES } from '@/data/config';
 // Este archivo contiene todas las experiencias (viajes, hackathones, conferencias, 
 // voluntariados, etc.) que se mostrarán en la sección "Experiencias" del portafolio.
 //
@@ -128,7 +129,7 @@ const experiencesDataRaw = [
       en: 'A full week of technological immersion in the capital. Attended conferences on AI, data analysis, and app development, connecting with professionals from across Latin America.',
     },
     
-    imageUrl: '/images/experiences/cdmx-tech-week/20.jpeg',
+    imageUrl: `/images/${EXPERIENCE_IMAGES['cdmx-tech-week'].imageUrl}`,
     
     category: 'conference',
     
@@ -161,57 +162,8 @@ const experiencesDataRaw = [
     instagramUrl: 'https://www.instagram.com/p/DQPVWIeDm1NK5g4zzYzmWZFc0NORYpCv5VEaNU0/',
     
     images: {
-      hero: '/images/experiences/cdmx-tech-week/5.jpeg',
-      gallery: [
-        '/images/experiences/cdmx-tech-week/1.jpeg',
-        '/images/experiences/cdmx-tech-week/10.jpeg',
-        '/images/experiences/cdmx-tech-week/15.jpeg',
-        '/images/experiences/cdmx-tech-week/2.jpeg',
-        '/images/experiences/cdmx-tech-week/3.jpeg',
-        '/images/experiences/cdmx-tech-week/4.jpeg',
-        '/images/experiences/cdmx-tech-week/6.jpeg',
-        '/images/experiences/cdmx-tech-week/7.jpeg',
-        '/images/experiences/cdmx-tech-week/8.jpeg',
-        '/images/experiences/cdmx-tech-week/9.jpeg',
-        '/images/experiences/cdmx-tech-week/11.jpeg',
-        '/images/experiences/cdmx-tech-week/12.jpeg',
-        '/images/experiences/cdmx-tech-week/13.jpeg',
-        '/images/experiences/cdmx-tech-week/14.jpeg',
-        '/images/experiences/cdmx-tech-week/16.jpeg',
-        '/images/experiences/cdmx-tech-week/17.jpeg',
-        '/images/experiences/cdmx-tech-week/18.jpeg',
-        '/images/experiences/cdmx-tech-week/19.jpeg',
-        '/images/experiences/cdmx-tech-week/21.jpeg',
-        '/images/experiences/cdmx-tech-week/22.jpeg',
-        '/images/experiences/cdmx-tech-week/23.jpeg',
-        '/images/experiences/cdmx-tech-week/24.jpeg',
-        '/images/experiences/cdmx-tech-week/25.jpeg',
-        '/images/experiences/cdmx-tech-week/26.jpeg',
-        '/images/experiences/cdmx-tech-week/27.jpeg',
-        '/images/experiences/cdmx-tech-week/28.jpeg',
-        '/images/experiences/cdmx-tech-week/29.jpeg',
-        '/images/experiences/cdmx-tech-week/30.jpeg',
-        '/images/experiences/cdmx-tech-week/31.jpeg',
-        '/images/experiences/cdmx-tech-week/32.jpeg',
-        '/images/experiences/cdmx-tech-week/33.jpeg',
-        '/images/experiences/cdmx-tech-week/34.jpeg',
-        '/images/experiences/cdmx-tech-week/35.jpeg',
-        '/images/experiences/cdmx-tech-week/36.jpeg',
-        '/images/experiences/cdmx-tech-week/37.jpeg',
-        '/images/experiences/cdmx-tech-week/38.jpeg',
-        '/images/experiences/cdmx-tech-week/39.jpeg',
-        '/images/experiences/cdmx-tech-week/40.jpeg',
-        '/images/experiences/cdmx-tech-week/41.jpeg',
-        '/images/experiences/cdmx-tech-week/42.jpeg',
-        '/images/experiences/cdmx-tech-week/43.jpeg',
-        '/images/experiences/cdmx-tech-week/44.jpeg',
-        '/images/experiences/cdmx-tech-week/45.jpeg',
-        '/images/experiences/cdmx-tech-week/46.jpeg',
-        '/images/experiences/cdmx-tech-week/47.jpeg',
-        '/images/experiences/cdmx-tech-week/48.jpeg',
-        '/images/experiences/cdmx-tech-week/49.jpeg',
-        '/images/experiences/cdmx-tech-week/50.jpeg',
-      ],
+      hero:    `/images/${EXPERIENCE_IMAGES['cdmx-tech-week'].hero}`,
+      gallery: EXPERIENCE_IMAGES['cdmx-tech-week'].gallery.map(img => `/images/${img}`),
     },
   },
   
@@ -238,7 +190,7 @@ const experiencesDataRaw = [
       en: 'Christmas meetup of the local Google Developer Group. Talks about the Google Cloud ecosystem, mobile development with Flutter, and the latest in web technologies.',
     },
     
-    imageUrl: '/images/experiences/gdg-queretaro/1.jpeg',
+    imageUrl: `/images/${EXPERIENCE_IMAGES['gdg-queretaro'].imageUrl}`,
     
     category: 'conference',
     
@@ -269,19 +221,8 @@ const experiencesDataRaw = [
     },
     
     images: {
-      hero: '/images/experiences/gdg-queretaro/1.jpeg',
-      gallery: [
-        '/images/experiences/gdg-queretaro/10.jpeg',
-        '/images/experiences/gdg-queretaro/5.jpeg',
-        '/images/experiences/gdg-queretaro/2.jpeg',
-        '/images/experiences/gdg-queretaro/3.jpeg',
-        '/images/experiences/gdg-queretaro/4.jpeg',
-        '/images/experiences/gdg-queretaro/6.jpeg',
-        '/images/experiences/gdg-queretaro/7.jpeg',
-        '/images/experiences/gdg-queretaro/8.jpeg',
-        '/images/experiences/gdg-queretaro/9.jpeg',
-        '/images/experiences/gdg-queretaro/11.jpeg',
-      ],
+      hero:    `/images/${EXPERIENCE_IMAGES['gdg-queretaro'].hero}`,
+      gallery: EXPERIENCE_IMAGES['gdg-queretaro'].gallery.map(img => `/images/${img}`),
     },
   },  
 ];
