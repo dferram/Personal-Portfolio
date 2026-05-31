@@ -36,7 +36,6 @@ export const SKILLS_ICONS = {
   gcp: 'GCP.png',
   azure: 'azure.png',
   docker: 'docker.png',
-  oracle: 'oracle.png',
   apacheSpark: 'apacheSpark.png',
 };
 
@@ -203,7 +202,7 @@ export const EXPERIENCE_IMAGES = {
 
   'github-course': {
     imageUrl: 'experiences/github-course/DSC02322.JPG',
-    hero:     'experiences/github-course/DSC_0326.jpg.jpeg',
+    hero: 'experiences/github-course/DSC_0326.jpg.jpeg',
     gallery: [
       'experiences/github-course/680636682_1428662599278490_7941633465729974484_n.jpg',
       'experiences/github-course/683850540_1428661305945286_3411795602126256729_n.jpg',

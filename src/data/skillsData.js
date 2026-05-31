@@ -33,11 +33,11 @@ const skillsDataRaw = [
     id: 'web',
     title: 'Desarrollo Web (Full-Stack)',
     items: [
-      { name: 'React',        icon: `/images/${SKILLS_ICONS.react}` },
-      { name: 'Node.js',      icon: `/images/${SKILLS_ICONS.nodejs}` },
-      { name: 'JavaScript',   icon: `/images/${SKILLS_ICONS.javascript}` },
-      { name: 'HTML5',        icon: `/images/${SKILLS_ICONS.html}` },
-      { name: 'CSS3',         icon: `/images/${SKILLS_ICONS.css}` },
+      { name: 'React', icon: `/images/${SKILLS_ICONS.react}` },
+      { name: 'Node.js', icon: `/images/${SKILLS_ICONS.nodejs}` },
+      { name: 'JavaScript', icon: `/images/${SKILLS_ICONS.javascript}` },
+      { name: 'HTML5', icon: `/images/${SKILLS_ICONS.html}` },
+      { name: 'CSS3', icon: `/images/${SKILLS_ICONS.css}` },
       { name: 'Tailwind CSS', icon: `/images/${SKILLS_ICONS.tailwind}` },
     ],
   },
@@ -45,30 +45,27 @@ const skillsDataRaw = [
     id: 'data',
     title: 'Bases de Datos & Backend',
     items: [
-      { name: 'PostgreSQL',   icon: `/images/${SKILLS_ICONS.postgresql}` },
-      { name: 'MongoDB',      icon: `/images/${SKILLS_ICONS.mongodb}` },
-      { name: 'Node.js',      icon: `/images/${SKILLS_ICONS.nodejs}` },
-      { name: 'SQL',          icon: `/images/${SKILLS_ICONS.sql}` },
+      { name: 'PostgreSQL', icon: `/images/${SKILLS_ICONS.postgresql}` },
+      { name: 'MongoDB', icon: `/images/${SKILLS_ICONS.mongodb}` },
+      { name: 'Node.js', icon: `/images/${SKILLS_ICONS.nodejs}` },
     ],
   },
   {
     id: 'cloud',
     title: 'Cloud & DevOps',
     items: [
-      { name: 'Google Cloud',   icon: `/images/${SKILLS_ICONS.gcp}` },
-      { name: 'Azure',          icon: `/images/${SKILLS_ICONS.azure}` },
-      { name: 'Docker',         icon: `/images/${SKILLS_ICONS.docker}` },
-      { name: 'Oracle',         icon: `/images/${SKILLS_ICONS.oracle}` },
-      { name: 'Apache Spark',   icon: `/images/${SKILLS_ICONS.apacheSpark}` },
+      { name: 'Google Cloud', icon: `/images/${SKILLS_ICONS.gcp}` },
+      { name: 'Azure', icon: `/images/${SKILLS_ICONS.azure}` },
+      { name: 'Docker', icon: `/images/${SKILLS_ICONS.docker}` },
     ],
   },
   {
     id: 'analysis',
     title: 'Análisis de datos',
     items: [
-      { name: 'Python',        icon: `/images/${SKILLS_ICONS.python}` },
-      { name: 'Google Colab',  icon: `/images/${SKILLS_ICONS.colab}` },
-      { name: 'SQL',           icon: `/images/${SKILLS_ICONS.sql}` },
+      { name: 'Python', icon: `/images/${SKILLS_ICONS.python}` },
+      { name: 'Google Colab', icon: `/images/${SKILLS_ICONS.colab}` },
+      { name: 'Apache Spark', icon: `/images/${SKILLS_ICONS.apacheSpark}` },
     ],
   },
 ];
@@ -85,19 +82,19 @@ export const SKILLS_DATA = processImagePaths(skillsDataRaw);
 {
   // Identificador único para esta categoría
   id: 'nombre-categoria',  // Ejemplo: 'mobile', 'design', 'devops'
-  
+
   // Título de la categoría (aparece como encabezado)
   title: 'Nombre de la Categoría',  // Ejemplo: 'Desarrollo Móvil', 'Diseño UX/UI'
-  
+
   // Lista de tecnologías en esta categoría
   items: [
-    { 
+    {
       name: 'Nombre de la Tecnología',  // Ejemplo: 'Flutter', 'Figma', 'Docker'
       icon: '/images/nombre-icono.png'   // Ruta al ícono en public/images/
     },
-    { 
-      name: 'Otra Tecnología', 
-      icon: '/images/otro-icono.png' 
+    {
+      name: 'Otra Tecnología',
+      icon: '/images/otro-icono.png'
     },
     // Agrega todas las que quieras...
   ],
