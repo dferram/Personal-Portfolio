@@ -126,6 +126,7 @@ export default function ViewExperience() {
       gallery,
       category: experience.category,
       instagramUrl: experience.instagramUrl,
+      projectUrl: experience.projectUrl,
     };
   }, [language, experience]);
 
@@ -139,6 +140,7 @@ export default function ViewExperience() {
     gallery,
     category,
     instagramUrl,
+    projectUrl,
   } = localized;
 
   const hasGallery = gallery.length > 0;
@@ -318,6 +320,19 @@ export default function ViewExperience() {
                     >
                       <FaInstagram size={20} />
                       {t('experiences.instagram.viewButton') ?? 'Ver en Instagram'}
+                    </a>
+                  </div>
+                )}
+                {projectUrl && (
+                  <div className="flex items-end">
+                    <a
+                      href={projectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-green-500 px-6 py-3 text-base font-bold uppercase tracking-[0.15em] text-white transition duration-300 hover:shadow-lg hover:scale-105"
+                    >
+                      🚀
+                      {t('viewExperience.viewProject') ?? 'Ver Proyecto'}
                     </a>
                   </div>
                 )}
