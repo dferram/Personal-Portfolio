@@ -23,10 +23,10 @@ import { getLocalizedList, getLocalizedValue } from '@/i18n/utils';
 // Función para procesar texto con negritas usando markdown (**texto**)
 function parseTextWithBold(text) {
   if (!text) return null;
-  
+
   // Dividir el texto por el patrón **texto**
   const parts = text.split(/(\*\*.*?\*\*)/g);
-  
+
   return parts.map((part, index) => {
     // Si la parte está entre **, renderizar en negrita
     if (part.startsWith('**') && part.endsWith('**')) {
@@ -88,7 +88,7 @@ export default function ViewExperience() {
             {t('viewExperience.notFoundTitle') ?? 'Experiencia no encontrada'}
           </h1>
           <p className="text-muted">
-            {t('viewExperience.notFoundDescription') ?? 
+            {t('viewExperience.notFoundDescription') ??
               'No pudimos encontrar una experiencia con el identificador proporcionado.'}
           </p>
         </div>
@@ -109,9 +109,9 @@ export default function ViewExperience() {
     // IMPORTANTE: Separar imagen Hero de la galería para evitar duplicación
     const heroImage = experience.images?.hero ?? null;
     const galleryImages = Array.isArray(experience.images?.gallery) ? experience.images.gallery : [];
-    
+
     // Filtrar la imagen hero de la galería para que no se repita
-    const gallery = heroImage 
+    const gallery = heroImage
       ? galleryImages.filter(img => img !== heroImage)
       : galleryImages;
 
@@ -126,6 +126,7 @@ export default function ViewExperience() {
       gallery,
       category: experience.category,
       instagramUrl: experience.instagramUrl,
+      projectUrl: experience.projectUrl,
     };
   }, [language, experience]);
 
@@ -139,10 +140,11 @@ export default function ViewExperience() {
     gallery,
     category,
     instagramUrl,
+    projectUrl,
   } = localized;
 
   const hasGallery = gallery.length > 0;
-  
+
   // ============================================================================
   // SISTEMA DE ROTACIÓN AUTOMÁTICA DE IMÁGENES
   // ============================================================================
@@ -152,10 +154,10 @@ export default function ViewExperience() {
   // - 5000 = 5 segundos (más rápido)
   // - 15000 = 15 segundos (más lento)
   const ROTATION_INTERVAL = 10000;
-  
+
   // Estado para controlar el índice de rotación actual
   const [rotationIndex, setRotationIndex] = useState(0);
-  
+
   // Mezclar imágenes usando algoritmo Fisher-Yates (shuffle perfecto)
   // Esto asegura que todas las imágenes se muestren antes de repetir
   const shuffleArray = (array) => {
@@ -166,10 +168,10 @@ export default function ViewExperience() {
     }
     return shuffled;
   };
-  
+
   // Estado para las imágenes mezcladas (se inicializa una sola vez)
   const [shuffledImages, setShuffledImages] = useState([]);
-  
+
   // Inicializar imágenes mezcladas cuando cambia la galería
   useEffect(() => {
     if (gallery.length > 0) {
@@ -178,11 +180,11 @@ export default function ViewExperience() {
       setRotationIndex(0);
     }
   }, [gallery]);
-  
+
   // Efecto para rotación automática de imágenes
   useEffect(() => {
     if (shuffledImages.length === 0) return;
-    
+
     const interval = setInterval(() => {
       setRotationIndex((prevIndex) => {
         // Cuando llegamos al final, volver a mezclar y empezar de nuevo
@@ -193,25 +195,25 @@ export default function ViewExperience() {
         return prevIndex + 1;
       });
     }, ROTATION_INTERVAL);
-    
+
     return () => clearInterval(interval);
   }, [shuffledImages, gallery]);
-  
+
   // Calcular cuántas imágenes necesitamos para las cartas del scrapbook
   // Dividir la historia en párrafos para saber cuántas cartas habrá
   const storyParagraphs = story ? story.split('\n\n').filter(p => p.trim()) : [];
   const numCards = storyParagraphs.length;
-  
+
   // Obtener las imágenes actuales para las cartas (sin repeticiones)
   // Usamos rotationIndex para rotar el conjunto de imágenes
   const getStoryImages = () => {
     if (shuffledImages.length === 0) return [];
-    
+
     // Si no hay suficientes imágenes para todas las cartas, mostrar advertencia
     if (shuffledImages.length < numCards) {
       console.warn(`⚠️ Advertencia: Solo hay ${shuffledImages.length} imágenes pero se necesitan ${numCards} para las cartas. Algunas cartas no tendrán imagen.`);
     }
-    
+
     // Crear un array circular para evitar errores si hay menos imágenes que cartas
     const images = [];
     for (let i = 0; i < numCards; i++) {
@@ -220,9 +222,9 @@ export default function ViewExperience() {
     }
     return images;
   };
-  
+
   const storyImages = getStoryImages();
-  
+
   // Imágenes restantes para el carrusel (las que no se usan en las cartas)
   const carouselImages = shuffledImages.filter((img, idx) => {
     const usedIndices = [];
@@ -231,15 +233,15 @@ export default function ViewExperience() {
     }
     return !usedIndices.includes(idx);
   });
-  
+
   const hasCarousel = carouselImages.length > 0;
-  
-  
+
+
   const openLightbox = (image) => {
     setLightboxImage(image);
     setIsLightboxOpen(true);
   };
-  
+
   const scrollCarousel = (direction) => {
     if (!carouselRef.current) return;
     const scrollAmount = 300;
@@ -321,6 +323,18 @@ export default function ViewExperience() {
                     </a>
                   </div>
                 )}
+                {projectUrl && (
+                  <div className="flex items-end">
+                    <a
+                      href={projectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-green-500 px-6 py-3 text-base font-bold uppercase tracking-[0.15em] text-white transition duration-300 hover:shadow-lg hover:scale-105"
+                    >
+                      {t('viewExperience.viewProject') ?? 'Ver Proyecto'}
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Historia con imágenes integradas estilo scrapbook */}
@@ -329,14 +343,14 @@ export default function ViewExperience() {
                   <h2 className="text-lg md:text-2xl font-bold uppercase tracking-[0.2em] text-accent mb-10">
                     {t('viewExperience.story') ?? 'Historia'}
                   </h2>
-                  
+
                   {/* Contenedor tipo álbum de recuerdos con rotación automática */}
                   <div className="space-y-12">
                     {storyParagraphs.map((paragraph, pIndex) => {
                       // Asignar imagen según el índice del párrafo
                       const hasImage = storyImages[pIndex];
                       const imagePosition = pIndex % 2 === 0 ? 'right' : 'left';
-                      
+
                       return (
                         <div key={pIndex} className="relative">
                           {hasImage && imagePosition === 'right' ? (
@@ -346,7 +360,7 @@ export default function ViewExperience() {
                               <div>
                                 <p className="text-lg md:text-xl leading-relaxed text-muted">{parseTextWithBold(paragraph)}</p>
                               </div>
-                              <div 
+                              <div
                                 key={`img-right-${pIndex}-${rotationIndex}`}
                                 className="mt-6 md:mt-0 flex justify-center md:justify-start"
                               >
@@ -363,22 +377,22 @@ export default function ViewExperience() {
                                     {/* para que rote y escale junto con él. Usa porcentajes para adaptarse al tamaño. */}
                                     {/* PERSONALIZACIÓN: Ajusta left-[10%] right-[10%] para posición horizontal relativa */}
                                     {/* Ajusta -top-4 -bottom-4 para separación vertical del borde del marco */}
-                                    <div 
+                                    <div
                                       className="absolute -top-4 left-[10%] w-20 h-8 bg-yellow-100/60 rotate-[-8deg] z-10 shadow-sm"
-                                      style={{ 
+                                      style={{
                                         backdropFilter: 'blur(0.5px)',
                                         boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
                                       }}
                                     />
-                                    <div 
+                                    <div
                                       className="absolute -bottom-4 right-[10%] w-20 h-8 bg-yellow-100/60 rotate-[12deg] z-10 shadow-sm"
-                                      style={{ 
+                                      style={{
                                         backdropFilter: 'blur(0.5px)',
                                         boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
                                       }}
                                     />
-                                    <img 
-                                      src={storyImages[pIndex]} 
+                                    <img
+                                      src={storyImages[pIndex]}
                                       alt={`${title} - Momento ${pIndex + 1}`}
                                       className="max-w-full max-h-80 md:max-h-96 w-auto h-auto object-contain rounded"
                                     />
@@ -391,7 +405,7 @@ export default function ViewExperience() {
                             // Imagen a la izquierda con animación de entrada y efecto tape
                             // PERSONALIZACIÓN: Cambia colores de tape en 'bg-blue-200/40' o rotación en 'rotate-[]'
                             <div className="md:grid md:grid-cols-[1fr_1.5fr] gap-10 items-center">
-                              <div 
+                              <div
                                 key={`img-left-${pIndex}-${rotationIndex}`}
                                 className="mb-6 md:mb-0 flex justify-center md:justify-end"
                               >
@@ -408,22 +422,22 @@ export default function ViewExperience() {
                                     {/* para que rote y escale junto con él. Usa porcentajes para adaptarse al tamaño. */}
                                     {/* PERSONALIZACIÓN: Ajusta left-[10%] right-[10%] para posición horizontal relativa */}
                                     {/* Ajusta -top-4 -bottom-4 para separación vertical del borde del marco */}
-                                    <div 
+                                    <div
                                       className="absolute -top-4 right-[10%] w-20 h-8 bg-yellow-100/60 rotate-[8deg] z-10 shadow-sm"
-                                      style={{ 
+                                      style={{
                                         backdropFilter: 'blur(0.5px)',
                                         boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
                                       }}
                                     />
-                                    <div 
+                                    <div
                                       className="absolute -bottom-4 left-[10%] w-20 h-8 bg-yellow-100/60 rotate-[-12deg] z-10 shadow-sm"
-                                      style={{ 
+                                      style={{
                                         backdropFilter: 'blur(0.5px)',
                                         boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
                                       }}
                                     />
-                                    <img 
-                                      src={storyImages[pIndex]} 
+                                    <img
+                                      src={storyImages[pIndex]}
                                       alt={`${title} - Momento ${pIndex + 1}`}
                                       className="max-w-full max-h-80 md:max-h-96 w-auto h-auto object-contain rounded"
                                     />
@@ -449,18 +463,18 @@ export default function ViewExperience() {
               )}
 
               {/* Aprendizajes */}
-              <ListSection 
-                title={t('viewExperience.learnings') ?? 'Aprendizajes'} 
-                items={learnings} 
+              <ListSection
+                title={t('viewExperience.learnings') ?? 'Aprendizajes'}
+                items={learnings}
               />
-              
+
               {/* Carrusel de imágenes restantes */}
               {hasCarousel && (
                 <div className="mt-16">
                   <h2 className="text-lg md:text-2xl font-bold uppercase tracking-[0.2em] text-accent mb-10">
                     Más Recuerdos
                   </h2>
-                  
+
                   <div className="relative group px-12">
                     {/* Botón anterior */}
                     <button
@@ -470,11 +484,11 @@ export default function ViewExperience() {
                     >
                       <FaChevronLeft size={24} />
                     </button>
-                    
+
                     {/* Carrusel con imágenes responsive (sin espacios blancos excesivos) */}
                     {/* PERSONALIZACIÓN DE BORDE: Cambia 'border-2' a border-3 para grosor */}
                     {/* Cambia 'border-gray-300' por otro color (ej: border-white, border-gray-400) */}
-                    <div 
+                    <div
                       ref={carouselRef}
                       className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-6"
                       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -503,7 +517,7 @@ export default function ViewExperience() {
                         </div>
                       ))}
                     </div>
-                    
+
                     {/* Botón siguiente */}
                     <button
                       onClick={() => scrollCarousel('next')}
@@ -513,7 +527,7 @@ export default function ViewExperience() {
                       <FaChevronRight size={24} />
                     </button>
                   </div>
-                  
+
                   {/* Indicador de scroll */}
                   <div className="mt-6 flex justify-center gap-2">
                     {carouselImages.map((_, index) => (
@@ -549,10 +563,10 @@ export default function ViewExperience() {
           </button>
           <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
             <div className="bg-white p-4 rounded-lg shadow-2xl">
-              <img 
-                src={lightboxImage} 
-                alt={`${title} imagen ampliada`} 
-                className="w-full max-h-[80vh] object-contain rounded" 
+              <img
+                src={lightboxImage}
+                alt={`${title} imagen ampliada`}
+                className="w-full max-h-[80vh] object-contain rounded"
               />
             </div>
           </div>

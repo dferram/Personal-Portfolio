@@ -22,17 +22,17 @@ export const PROFILE_PHOTO = 'foto.png';
 // ----------------------------------------------------------------------------
 // Coloca los íconos en public/images/ y cambia los nombres aquí
 export const SKILLS_ICONS = {
-  react:      'react.png',
-  nodejs:     'nodeJS.png',
+  react: 'react.png',
+  nodejs: 'nodeJS.png',
   javascript: 'JavaScript.png',
-  html:       'html.png',
-  css:        'css.png',
-  tailwind:   'tailwind.png',
+  html: 'html.png',
+  css: 'css.png',
+  tailwind: 'tailwind.png',
   postgresql: 'pgSQL.png',
-  mongodb:    'icons8-mongodb-48.png',
-  python:     'python.png',
-  sql:        'sql.png',
-  colab:      'colab.png',
+  mongodb: 'icons8-mongodb-48.png',
+  python: 'python.png',
+  sql: 'sql.png',
+  colab: 'colab.png',
 };
 
 // ----------------------------------------------------------------------------
@@ -42,19 +42,19 @@ export const SKILLS_ICONS = {
 export const PROJECT_IMAGES = {
   // Proyecto 1
   aniei: {
-    hero:    'ANIEI_1.png',
+    hero: 'ANIEI_1.png',
     gallery: ['ANIEI_2.png', 'ANIEI_3.png', 'ANIEI_4.png'],
   },
 
   // Proyecto 2 
   razoconnect: {
-    hero:    'RazoConnect.png',
+    hero: 'RazoConnect.png',
     gallery: ['RC_admin.png', 'RC_Inicio.png', 'RC_Productos.png', 'RC_Carrito.png', 'RC_Pedidos.png'],
   },
 
   // Proyecto 3
   taskkey: {
-    hero:    'TaskKey.png',
+    hero: 'TaskKey.png',
     gallery: [
       'TK_AsignarTarea.png', 'TK_capibara.png', 'TK_Logros.png',
       'TK_Niño.png', 'TK_Notificaciones.png', 'TK_PerfilesNiños.png',
@@ -71,6 +71,7 @@ export const PROJECT_IMAGES = {
 export const CERTIFICATE_IMAGES = {
   santanderDataScience: 'Ctf_SAO_DS.png',
   awsCloudFoundations: 'aws-academy-graduate-cloud-foundations-training-bad.png',
+  googleBuildWithAI: 'buildwithAI-APRIL.png',
 };
 
 // ----------------------------------------------------------------------------
@@ -86,8 +87,8 @@ export const CERTIFICATE_IMAGES = {
 // gallery     → lista de fotos para la galería (agrega/quita las que quieras)
 export const EXPERIENCE_IMAGES = {
   'cdmx-tech-week': {
-    imageUrl: 'experiences/cdmx-tech-week/20.jpeg',
-    hero:     'experiences/cdmx-tech-week/5.jpeg',
+    imageUrl: 'experiences/cdmx-tech-week/3.jpeg',
+    hero: 'experiences/cdmx-tech-week/5.jpeg',
     gallery: [
       'experiences/cdmx-tech-week/1.jpeg',
       'experiences/cdmx-tech-week/2.jpeg',
@@ -124,7 +125,7 @@ export const EXPERIENCE_IMAGES = {
 
   'gdg-queretaro': {
     imageUrl: 'experiences/gdg-queretaro/1.jpeg',
-    hero:     'experiences/gdg-queretaro/1.jpeg',
+    hero: 'experiences/gdg-queretaro/1.jpeg',
     gallery: [
       'experiences/gdg-queretaro/2.jpeg',
       'experiences/gdg-queretaro/3.jpeg',
@@ -136,6 +137,62 @@ export const EXPERIENCE_IMAGES = {
       'experiences/gdg-queretaro/9.jpeg',
       'experiences/gdg-queretaro/10.jpeg',
       'experiences/gdg-queretaro/11.jpeg',
+    ],
+  },
+
+  'google-build-with-ai': {
+    imageUrl: 'experiences/google-build-with-ai/DSC02550.JPG',
+    hero: 'experiences/google-build-with-ai/DSC02540.JPG',
+    gallery: [
+      'experiences/google-build-with-ai/DSC02536.JPG',
+      'experiences/google-build-with-ai/DSC02538.JPG',
+      'experiences/google-build-with-ai/DSC02539.JPG',
+      'experiences/google-build-with-ai/DSC02544.JPG',
+      'experiences/google-build-with-ai/DSC02545.JPG',
+      'experiences/google-build-with-ai/DSC02546.JPG',
+      'experiences/google-build-with-ai/DSC02547.JPG',
+      'experiences/google-build-with-ai/DSC02548.JPG',
+      'experiences/google-build-with-ai/DSC02550.JPG',
+      'experiences/google-build-with-ai/DSC02551.JPG',
+      'experiences/google-build-with-ai/DSC02552.JPG',
+      'experiences/google-build-with-ai/DSC02553.JPG',
+      'experiences/google-build-with-ai/DSC02554.JPG',
+      'experiences/google-build-with-ai/DSC02556.JPG',
+      'experiences/google-build-with-ai/DSC02557.JPG',
+      'experiences/google-build-with-ai/DSC02558.JPG',
+      'experiences/google-build-with-ai/DSC02559.JPG',
+      'experiences/google-build-with-ai/DSC02560.JPG',
+      'experiences/google-build-with-ai/DSC02566.JPG',
+      'experiences/google-build-with-ai/DSC02567.JPG',
+      'experiences/google-build-with-ai/DSC02568.JPG',
+      'experiences/google-build-with-ai/DSC02569.JPG',
+      'experiences/google-build-with-ai/DSC02570.JPG',
+      'experiences/google-build-with-ai/DSC02572.JPG',
+      'experiences/google-build-with-ai/DSC02573.JPG',
+      'experiences/google-build-with-ai/DSC02574.JPG',
+      'experiences/google-build-with-ai/DSC02575.JPG',
+      'experiences/google-build-with-ai/DSC02576.JPG',
+      'experiences/google-build-with-ai/DSC02577.JPG',
+      'experiences/google-build-with-ai/DSC02578.JPG',
+      'experiences/google-build-with-ai/DSC02579.JPG',
+      'experiences/google-build-with-ai/DSC02580.JPG',
+      'experiences/google-build-with-ai/DSC02581.JPG',
+      'experiences/google-build-with-ai/DSC02583.JPG',
+      'experiences/google-build-with-ai/DSC02584.JPG',
+      'experiences/google-build-with-ai/DSC02585.JPG',
+      'experiences/google-build-with-ai/DSC02586.JPG',
+      'experiences/google-build-with-ai/DSC02587.JPG',
+      'experiences/google-build-with-ai/DSC02588.JPG',
+      'experiences/google-build-with-ai/DSC02589.JPG',
+      'experiences/google-build-with-ai/DSC02590.JPG',
+      'experiences/google-build-with-ai/DSC02591.JPG',
+      'experiences/google-build-with-ai/DSC02593.JPG',
+      'experiences/google-build-with-ai/DSC02595.JPG',
+      'experiences/google-build-with-ai/DSC02596.JPG',
+      'experiences/google-build-with-ai/DSC02598.JPG',
+      'experiences/google-build-with-ai/DSC02599.JPG',
+      'experiences/google-build-with-ai/DSC02601.JPG',
+      'experiences/google-build-with-ai/buildwitai-work.png',
     ],
   },
 };

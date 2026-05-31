@@ -225,6 +225,71 @@ const experiencesDataRaw = [
       gallery: EXPERIENCE_IMAGES['gdg-queretaro'].gallery.map(img => `/images/${img}`),
     },
   },  
+
+  {
+    id: 'google-build-with-ai-2026',
+    
+    title: {
+      es: 'Google Build with AI',
+      en: 'Google Build with AI',
+    },
+    
+    date: {
+      es: 'Mayo 2026',
+      en: 'May 2026',
+    },
+    
+    location: {
+      es: 'Oficinas de Google, Ciudad de México, México',
+      en: 'Google Offices, Mexico City, Mexico',
+    },
+    
+    description: {
+      es: 'Evento presencial en las oficinas de Google México donde aprendimos a construir un sistema multi-agente de IA utilizando el protocolo Agent2Agent (A2A), patrones de orquestación y seguridad con Model Armor.',
+      en: 'In-person event at Google Mexico offices where we learned to build a multi-agent AI system using the Agent2Agent (A2A) protocol, orchestration patterns, and security with Model Armor.',
+    },
+    
+    imageUrl: `/images/${EXPERIENCE_IMAGES['google-build-with-ai'].imageUrl}`,
+    
+    category: 'workshop',
+    
+    story: {
+      es: 'Entrar a las oficinas de **Google México** fue una de las mejores experiencias que la ingeniería de software me ha permitido vivir. Desde el momento en que cruzas la puerta, te das cuenta de que estás en un lugar especial: el ambiente, la energía de las personas, el diseño de los espacios... todo te inspira a soñar en grande y a creer que con esfuerzo y dedicación puedes llegar a trabajar en un lugar así.\n\nEl evento **Build with AI** fue un taller práctico donde construimos un proyecto real utilizando **3 agentes de inteligencia artificial** que colaboran entre sí. La idea central era clara: un solo agente puede abrumarse si le pides investigar, evaluar y crear contenido al mismo tiempo. La solución es crear **agentes especializados**, cada uno con un rol definido, que trabajen como un equipo coordinado.\n\nAprendimos que el verdadero obstáculo no es el modelo de IA en sí, sino los problemas de integración, la calidad de los datos y la gobernanza. Nos enseñaron los diferentes patrones de arquitectura multi-agente: **Router/Dispatcher**, **Parallel**, **Sequential**, **Loop** y **Swarm**, y cómo elegir el patrón correcto según el problema que estés resolviendo.\n\nEl corazón del proyecto fue el protocolo **Agent2Agent (A2A)**, que permite a los agentes comunicarse entre sí de forma segura, sin importar en qué framework estén escritos. Cada agente tiene una **AgentCard** que define su nombre, habilidades y autenticación, como una credencial digital que le permite interactuar con otros agentes del sistema.\n\nConstruimos tres agentes especializados: un **Researcher Agent** con acceso a herramientas de búsqueda web para encontrar información relevante, un **Judge Agent** que evalúa y critica los resultados del investigador, y un **Content Builder Agent** que formatea y prepara el contenido final. Todo orquestado por un **LoopAgent** que crea un ciclo de "investigar → juzgar → iterar" hasta que la calidad sea suficiente, y un **SequentialAgent** que encadena el proceso completo.\n\nUna de las partes más valiosas fue aprender sobre seguridad con **Google Cloud Model Armor**, que agrega diferentes capas de protección contra inyecciones de prompts, tanto directas como indirectas. Nos enseñaron sobre la "trampa del vibe check": evaluar agentes de IA por intuición en lugar de usar métricas objetivas es un error que lleva a no-determinismo, sesgo humano y regresiones invisibles.\n\nDesplegamos nuestro proyecto en **Cloud Run**, convirtiendo los agentes en microservicios independientes para evitar el "burnout" de un solo agente y asignar tareas específicas a cada uno. El resultado fue una aplicación funcional que toma cualquier tema y genera un curso completo, pasando por fases de investigación, verificación de hechos y escritura.\n\nEsta experiencia me motivó profundamente. Tener la oportunidad de estar en las oficinas de Google, aprender directamente de ingenieros que trabajan con estas tecnologías todos los días, y ver de primera mano cómo se construyen sistemas de IA a escala empresarial fue transformador. Me inspiró a empezar a prepararme para obtener certificaciones de **Google Cloud** como **Cloud Developer**, **Cloud Architect**, **Cloud Data Analyst**, **Cloud DevOps** y **Cloud Database Manager**. Ya estoy estudiando para la primera, y esta experiencia fue el empujón que necesitaba para trazar ese camino profesional.',
+      en: 'Walking into the **Google Mexico** offices was one of the best experiences that software engineering has allowed me to live. From the moment you walk through the door, you realize you are in a special place: the atmosphere, the energy of the people, the design of the spaces... everything inspires you to dream big and believe that with effort and dedication you can work at a place like this.\n\nThe **Build with AI** event was a hands-on workshop where we built a real project using **3 artificial intelligence agents** that collaborate with each other. The core idea was clear: a single agent can become overwhelmed if you ask it to research, evaluate, and create content at the same time. The solution is to create **specialized agents**, each with a defined role, working as a coordinated team.\n\nWe learned that the real obstacle is not the AI model itself, but integration problems, data quality, and governance. They taught us the different multi-agent architecture patterns: **Router/Dispatcher**, **Parallel**, **Sequential**, **Loop**, and **Swarm**, and how to choose the right pattern based on the problem you are solving.\n\nThe heart of the project was the **Agent2Agent (A2A)** protocol, which allows agents to communicate with each other securely, regardless of which framework they are written in. Each agent has an **AgentCard** that defines its name, skills, and authentication, like a digital credential that allows it to interact with other agents in the system.\n\nWe built three specialized agents: a **Researcher Agent** with access to web search tools to find relevant information, a **Judge Agent** that evaluates and critiques the researcher\'s results, and a **Content Builder Agent** that formats and prepares the final content. All orchestrated by a **LoopAgent** that creates a cycle of "research → judge → iterate" until the quality is sufficient, and a **SequentialAgent** that chains the complete process.\n\nOne of the most valuable parts was learning about security with **Google Cloud Model Armor**, which adds different layers of protection against prompt injections, both direct and indirect. They taught us about the "vibe check trap": evaluating AI agents by intuition instead of using objective metrics is a mistake that leads to non-determinism, human bias, and invisible regressions.\n\nWe deployed our project on **Cloud Run**, turning the agents into independent microservices to avoid the "burnout" of a single agent and assign specific tasks to each one. The result was a functional application that takes any topic and generates a complete course, going through research, fact-checking, and writing phases.\n\nThis experience deeply motivated me. Having the opportunity to be at the Google offices, learning directly from engineers who work with these technologies every day, and seeing firsthand how AI systems are built at enterprise scale was transformative. It inspired me to start preparing for **Google Cloud** certifications such as **Cloud Developer**, **Cloud Architect**, **Cloud Data Analyst**, **Cloud DevOps**, and **Cloud Database Manager**. I am already studying for the first one, and this experience was the push I needed to chart that professional path.',
+    },
+    
+    learnings: {
+      es: [
+        'El verdadero obstáculo en IA no es el modelo, sino la integración, la calidad de los datos y la gobernanza.',
+        'Patrones de arquitectura multi-agente: **Router/Dispatcher**, **Parallel**, **Sequential**, **Loop** y **Swarm** para diferentes escenarios.',
+        'El protocolo **Agent2Agent (A2A)** permite la comunicación segura entre agentes independientemente del framework utilizado.',
+        'La importancia de crear agentes especializados en lugar de sobrecargar un solo agente con múltiples responsabilidades.',
+        'Uso de **LoopAgent** para ciclos de retroalimentación (investigar → juzgar → iterar) y **SequentialAgent** para pipelines ordenados.',
+        'Seguridad en IA con **Google Cloud Model Armor**: protección contra inyecciones de prompts directas e indirectas.',
+        'La "trampa del vibe check": evaluar agentes por intuición genera no-determinismo, sesgo humano y regresiones invisibles.',
+        'Convertir agentes de IA en microservicios con **Cloud Run** para escalabilidad y resiliencia.',
+        'Evaluación rigurosa de agentes: dataset creation, tool unit tests, tool selection, final response y métricas operacionales.',
+      ],
+      en: [
+        'The real obstacle in AI is not the model, but integration, data quality, and governance.',
+        'Multi-agent architecture patterns: **Router/Dispatcher**, **Parallel**, **Sequential**, **Loop**, and **Swarm** for different scenarios.',
+        'The **Agent2Agent (A2A)** protocol enables secure communication between agents regardless of the framework used.',
+        'The importance of creating specialized agents instead of overloading a single agent with multiple responsibilities.',
+        'Using **LoopAgent** for feedback loops (research → judge → iterate) and **SequentialAgent** for ordered pipelines.',
+        'AI security with **Google Cloud Model Armor**: protection against direct and indirect prompt injections.',
+        'The "vibe check trap": evaluating agents by intuition leads to non-determinism, human bias, and invisible regressions.',
+        'Turning AI agents into microservices with **Cloud Run** for scalability and resilience.',
+        'Rigorous agent evaluation: dataset creation, tool unit tests, tool selection, final response, and operational metrics.',
+      ],
+    },
+    
+    projectUrl: 'https://course-creator-prod-ready-3-88610970946.us-central1.run.app/',
+    
+    images: {
+      hero:    `/images/${EXPERIENCE_IMAGES['google-build-with-ai'].hero}`,
+      gallery: EXPERIENCE_IMAGES['google-build-with-ai'].gallery.map(img => `/images/${img}`),
+    },
+  },
 ];
 
 export const EXPERIENCES_DATA = processImagePaths(experiencesDataRaw);

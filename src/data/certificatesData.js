@@ -64,6 +64,22 @@ const certificatesDataRaw = [
     },
     imageUrl: `/images/${CERTIFICATE_IMAGES.awsCloudFoundations}`,
   },
+  {
+    id: 'Google-Build-With-AI',
+    title: {
+      es: 'Google Build with AI',
+      en: 'Google Build with AI',
+    },
+    issuer: {
+      es: 'Google',
+      en: 'Google',
+    },
+    date: {
+      es: 'Abril 2026',
+      en: 'April 2026',
+    },
+    imageUrl: `/images/${CERTIFICATE_IMAGES.googleBuildWithAI}`,
+  },
 ];
 
 export const CERTIFICATES_DATA = processImagePaths(certificatesDataRaw);
