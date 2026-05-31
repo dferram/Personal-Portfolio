@@ -89,7 +89,7 @@ export const translations = {
     experiences: {
       title: 'Mis Experiencias',
       subtitle: 'Viajes, hackathones y conferencias.',
-      categories: { travel: 'Viaje', hackathon: 'Hackathon', conference: 'Conferencia', other: 'Otro' },
+      categories: { travel: 'Viaje', hackathon: 'Hackathon', conference: 'Conferencia', workshop: 'Taller', other: 'Otro' },
       instagram: { viewButton: 'Ver en Instagram', relatedPost: 'Publicación relacionada' },
     },
     viewExperience: {
@@ -104,6 +104,7 @@ export const translations = {
       category: 'Categoría',
       date: 'Fecha',
       location: 'Ubicación',
+      viewProject: 'Ver Proyecto',
     },
   },
   en: {
@@ -193,7 +194,7 @@ export const translations = {
     experiences: {
       title: 'My Experiences',
       subtitle: 'Trips, hackathons, and conferences.',
-      categories: { travel: 'Travel', hackathon: 'Hackathon', conference: 'Conference', other: 'Other' },
+      categories: { travel: 'Travel', hackathon: 'Hackathon', conference: 'Conference', workshop: 'Workshop', other: 'Other' },
       instagram: { viewButton: 'View on Instagram', relatedPost: 'Related post' },
     },
     viewExperience: {
@@ -208,6 +209,7 @@ export const translations = {
       category: 'Category',
       date: 'Date',
       location: 'Location',
+      viewProject: 'View Project',
     },
   },
 };
