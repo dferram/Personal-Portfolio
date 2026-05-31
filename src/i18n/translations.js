@@ -24,6 +24,7 @@ export const translations = {
         { label: 'Contacto', href: '#contacto' },
         { label: 'Certificados', href: '/certificados' },
         { label: 'Experiencias', href: '/experiencias' },
+        { label: 'Recorrido', href: '/recorrido' },
       ],
     },
     hero: {
@@ -106,6 +107,11 @@ export const translations = {
       location: 'Ubicación',
       viewProject: 'Ver Proyecto',
     },
+    journey: {
+      title: 'Recorrido Profesional',
+      subtitle: 'Mi línea del tiempo y experiencia laboral',
+      present: 'Presente',
+    },
   },
   en: {
     common: {
@@ -128,6 +134,7 @@ export const translations = {
         { label: 'Contact', href: '#contacto' },
         { label: 'Certificates', href: '/certificados' },
         { label: 'Experiences', href: '/experiencias' },
+        { label: 'Journey', href: '/recorrido' },
       ],
     },
     hero: {
@@ -210,6 +217,11 @@ export const translations = {
       date: 'Date',
       location: 'Location',
       viewProject: 'View Project',
+    },
+    journey: {
+      title: 'Professional Journey',
+      subtitle: 'My timeline and work experience',
+      present: 'Present',
     },
   },
 };
