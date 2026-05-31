@@ -30,7 +30,7 @@ export const translations = {
     hero: {
       title: 'Fernando Ramírez',
       subtitle: 'Desarrollador Fullstack · Ing. Software',
-      description: 'Estudiante de 6º semestre con gusto por construir soluciones digitales y resolver problemas',
+      description: 'Estudiante de 7º semestre con gusto por construir soluciones digitales y resolver problemas',
       cta: 'Ver Proyectos',
     },
     about: {
@@ -140,7 +140,7 @@ export const translations = {
     hero: {
       title: 'Fernando Ramírez',
       subtitle: 'Fullstack Developer · Software Engineering',
-      description: 'Sixth-semester Software Engineering student. I like building things that actually work, from UI to database.',
+      description: 'Seventh-semester Software Engineering student. I like building things that actually work, from UI to database.',
       cta: 'See Projects',
     },
     about: {

@@ -1,12 +1,25 @@
+import { useRef } from 'react';
 import { useI18n } from '@/i18n/I18nProvider';
 import { JOURNEY_DATA } from '@/data/journeyData';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 
 export default function JourneyPage() {
   const { t, language } = useI18n();
+  const ref = useRef(null);
 
   const title = t('journey.title') ?? 'Recorrido Profesional';
   const subtitle = t('journey.subtitle') ?? 'Mi línea del tiempo y experiencia laboral';
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "end center"]
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   // Animation variants
   const containerVariants = {
@@ -50,14 +63,21 @@ export default function JourneyPage() {
 
         {/* Timeline */}
         <motion.div
+          ref={ref}
           className="relative"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
-          {/* Main vertical line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-accent/30 transform md:-translate-x-1/2"></div>
+          {/* Main vertical line - background */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-accent/20 transform md:-translate-x-1/2 rounded-full"></div>
+          
+          {/* Main vertical line - animated progress */}
+          <motion.div 
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-accent transform md:-translate-x-1/2 origin-top rounded-full z-0"
+            style={{ scaleY }}
+          ></motion.div>
 
           <div className="space-y-16">
             {JOURNEY_DATA.map((item, index) => {
@@ -78,15 +98,36 @@ export default function JourneyPage() {
                   }`}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-8 md:left-1/2 w-6 h-6 rounded-full bg-accent border-4 border-primary-dark z-10 transform -translate-x-1/2 mt-6 md:mt-0 shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.5)]"></div>
+                  <div className="absolute left-8 md:left-1/2 top-10 md:top-1/2 w-6 h-6 rounded-full bg-accent border-4 border-primary-dark z-20 transform -translate-x-1/2 md:-translate-y-1/2 shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.8)]"></div>
 
-                  {/* Content card */}
-                  <div className={`w-full pl-20 md:pl-0 md:w-5/12 ${isEven ? 'md:pl-10' : 'md:pr-10'}`}>
+                  {/* Horizontal Connector Line (Desktop) */}
+                  <motion.div 
+                    className={`hidden md:block absolute top-1/2 h-1 bg-accent z-10 w-12
+                      ${isEven ? 'left-1/2 origin-left' : 'right-1/2 origin-right'}
+                    `}
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    viewport={{ once: true, margin: '-100px' }}
+                  />
+
+                  {/* Horizontal Connector Line (Mobile) */}
+                  <motion.div 
+                    className="md:hidden absolute top-[2.85rem] left-8 h-1 bg-accent z-10 origin-left"
+                    style={{ width: '3rem' }}
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    viewport={{ once: true, margin: '-100px' }}
+                  />
+
+                  {/* Content card container */}
+                  <div className={`w-full pl-20 md:pl-0 md:w-1/2 ${isEven ? 'md:pl-12' : 'md:pr-12'}`}>
                     <div 
-                      className="group flex flex-col overflow-hidden rounded-xl shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg bg-primary border border-muted"
+                      className="group flex flex-col overflow-hidden rounded-xl shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg bg-primary border border-muted relative z-30"
                     >
                       {/* Card Header w/ Image */}
-                      <div className="relative h-40 w-full overflow-hidden bg-white flex items-center justify-center p-6">
+                      <div className="relative h-40 w-full overflow-hidden bg-white flex items-center justify-center p-6 border-b border-muted">
                         <img
                           src={item.imageUrl}
                           alt={itemTitle}
@@ -114,7 +155,7 @@ export default function JourneyPage() {
                   </div>
                   
                   {/* Empty spacer for the other side on desktop */}
-                  <div className="hidden md:block md:w-5/12"></div>
+                  <div className="hidden md:block md:w-1/2"></div>
                 </motion.div>
               );
             })}
