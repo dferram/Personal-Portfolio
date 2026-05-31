@@ -70,6 +70,7 @@ export const PROJECT_IMAGES = {
 // Coloca las imágenes en public/images/ y cambia los nombres aquí
 export const CERTIFICATE_IMAGES = {
   santanderDataScience: 'Ctf_SAO_DS.png',
+  awsCloudFoundations: 'aws-academy-graduate-cloud-foundations-training-bad.png',
 };
 
 // ----------------------------------------------------------------------------

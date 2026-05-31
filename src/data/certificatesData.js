@@ -48,7 +48,22 @@ const certificatesDataRaw = [
     },
     imageUrl: `/images/${CERTIFICATE_IMAGES.santanderDataScience}`,
   },
- 
+  {
+    id: 'AWS-Cloud-Foundations',
+    title: {
+      es: 'AWS Academy Cloud Foundations',
+      en: 'AWS Academy Cloud Foundations',
+    },
+    issuer: {
+      es: 'Amazon Web Services (AWS)',
+      en: 'Amazon Web Services (AWS)',
+    },
+    date: {
+      es: 'Mayo 2026',
+      en: 'May 2026',
+    },
+    imageUrl: `/images/${CERTIFICATE_IMAGES.awsCloudFoundations}`,
+  },
 ];
 
 export const CERTIFICATES_DATA = processImagePaths(certificatesDataRaw);
