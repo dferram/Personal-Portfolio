@@ -290,6 +290,67 @@ const experiencesDataRaw = [
       gallery: EXPERIENCE_IMAGES['google-build-with-ai'].gallery.map(img => `/images/${img}`),
     },
   },
+
+  {
+    id: 'sac-git-github-course-2026',
+    
+    title: {
+      es: 'Curso de Git y GitHub - SAC Facultad de Informatica',
+      en: 'Git and GitHub Course - SAC Faculty of Computer Science',
+    },
+    
+    date: {
+      es: 'Mayo 2026',
+      en: 'May 2026',
+    },
+    
+    location: {
+      es: 'Facultad de Informatica, Queretaro, Mexico',
+      en: 'Faculty of Computer Science, Queretaro, Mexico',
+    },
+    
+    description: {
+      es: 'Taller impartido durante la Semana Academica y Cultural de la Facultad de Informatica, donde ense\u00f1e Git y GitHub a estudiantes de todos los semestres, desde primer semestre hasta septimo.',
+      en: 'Workshop given during the Academic and Cultural Week of the Faculty of Computer Science, where I taught Git and GitHub to students from all semesters, from first to seventh.',
+    },
+    
+    imageUrl: `/images/${EXPERIENCE_IMAGES['github-course'].imageUrl}`,
+    
+    category: 'workshop',
+    
+    story: {
+      es: 'La Semana Academica y Cultural de la Facultad de Informatica es uno de esos eventos que le dan vida a la facultad. Cuando me invitaron a dar un taller, no lo dude ni un segundo. Sabia exactamente de que queria hablar: **Git y GitHub**, herramientas que considero fundamentales para cualquier desarrollador y que muchos estudiantes no conocen hasta que ya estan avanzados en la carrera.\n\nLo que mas me gusto fue la diversidad del grupo. Habia estudiantes de primer semestre que apenas estaban empezando su camino en la programacion, y tambien companeros de sexto y septimo semestre que ya tenian experiencia pero querian reforzar sus conocimientos en control de versiones y trabajo colaborativo. Esa mezcla hizo que el taller fuera muy enriquecedor, porque las preguntas venian desde perspectivas completamente diferentes.\n\nPreparar el material fue un ejercicio de humildad. Me di cuenta de que ensenar no se trata de demostrar cuanto sabes, sino de encontrar la forma mas clara de explicar algo para que la otra persona lo entienda. No soy un experto, y nunca pretendi serlo frente al grupo. Lo que si tenia era la conviccion de que lo poco que se podia ayudarle a alguien, y eso fue suficiente para pararme frente a todos con seguridad.\n\nEmpezamos desde lo basico: que es un repositorio, como funciona el staging area, la diferencia entre commit y push. Luego fuimos subiendo la complejidad: ramas, merges, pull requests, y como resolver conflictos. Todo con ejercicios practicos donde los estudiantes trabajaban en equipos, simulando un flujo de trabajo real como el que encontrarian en cualquier empresa o proyecto colaborativo.\n\nEl momento mas gratificante fue cuando vi a estudiantes de primer semestre haciendo su primer pull request exitoso. Sus caras de satisfaccion al ver su codigo integrado en un repositorio compartido me recordaron por que me gusta tanto esta area. No es solo codigo, es la sensacion de construir algo con otros, de contribuir a algo mas grande que tu.\n\nTambien construimos un proyecto colaborativo en vivo que quedo desplegado como evidencia del trabajo en equipo. Cada participante aporto su parte, y el resultado final fue una pagina donde se puede ver la contribucion de cada persona. Ese proyecto sigue en linea como testimonio de lo que logramos juntos en unas horas.\n\nEsta experiencia me enseno que compartir conocimiento es una de las formas mas valiosas de crecer. No necesitas ser el mejor para ensenar, necesitas tener la disposicion de ayudar y la honestidad de decir "esto no lo se, pero vamos a aprenderlo juntos". La humildad de reconocer tus limites y la seguridad de compartir lo que si sabes es una combinacion que genera confianza, tanto en ti como en quienes te escuchan.',
+      en: 'The Academic and Cultural Week of the Faculty of Computer Science is one of those events that brings life to the faculty. When I was invited to give a workshop, I did not hesitate for a second. I knew exactly what I wanted to talk about: **Git and GitHub**, tools that I consider fundamental for any developer and that many students do not learn until they are already well into their degree.\n\nWhat I liked most was the diversity of the group. There were first-semester students who were just starting their path in programming, and also classmates from sixth and seventh semester who already had experience but wanted to strengthen their knowledge in version control and collaborative work. That mix made the workshop very enriching, because the questions came from completely different perspectives.\n\nPreparing the material was an exercise in humility. I realized that teaching is not about demonstrating how much you know, but about finding the clearest way to explain something so that the other person understands it. I am not an expert, and I never pretended to be one in front of the group. What I did have was the conviction that the little I know could help someone, and that was enough to stand in front of everyone with confidence.\n\nWe started from the basics: what a repository is, how the staging area works, the difference between commit and push. Then we increased the complexity: branches, merges, pull requests, and how to resolve conflicts. Everything with practical exercises where students worked in teams, simulating a real workflow like the one they would find in any company or collaborative project.\n\nThe most gratifying moment was when I saw first-semester students making their first successful pull request. Their faces of satisfaction when they saw their code integrated into a shared repository reminded me why I love this field so much. It is not just code, it is the feeling of building something with others, of contributing to something bigger than yourself.\n\nWe also built a live collaborative project that was deployed as evidence of teamwork. Each participant contributed their part, and the final result was a page where you can see each person\'s contribution. That project is still online as a testament to what we achieved together in just a few hours.\n\nThis experience taught me that sharing knowledge is one of the most valuable ways to grow. You do not need to be the best to teach, you need the willingness to help and the honesty to say "I do not know this, but let us learn it together." The humility of recognizing your limits and the confidence of sharing what you do know is a combination that generates trust, both in yourself and in those who listen to you.',
+    },
+    
+    learnings: {
+      es: [
+        'Ensenar no se trata de demostrar cuanto sabes, sino de encontrar la forma mas clara de comunicar una idea.',
+        'La humildad de reconocer lo que no sabes y la seguridad de compartir lo que si sabes generan confianza genuina.',
+        'Fundamentos de **Git**: repositorios, staging area, commits, branches, merges y resolucion de conflictos.',
+        'Flujos de trabajo colaborativo con **GitHub**: pull requests, code reviews y trabajo en equipo.',
+        'La diversidad de niveles en un grupo enriquece el aprendizaje: las preguntas desde diferentes perspectivas benefician a todos.',
+        'Compartir conocimiento es una de las formas mas valiosas de crecer profesional y personalmente.',
+        'Preparar material didactico requiere empatia: ponerse en el lugar de quien esta aprendiendo por primera vez.',
+      ],
+      en: [
+        'Teaching is not about demonstrating how much you know, but about finding the clearest way to communicate an idea.',
+        'The humility of recognizing what you do not know and the confidence of sharing what you do know generate genuine trust.',
+        '**Git** fundamentals: repositories, staging area, commits, branches, merges, and conflict resolution.',
+        'Collaborative workflows with **GitHub**: pull requests, code reviews, and teamwork.',
+        'Diversity of levels in a group enriches learning: questions from different perspectives benefit everyone.',
+        'Sharing knowledge is one of the most valuable ways to grow professionally and personally.',
+        'Preparing educational material requires empathy: putting yourself in the shoes of someone learning for the first time.',
+      ],
+    },
+    
+    projectUrl: 'https://dferram.github.io/github-course-teamwork/',
+    
+    images: {
+      hero:    `/images/${EXPERIENCE_IMAGES['github-course'].hero}`,
+      gallery: EXPERIENCE_IMAGES['github-course'].gallery.map(img => `/images/${img}`),
+    },
+  },
 ];
 
 export const EXPERIENCES_DATA = processImagePaths(experiencesDataRaw);
