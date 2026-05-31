@@ -52,6 +52,17 @@ const skillsDataRaw = [
     ],
   },
   {
+    id: 'cloud',
+    title: 'Cloud & DevOps',
+    items: [
+      { name: 'Google Cloud',   icon: `/images/${SKILLS_ICONS.gcp}` },
+      { name: 'Azure',          icon: `/images/${SKILLS_ICONS.azure}` },
+      { name: 'Docker',         icon: `/images/${SKILLS_ICONS.docker}` },
+      { name: 'Oracle',         icon: `/images/${SKILLS_ICONS.oracle}` },
+      { name: 'Apache Spark',   icon: `/images/${SKILLS_ICONS.apacheSpark}` },
+    ],
+  },
+  {
     id: 'analysis',
     title: 'Análisis de datos',
     items: [

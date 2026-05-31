@@ -33,6 +33,11 @@ export const SKILLS_ICONS = {
   python: 'python.png',
   sql: 'sql.png',
   colab: 'colab.png',
+  gcp: 'GCP.png',
+  azure: 'azure.png',
+  docker: 'docker.png',
+  oracle: 'oracle.png',
+  apacheSpark: 'apacheSpark.png',
 };
 
 // ----------------------------------------------------------------------------
