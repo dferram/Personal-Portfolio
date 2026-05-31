@@ -31,13 +31,13 @@ export default function CertificatesPage() {
                 className="group flex h-full flex-col overflow-hidden rounded-lg shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg"
                 style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-muted)', borderWidth: '1px' }}
               >
-                <div className="relative h-48 w-full overflow-hidden">
+                <div className="relative h-56 w-full overflow-hidden bg-white/50">
                   <img
                     src={certificate.imageUrl}
                     alt={`${localizedTitle} - ${localizedIssuer}`}
-                    className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                    className="h-full w-full object-contain p-3 transition duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                 </div>
 
                 <div className="flex flex-1 flex-col p-6">

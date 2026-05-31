@@ -22,17 +22,17 @@ export const PROFILE_PHOTO = 'foto.png';
 // ----------------------------------------------------------------------------
 // Coloca los íconos en public/images/ y cambia los nombres aquí
 export const SKILLS_ICONS = {
-  react:      'react.png',
-  nodejs:     'nodeJS.png',
+  react: 'react.png',
+  nodejs: 'nodeJS.png',
   javascript: 'JavaScript.png',
-  html:       'html.png',
-  css:        'css.png',
-  tailwind:   'tailwind.png',
+  html: 'html.png',
+  css: 'css.png',
+  tailwind: 'tailwind.png',
   postgresql: 'pgSQL.png',
-  mongodb:    'icons8-mongodb-48.png',
-  python:     'python.png',
-  sql:        'sql.png',
-  colab:      'colab.png',
+  mongodb: 'icons8-mongodb-48.png',
+  python: 'python.png',
+  sql: 'sql.png',
+  colab: 'colab.png',
 };
 
 // ----------------------------------------------------------------------------
@@ -42,19 +42,19 @@ export const SKILLS_ICONS = {
 export const PROJECT_IMAGES = {
   // Proyecto 1
   aniei: {
-    hero:    'ANIEI_1.png',
+    hero: 'ANIEI_1.png',
     gallery: ['ANIEI_2.png', 'ANIEI_3.png', 'ANIEI_4.png'],
   },
 
   // Proyecto 2 
   razoconnect: {
-    hero:    'RazoConnect.png',
+    hero: 'RazoConnect.png',
     gallery: ['RC_admin.png', 'RC_Inicio.png', 'RC_Productos.png', 'RC_Carrito.png', 'RC_Pedidos.png'],
   },
 
   // Proyecto 3
   taskkey: {
-    hero:    'TaskKey.png',
+    hero: 'TaskKey.png',
     gallery: [
       'TK_AsignarTarea.png', 'TK_capibara.png', 'TK_Logros.png',
       'TK_Niño.png', 'TK_Notificaciones.png', 'TK_PerfilesNiños.png',
@@ -71,6 +71,7 @@ export const PROJECT_IMAGES = {
 export const CERTIFICATE_IMAGES = {
   santanderDataScience: 'Ctf_SAO_DS.png',
   awsCloudFoundations: 'aws-academy-graduate-cloud-foundations-training-bad.png',
+  googleBuildWithAI: 'buildwithAI-APRIL.png',
 };
 
 // ----------------------------------------------------------------------------
@@ -86,8 +87,8 @@ export const CERTIFICATE_IMAGES = {
 // gallery     → lista de fotos para la galería (agrega/quita las que quieras)
 export const EXPERIENCE_IMAGES = {
   'cdmx-tech-week': {
-    imageUrl: 'experiences/cdmx-tech-week/20.jpeg',
-    hero:     'experiences/cdmx-tech-week/5.jpeg',
+    imageUrl: 'experiences/cdmx-tech-week/3.jpeg',
+    hero: 'experiences/cdmx-tech-week/5.jpeg',
     gallery: [
       'experiences/cdmx-tech-week/1.jpeg',
       'experiences/cdmx-tech-week/2.jpeg',
@@ -124,7 +125,7 @@ export const EXPERIENCE_IMAGES = {
 
   'gdg-queretaro': {
     imageUrl: 'experiences/gdg-queretaro/1.jpeg',
-    hero:     'experiences/gdg-queretaro/1.jpeg',
+    hero: 'experiences/gdg-queretaro/1.jpeg',
     gallery: [
       'experiences/gdg-queretaro/2.jpeg',
       'experiences/gdg-queretaro/3.jpeg',
@@ -140,8 +141,8 @@ export const EXPERIENCE_IMAGES = {
   },
 
   'google-build-with-ai': {
-    imageUrl: 'experiences/google-build-with-ai/DSC02536.JPG',
-    hero:     'experiences/google-build-with-ai/DSC02540.JPG',
+    imageUrl: 'experiences/google-build-with-ai/DSC02550.JPG',
+    hero: 'experiences/google-build-with-ai/DSC02540.JPG',
     gallery: [
       'experiences/google-build-with-ai/DSC02536.JPG',
       'experiences/google-build-with-ai/DSC02538.JPG',
