@@ -33,13 +33,16 @@ export default function JourneyPage() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 80, scale: 0.85 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.6,
-        ease: 'easeOut',
+        type: "spring",
+        stiffness: 80,
+        damping: 14,
+        mass: 1.2,
       },
     },
   };

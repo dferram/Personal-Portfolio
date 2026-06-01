@@ -148,19 +148,13 @@ export default function Hero() {
         </div>
         
         {/* Creative Current Job Badge */}
-        <motion.a
-          href="#recorrido"
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.hash = '';
-            window.location.pathname = '/recorrido';
-          }}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="group relative inline-flex items-center gap-2 rounded-full border border-accent/30 bg-primary-dark/80 px-4 py-1.5 text-sm md:text-base font-semibold text-foreground backdrop-blur-md transition-colors hover:border-accent shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.15)] overflow-hidden cursor-pointer -mt-4 mb-2 z-30"
+          className="group relative inline-flex items-center gap-2 rounded-full border border-accent/30 bg-primary-dark/80 px-4 py-1.5 text-sm md:text-base font-semibold text-foreground backdrop-blur-md transition-colors hover:border-accent shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.15)] overflow-hidden -mt-4 mb-2 z-30"
         >
           {/* Animated gradient background sweep */}
           <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/10 to-accent/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
@@ -174,7 +168,7 @@ export default function Hero() {
             {language === 'es' ? 'Actualmente Software Engineering Intern en ' : 'Currently Software Engineering Intern at '}
             <span className="font-bold text-accent">Colgate-Palmolive</span>
           </span>
-        </motion.a>
+        </motion.div>
 
         {/* Title with per-character subtle mouse tracking */}
         <h1 className="text-5xl font-black text-foreground md:text-7xl leading-tight mt-2 z-20">

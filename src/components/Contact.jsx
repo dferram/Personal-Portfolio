@@ -1,6 +1,8 @@
 import { FaGithub, FaLinkedin, FaWhatsapp, FaFilePdf } from 'react-icons/fa';
 import { useI18n } from '@/i18n/I18nProvider';
 
+import { getImagePath } from '@/utils/paths';
+
 const CONTACT_LINKS = [
   {
     key: 'linkedin',
@@ -15,7 +17,7 @@ const CONTACT_LINKS = [
   {
     key: 'cv',
     icon: <FaFilePdf size={26} />,
-    href: '/cv/CV.pdf',
+    href: getImagePath('/cv/CV-01.pdf'),
   },
   {
     key: 'whatsapp',
