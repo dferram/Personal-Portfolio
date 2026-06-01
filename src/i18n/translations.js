@@ -86,6 +86,7 @@ export const translations = {
       title: 'Mis Certificaciones',
       subtitle: 'Aquí puedes encontrar las credenciales y certificados.',
       button: 'Ver Credencial',
+      workingOn: 'Trabajando en...',
     },
     experiences: {
       title: 'Mis Experiencias',
@@ -197,6 +198,7 @@ export const translations = {
       title: 'My Certifications',
       subtitle: 'Credentials and certificates for completed courses.',
       button: 'View Credential',
+      workingOn: 'Working on...',
     },
     experiences: {
       title: 'My Experiences',

@@ -185,3 +185,22 @@ export const CERTIFICATES_DATA = processImagePaths(certificatesDataRaw);
 // Tip: Muchas plataformas ofrecen auditoría gratis (puedes tomar el curso
 // sin pagar, solo pagas si quieres el certificado oficial).
 // ============================================================================
+
+export const IN_PROGRESS_CERTIFICATES = [
+  {
+    id: 'google-cloud-developer',
+    title: {
+      es: 'Google Cloud Developer',
+      en: 'Google Cloud Developer',
+    },
+    issuer: {
+      es: 'Google Cloud',
+      en: 'Google Cloud',
+    },
+    date: {
+      es: 'En curso',
+      en: 'In progress',
+    },
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg',
+  }
+];
