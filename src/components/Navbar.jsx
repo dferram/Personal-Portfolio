@@ -15,6 +15,29 @@ export default function Navbar() {
 
   const [activeSection, setActiveSection] = useState(location.hash || '#inicio');
 
+  // Hero visibility gate:
+  // The Hero track is 200vh. Personal info finishes revealing at scrollYProgress=0.72
+  // → absolute threshold = 200vh * 0.72 = 144vh = window.innerHeight * 1.44
+  // Navbar is hidden below that threshold only on the home route.
+  const [navVisible, setNavVisible] = useState(location.pathname !== '/');
+
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      setNavVisible(true);
+      return;
+    }
+
+    const threshold = () => window.innerHeight * 1.44;
+
+    const onScroll = () => {
+      setNavVisible(window.scrollY >= threshold());
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [location.pathname]);
+
   // Spy scroll
   useEffect(() => {
     if (location.pathname !== '/') return;
@@ -83,7 +106,16 @@ export default function Navbar() {
   }, [location]);
 
   return (
-    <nav className="fixed top-0 w-full backdrop-blur border-b z-50 shadow-clean" style={{ backgroundColor: 'var(--color-header-bg)', borderColor: 'var(--color-header-border)' }}>
+    <motion.nav
+      className="fixed top-0 w-full backdrop-blur border-b z-50 shadow-clean"
+      animate={{ opacity: navVisible ? 1 : 0, y: navVisible ? 0 : -24 }}
+      transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+      style={{
+        backgroundColor: 'var(--color-header-bg)',
+        borderColor: 'var(--color-header-border)',
+        pointerEvents: navVisible ? 'auto' : 'none',
+      }}
+    >
       <div className="flex w-full items-center justify-between px-4 py-4 md:px-6">
         <Link to="/" className="text-2xl font-bold hover:text-accent transition-colors z-50" style={{ color: 'var(--color-header-text)' }}>
           {brand}
@@ -242,6 +274,6 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
