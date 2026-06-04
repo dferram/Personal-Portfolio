@@ -161,7 +161,13 @@ export default function GitHubStats({ username = 'dferram' }) {
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         
         {/* Header */}
-        <div className="mb-12 space-y-4">
+        <motion.div
+          className="mb-12 space-y-4"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <div className="flex items-center gap-4">
             <div className="h-2 w-20 rounded-full bg-accent" />
             <span className="inline-block rounded-full border-2 border-accent px-4 py-1 text-xs font-bold uppercase tracking-[0.3em] text-accent">
@@ -171,10 +177,16 @@ export default function GitHubStats({ username = 'dferram' }) {
           <h2 className="text-4xl font-black uppercase tracking-tight text-foreground md:text-5xl">
             {t('github.contributions')}
           </h2>
-        </div>
+        </motion.div>
 
         {/* Contributions Wall */}
-        <div className="mb-12 p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl overflow-x-auto">
+        <motion.div
+          className="mb-12 p-8 rounded-2xl bg-primary-dark/50 border border-white/5 shadow-2xl overflow-x-auto"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+        >
           <div className="min-w-[800px] flex justify-center">
             <GitHubCalendar 
               username={username}
@@ -188,7 +200,7 @@ export default function GitHubStats({ username = 'dferram' }) {
               }}
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* CTA Button to Expand */}
         <div className="flex justify-center mb-12">
