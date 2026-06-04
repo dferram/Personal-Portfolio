@@ -124,21 +124,6 @@ export default function Hero() {
             &ldquo;portfolio&rdquo;
           </motion.span>
 
-          {/* Year label */}
-          <span
-            className="absolute font-bold"
-            style={{
-              fontSize: 'clamp(1rem, 2.5vw, 2.5rem)',
-              color: 'var(--color-hero-year)',
-              opacity: 0.9,
-              letterSpacing: '0.05em',
-              textShadow: '0 2px 8px rgba(0,0,0,0.15)',
-              zIndex: 20,
-              marginTop: '1.5rem',
-            }}
-          >
-            2026
-          </span>
         </motion.div>
 
         {/* ── LAYER: Personal info (enters on scroll) ── */}
