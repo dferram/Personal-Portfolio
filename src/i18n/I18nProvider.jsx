@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { translations } from './translations';
 
-const DEFAULT_LANGUAGE = 'es';
+const DEFAULT_LANGUAGE = 'en';
 
 const I18nContext = createContext({
   language: DEFAULT_LANGUAGE,
