@@ -19,7 +19,11 @@ export default function Navbar() {
   // The Hero track is 200vh. Personal info finishes revealing at scrollYProgress=0.72
   // → absolute threshold = 200vh * 0.72 = 144vh = window.innerHeight * 1.44
   // Navbar is hidden below that threshold only on the home route.
-  const [navVisible, setNavVisible] = useState(location.pathname !== '/');
+  // Initialize synchronously so there is zero flash on first paint.
+  const [navVisible, setNavVisible] = useState(() => {
+    if (location.pathname !== '/') return true;
+    return window.scrollY >= window.innerHeight * 1.44;
+  });
 
   useEffect(() => {
     if (location.pathname !== '/') {
@@ -27,13 +31,13 @@ export default function Navbar() {
       return;
     }
 
-    const threshold = () => window.innerHeight * 1.44;
+    // On SPA navigation to '/', snap to correct state before scroll listener fires
+    setNavVisible(window.scrollY >= window.innerHeight * 1.44);
 
     const onScroll = () => {
-      setNavVisible(window.scrollY >= threshold());
+      setNavVisible(window.scrollY >= window.innerHeight * 1.44);
     };
 
-    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, [location.pathname]);
@@ -108,6 +112,7 @@ export default function Navbar() {
   return (
     <motion.nav
       className="fixed top-0 w-full backdrop-blur border-b z-50 shadow-clean"
+      initial={{ opacity: navVisible ? 1 : 0, y: navVisible ? 0 : -24 }}
       animate={{ opacity: navVisible ? 1 : 0, y: navVisible ? 0 : -24 }}
       transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
       style={{
