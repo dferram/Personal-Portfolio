@@ -145,8 +145,8 @@ export default function Hero() {
             />
             <span className="relative">
               {language === 'es'
-                ? 'Actualmente Software Engineering Intern en '
-                : 'Currently Software Engineering Intern at '}
+                ? 'Intern Direct Procurement IT en '
+                : 'Intern Direct Procurement IT at '}
               <span className="font-bold text-accent">Colgate-Palmolive</span>
             </span>
           </motion.div>
@@ -167,16 +167,6 @@ export default function Hero() {
             )}
           </h2>
 
-          {/* CTA */}
-          {cta && (
-            <a
-              href="#proyectos"
-              className="mt-2 inline-flex items-center gap-3 rounded-full bg-accent px-10 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white shadow-clean-lg transition duration-300 ease-out hover:-translate-y-1 hover:bg-accent-light hover:shadow-xl"
-            >
-              {cta}
-              <span className="text-lg">→</span>
-            </a>
-          )}
         </motion.div>
 
       </div>

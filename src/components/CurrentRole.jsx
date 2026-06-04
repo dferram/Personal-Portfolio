@@ -9,131 +9,144 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay },
 });
 
-const HIGHLIGHTS = {
-  es: [
-    { stat: '2025', label: 'Año de inicio' },
-    { stat: 'Global', label: 'Alcance corporativo' },
-    { stat: 'Presente', label: 'Empleo activo' },
-  ],
-  en: [
-    { stat: '2025', label: 'Start year' },
-    { stat: 'Global', label: 'Corporate reach' },
-    { stat: 'Present', label: 'Active position' },
-  ],
-};
+const STACK = [
+  { name: 'Snowflake', color: '#29B5E8' },
+  { name: 'SQL',       color: '#F29111' },
+  { name: 'Domo',      color: '#2E9BDA' },
+  { name: 'JavaScript', color: '#F7DF1E', dark: true },
+  { name: 'Google Sheets', color: '#34A853' },
+  { name: 'Excel',     color: '#217346' },
+  { name: 'Gemini',    color: '#8B5CF6' },
+];
 
 export default function CurrentRole() {
   const { language } = useI18n();
-
   const isEs = language === 'es';
 
-  const role        = isEs ? 'Software Engineering Intern' : 'Software Engineering Intern';
+  const tagline     = isEs ? 'Empleo actual' : 'Current position';
+  const roleLabel   = isEs ? 'Cargo' : 'Role';
+  const role        = 'Intern Direct Procurement IT';
   const company     = 'Colgate-Palmolive';
-  const period      = isEs ? '2025 — Presente' : '2025 — Present';
-  const tagline     = isEs
-    ? 'Empleo actual'
-    : 'Current position';
-  const description = isEs
-    ? 'Desarrollando soluciones de software para optimizar procesos internos del equipo de IT dentro de una de las empresas de consumo más grandes del mundo.'
-    : 'Building software solutions to optimize internal IT processes inside one of the world\'s largest consumer goods companies.';
+  const period      = isEs ? 'Junio 2026 — Presente' : 'June 2026 — Present';
 
-  const highlights = HIGHLIGHTS[language] ?? HIGHLIGHTS.es;
+  const description = isEs
+    ? 'Trabajando en el área de compras de la división Oral Care con manejo de datos masivos: construyo pipelines y reportes conectando Snowflake/SQL con Domo para visualización, y automatizo flujos de trabajo de procurement con JavaScript y Google Sheets.'
+    : 'Working in the procurement area of the Oral Care division handling large-scale data: building pipelines and reports connecting Snowflake/SQL with Domo for visualization, and automating procurement workflows with JavaScript and Google Sheets.';
+
+  const stackLabel = isEs ? 'Stack en uso' : 'Stack in use';
 
   return (
     <section className="relative py-32 overflow-hidden bg-primary">
 
-      {/* Subtle ambient glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/5 rounded-full blur-[120px]" />
-      </div>
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
 
-        {/* Section tag */}
-        <motion.div className="flex items-center gap-4 mb-16" {...fadeUp(0)}>
-          <div className="h-px flex-1 max-w-[60px] bg-accent/40" />
-          <span className="text-xs font-bold uppercase tracking-[0.35em] text-accent">
+        {/* Section header */}
+        <motion.div className="flex items-center gap-4 mb-4" {...fadeUp(0)}>
+          <div className="h-2 w-20 rounded-full bg-accent" />
+          <span className="inline-block rounded-full border-2 border-accent px-4 py-1 text-xs font-bold uppercase tracking-[0.3em] text-accent">
             {tagline}
           </span>
         </motion.div>
+        <motion.h2
+          className="text-4xl font-black uppercase tracking-tight text-foreground md:text-5xl mb-16"
+          {...fadeUp(0.08)}
+        >
+          {isEs ? 'Experiencia Profesional' : 'Professional Experience'}
+        </motion.h2>
 
         {/* Main card */}
         <motion.div
           className="relative rounded-3xl border border-white/8 bg-primary-dark/60 backdrop-blur-sm overflow-hidden"
-          {...fadeUp(0.08)}
+          {...fadeUp(0.14)}
         >
-          {/* Top accent bar */}
+          {/* Top line accent */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-0">
 
-            {/* Left — Logo + company name */}
-            <div className="flex flex-col items-center justify-center gap-8 p-12 lg:border-r border-white/8">
+            {/* Left — Logo */}
+            <div className="flex flex-col items-center justify-center gap-6 p-12 lg:border-r border-white/8">
               <motion.div
                 initial={{ opacity: 0, scale: 0.85 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
+                transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.14 }}
                 className="relative"
               >
-                {/* Glow ring behind logo */}
-                <div className="absolute inset-0 rounded-2xl bg-accent/10 blur-2xl scale-125" />
-                <div className="relative rounded-2xl bg-white p-6 shadow-clean-lg">
+                <div className="absolute inset-0 rounded-2xl bg-accent/10 blur-2xl scale-150" />
+                <div className="relative rounded-2xl bg-white px-8 py-6 shadow-clean-lg">
                   <img
                     src={getImagePath('/work/colgate-palmolive.png')}
                     alt="Colgate-Palmolive"
-                    className="h-20 w-auto object-contain"
+                    className="h-24 w-auto object-contain"
                   />
                 </div>
               </motion.div>
 
               <motion.div className="text-center" {...fadeUp(0.22)}>
-                <p className="text-2xl font-black text-foreground tracking-tight">{company}</p>
-                <p className="mt-1 text-sm font-medium text-accent uppercase tracking-[0.25em]">{period}</p>
+                <p className="text-xl font-black text-foreground tracking-tight">{company}</p>
+                <p className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-accent">{period}</p>
               </motion.div>
             </div>
 
-            {/* Right — Role details */}
-            <div className="flex flex-col justify-center gap-8 p-12">
-              <motion.div {...fadeUp(0.18)}>
-                <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted mb-3">
-                  {isEs ? 'Cargo' : 'Role'}
+            {/* Right — Details */}
+            <div className="flex flex-col justify-center gap-7 p-12">
+
+              {/* Role */}
+              <motion.div {...fadeUp(0.16)}>
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted mb-2">
+                  {roleLabel}
                 </p>
                 <h2 className="text-3xl font-black text-foreground leading-tight md:text-4xl">
                   {role}
                 </h2>
               </motion.div>
 
+              {/* Description */}
               <motion.p
                 className="text-base leading-relaxed text-muted md:text-lg border-l-2 border-accent/40 pl-4"
-                {...fadeUp(0.26)}
+                {...fadeUp(0.24)}
               >
                 {description}
               </motion.p>
 
-              {/* Stats row */}
+              {/* Stack pills */}
               <motion.div
-                className="grid grid-cols-3 gap-4 pt-4 border-t border-white/8"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-60px' }}
+                className="pt-5 border-t border-white/8"
+                {...fadeUp(0.30)}
               >
-                {highlights.map((item, i) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1], delay: 0.3 + i * 0.08 }}
-                    className="flex flex-col gap-1"
-                  >
-                    <span className="text-xl font-black text-accent">{item.stat}</span>
-                    <span className="text-xs text-muted uppercase tracking-[0.2em]">{item.label}</span>
-                  </motion.div>
-                ))}
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted mb-4">
+                  {stackLabel}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {STACK.map((tool, i) => (
+                    <motion.span
+                      key={tool.name}
+                      initial={{ opacity: 0, scale: 0.85 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1], delay: 0.34 + i * 0.06 }}
+                      className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-[0.15em]"
+                      style={{
+                        backgroundColor: `${tool.color}18`,
+                        border: `1px solid ${tool.color}40`,
+                        color: tool.dark ? '#b8a900' : tool.color,
+                      }}
+                    >
+                      <span
+                        className="inline-block h-1.5 w-1.5 rounded-full"
+                        style={{ backgroundColor: tool.dark ? '#b8a900' : tool.color }}
+                      />
+                      {tool.name}
+                    </motion.span>
+                  ))}
+                </div>
               </motion.div>
-            </div>
 
+            </div>
           </div>
         </motion.div>
 
