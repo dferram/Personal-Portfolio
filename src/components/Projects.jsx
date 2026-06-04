@@ -1,8 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import { PROJECTS_DATA } from '../data/projects';
 import { useI18n } from '@/i18n/I18nProvider';
 import { getLocalizedValue } from '@/i18n/utils';
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay },
+});
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 48 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.1 },
+  }),
+};
 
 const LINK_LABELS = {
   github: 'Código',
@@ -23,7 +40,10 @@ export default function Projects() {
   return (
     <section id="proyectos" className="relative py-24 bg-primary-dark">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="mx-auto flex flex-col items-center gap-4 text-center md:max-w-2xl">
+        <motion.div
+          className="mx-auto flex flex-col items-center gap-4 text-center md:max-w-2xl"
+          {...fadeUp(0)}
+        >
           {sectionTag && (
             <span className="text-sm font-bold uppercase tracking-[0.3em] text-accent">{sectionTag}</span>
           )}
@@ -33,10 +53,15 @@ export default function Projects() {
           {sectionDescription && (
             <p className="text-base text-muted md:text-lg">{sectionDescription}</p>
           )}
-        </div>
+        </motion.div>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-          {PROJECTS_DATA.map((project) => {
+        <motion.div
+          className="mt-12 grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+        >
+          {PROJECTS_DATA.map((project, i) => {
             const heroImage = project.images?.hero ?? null;
             const galleryImages = Array.isArray(project.images?.gallery) ? project.images.gallery : [];
             const coverImage = heroImage ?? galleryImages[0] ?? 'https://placehold.co/600x400/111111/E50914?text=Proyecto';
@@ -57,8 +82,10 @@ export default function Projects() {
             const year = project.year;
 
             return (
-              <article
+              <motion.article
                 key={project.id}
+                custom={i}
+                variants={cardVariants}
                 className="group relative overflow-hidden rounded-lg shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg cursor-pointer"
                 style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-muted)', borderWidth: '1px' }}
                 role="link"
@@ -129,10 +156,10 @@ export default function Projects() {
                     </button>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -17,10 +17,29 @@
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { EXPERIENCES_DATA } from '@/data/experiencesData';
 import { useI18n } from '@/i18n/I18nProvider';
 import { getLocalizedValue } from '@/i18n/utils';
 import { FaInstagram } from 'react-icons/fa';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: 'spring', stiffness: 80, damping: 20 },
+  },
+};
 
 export default function ExperiencesPage() {
   const { t, language } = useI18n();
@@ -52,18 +71,34 @@ export default function ExperiencesPage() {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-primary-dark py-24 px-6 text-foreground md:px-10">
+    <section className="relative min-h-screen bg-primary-dark py-24 px-6 text-foreground md:px-10 overflow-hidden">
+      {/* Ambient background blobs matching CertificatesPage */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+
       <div className="relative z-10 mx-auto max-w-6xl">
         {/* Header de la página */}
-        <header className="text-center">
-          <h1 className="inline-block text-4xl font-black text-foreground md:text-5xl">
-            {title}
-          </h1>
-          {subtitle && <p className="mt-4 text-base text-muted md:text-lg">{subtitle}</p>}
+        <header className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
+            <h1 className="inline-block text-4xl font-black text-foreground md:text-5xl">
+              {title}
+            </h1>
+            {subtitle && <p className="mt-4 text-base text-muted md:text-lg">{subtitle}</p>}
+          </motion.div>
         </header>
 
         {/* Grid de experiencias - Mismo diseño que CertificatesPage */}
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+        >
           {EXPERIENCES_DATA.map((experience) => {
             // Obtener valores localizados según el idioma actual
             const localizedTitle = getLocalizedValue(experience.title, language) ?? experience.title;
@@ -88,9 +123,10 @@ export default function ExperiencesPage() {
             };
 
             return (
-              <article
+              <motion.article
                 key={experience.id}
-                className={`group flex h-full flex-col overflow-hidden rounded-lg shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg ${
+                variants={cardVariants}
+                className={`group relative flex h-full flex-col overflow-hidden rounded-2xl shadow-clean transition duration-300 hover:-translate-y-2 hover:shadow-clean-lg hover:border-accent/40 ${
                   hasExtendedContent ? 'cursor-pointer' : ''
                 }`}
                 style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-muted)', borderWidth: '1px' }}
@@ -100,6 +136,8 @@ export default function ExperiencesPage() {
                 onClick={hasExtendedContent ? goToDetail : undefined}
                 onKeyDown={hasExtendedContent ? handleKeyDown : undefined}
               >
+                {/* Hover accent top border matching CertificatesPage */}
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-accent-light via-accent to-accent-dark opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
                 {/* Imagen de la experiencia con overlay gradient (mismo estilo que CertificatesPage) */}
                 <div className="relative h-48 w-full overflow-hidden">
                   <img
@@ -155,10 +193,10 @@ export default function ExperiencesPage() {
                     </div>
                   )}
                 </div>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Mensaje cuando no hay experiencias (opcional) */}
         {EXPERIENCES_DATA.length === 0 && (

@@ -1,7 +1,24 @@
+import { motion } from 'framer-motion';
 import { useI18n } from '@/i18n/I18nProvider';
 import { SKILLS_DATA } from '@/data/skillsData';
 import { PROFILE_PHOTO } from '@/data/config';
 import { getImagePath } from '@/utils/paths';
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay },
+});
+
+const skillIconVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: (i) => ({
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.35, ease: 'easeOut', delay: i * 0.04 },
+  }),
+};
 
 export default function About() {
   const { t } = useI18n();
@@ -20,18 +37,21 @@ export default function About() {
             
             {/* About Section */}
             <div className="space-y-6">
-              <div className="flex items-center gap-4">
+              <motion.div className="flex items-center gap-4" {...fadeUp(0)}>
                 <div className="h-2 w-20 rounded-full bg-accent" />
                 <span className="inline-block rounded-full border-2 border-accent px-4 py-1 text-xs font-bold uppercase tracking-[0.3em] text-accent">
                   ABOUT ME
                 </span>
-              </div>
+              </motion.div>
               
-              <h2 className="text-4xl font-black uppercase tracking-tight text-foreground md:text-5xl">
+              <motion.h2
+                className="text-4xl font-black uppercase tracking-tight text-foreground md:text-5xl"
+                {...fadeUp(0.08)}
+              >
                 {title}
-              </h2>
+              </motion.h2>
               
-              <div className="border-l-4 border-accent pl-6 space-y-4">
+              <motion.div className="border-l-4 border-accent pl-6 space-y-4" {...fadeUp(0.16)}>
                 {(Array.isArray(paragraphs) ? paragraphs : [paragraphs]).map((paragraph, index) => (
                   <p
                     key={`about-paragraph-${index}`}
@@ -40,12 +60,12 @@ export default function About() {
                     {paragraph}
                   </p>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
             {/* Skills Section */}
             <div className="space-y-8">
-              {SKILLS_DATA.map((category) => {
+              {SKILLS_DATA.map((category, catIndex) => {
                 const translatedTitle = t(`skills.categories.${category.id}.title`);
                 const categoryTitle =
                   (typeof translatedTitle === 'string' && translatedTitle.length > 0 && translatedTitle) ||
@@ -53,16 +73,23 @@ export default function About() {
                   '';
 
                 return (
-                  <div key={category.id} className="space-y-4">
+                  <motion.div key={category.id} className="space-y-4" {...fadeUp(catIndex * 0.1)}>
                     <h3 className="text-2xl font-bold text-foreground md:text-3xl">
                       {categoryTitle}
                     </h3>
 
                     {/* Skills Icons - Small like reference */}
-                    <div className="flex flex-wrap gap-4 items-center">
-                      {category.items.map((skill) => (
-                        <div
+                    <motion.div
+                      className="flex flex-wrap gap-4 items-center"
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, margin: '-60px' }}
+                    >
+                      {category.items.map((skill, i) => (
+                        <motion.div
                           key={skill.name}
+                          custom={i}
+                          variants={skillIconVariants}
                           className="group flex items-center gap-2 transition-transform duration-200 hover:scale-110"
                           title={skill.name}
                         >
@@ -71,17 +98,23 @@ export default function About() {
                             alt={skill.name}
                             className="h-12 w-12 object-contain"
                           />
-                        </div>
+                        </motion.div>
                       ))}
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
                 );
               })}
             </div>
           </div>
 
           {/* Right Column: Photo with tape effect */}
-          <div className="relative order-first lg:order-none flex justify-center">
+          <motion.div
+            className="relative order-first lg:order-none flex justify-center"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+          >
             {/* Photo container */}
             <div className="relative inline-block overflow-hidden rounded-lg shadow-clean-lg bg-white p-2">
               {/* Tape effect decorations - cinta adhesiva translúcida tipo scotch */}
@@ -106,7 +139,7 @@ export default function About() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
