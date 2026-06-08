@@ -202,5 +202,37 @@ export const IN_PROGRESS_CERTIFICATES = [
       en: 'In progress',
     },
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg',
+  },
+  {
+    id: 'google-cloud-architect',
+    title: {
+      es: 'Google Cloud Architect',
+      en: 'Google Cloud Architect',
+    },
+    issuer: {
+      es: 'Google Cloud',
+      en: 'Google Cloud',
+    },
+    date: {
+      es: 'En curso',
+      en: 'In progress',
+    },
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg',
+  },
+  {
+    id: 'google-cloud-data-engineer',
+    title: {
+      es: 'Google Cloud Data Engineer',
+      en: 'Google Cloud Data Engineer',
+    },
+    issuer: {
+      es: 'Google Cloud',
+      en: 'Google Cloud',
+    },
+    date: {
+      es: 'En curso',
+      en: 'In progress',
+    },
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg',
   }
 ];
