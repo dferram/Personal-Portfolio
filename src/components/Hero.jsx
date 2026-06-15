@@ -145,8 +145,8 @@ export default function Hero() {
             />
             <span className="relative">
               {language === 'es'
-                ? 'Intern Direct Procurement IT en '
-                : 'Intern Direct Procurement IT at '}
+                ? 'Intern Data Analyst Procurement en '
+                : 'Intern Data Analyst Procurement at '}
               <span className="font-bold text-accent">Colgate-Palmolive</span>
             </span>
           </motion.div>

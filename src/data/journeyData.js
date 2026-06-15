@@ -8,8 +8,8 @@ export const JOURNEY_DATA = [
       en: 'Colgate-Palmolive',
     },
     role: {
-      es: 'Intern Direct Procurement IT',
-      en: 'Intern Direct Procurement IT',
+      es: 'Intern Data Analyst Procurement',
+      en: 'Intern Data Analyst Procurement',
     },
     date: {
       es: 'Junio 2026 - Presente',
