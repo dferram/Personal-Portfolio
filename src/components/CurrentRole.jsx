@@ -25,7 +25,7 @@ export default function CurrentRole() {
 
   const tagline     = isEs ? 'Empleo actual' : 'Current position';
   const roleLabel   = isEs ? 'Cargo' : 'Role';
-  const role        = 'Intern Data Analyst Procurement';
+  const role        = 'Intern Procurement Data Analyst';
   const company     = 'Colgate-Palmolive';
   const period      = isEs ? 'Junio 2026 — Presente' : 'June 2026 — Present';
 
