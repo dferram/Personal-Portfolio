@@ -206,7 +206,7 @@ export default function GitHubStats({ username = 'dferram' }) {
         <div className="flex justify-center mb-12">
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="group flex items-center gap-3 px-8 py-4 rounded-full bg-accent text-primary-dark font-black uppercase tracking-widest hover:scale-105 transition-all duration-300 shadow-lg shadow-accent/20"
+            className="btn-glass gap-3 px-8 py-4 text-accent font-black uppercase tracking-widest"
           >
             {isExpanded ? (
               <>

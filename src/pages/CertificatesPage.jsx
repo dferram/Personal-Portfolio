@@ -1,4 +1,4 @@
-import { CERTIFICATES_DATA, IN_PROGRESS_CERTIFICATES } from '@/data/certificatesData';
+import { CERTIFICATES_DATA } from '@/data/certificatesData';
 import { useI18n } from '@/i18n/I18nProvider';
 import { getLocalizedValue } from '@/i18n/utils';
 import { motion } from 'framer-motion';
@@ -8,7 +8,6 @@ export default function CertificatesPage() {
 
   const title = t('certificates.title') ?? 'Mis Certificaciones';
   const subtitle = t('certificates.subtitle');
-  const workingOnTitle = t('certificates.workingOn') ?? 'Trabajando en...';
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -77,41 +76,6 @@ export default function CertificatesPage() {
           ))}
         </motion.div>
 
-        {/* Working On Section */}
-        {IN_PROGRESS_CERTIFICATES && IN_PROGRESS_CERTIFICATES.length > 0 && (
-          <div className="mt-32">
-            <header className="text-center mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                viewport={{ once: true, margin: "-100px" }}
-              >
-                <h2 className="inline-block text-3xl font-black text-foreground md:text-4xl tracking-tight">
-                  {workingOnTitle}
-                </h2>
-              </motion.div>
-            </header>
-
-            <motion.div 
-              className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-center"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-            >
-              {IN_PROGRESS_CERTIFICATES.map((certificate) => (
-                <div key={certificate.id} className="relative">
-                  <CertificateCard 
-                    certificate={certificate} 
-                    language={language} 
-                    variants={cardVariants} 
-                  />
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        )}
       </div>
     </section>
   );

@@ -43,8 +43,11 @@ export const translations = {
       tag: 'Skillset',
       title: 'Habilidades Técnicas',
       categories: {
-        web: { title: 'Desarrollo Full-Stack', description: 'Construcción de experiencias completas.', items: [] },
-        data: { title: 'Bases de Datos & Backend', description: 'Persistencia, APIs y servicios del lado del servidor.', items: [] },
+        analysis: { title: 'Data Analysis' },
+        backend: { title: 'Backend' },
+        databases: { title: 'Databases' },
+        frontend: { title: 'Frontend' },
+        cloud: { title: 'Cloud' },
       },
     },
     projects: {
@@ -154,9 +157,11 @@ export const translations = {
       tag: 'Skillset',
       title: 'Technical Skills',
       categories: {
-        web: { title: 'Web Development', description: 'Building complete experiences.', items: [] },
-        data: { title: 'Databases & Backend', description: 'Persistence, APIs, and server-side services.', items: [] },
-        analysis: { title: 'Data Analysis', description: 'Data analysis and visualization.', items: [] },
+        analysis: { title: 'Data Analysis' },
+        backend: { title: 'Backend' },
+        databases: { title: 'Databases' },
+        frontend: { title: 'Frontend' },
+        cloud: { title: 'Cloud' },
       },
     },
     projects: {

@@ -78,9 +78,9 @@ export default function About() {
                       {categoryTitle}
                     </h3>
 
-                    {/* Skills Icons - Small like reference */}
+                    {/* Skills Grid - Compact Glass Layout */}
                     <motion.div
-                      className="flex flex-wrap gap-4 items-center"
+                      className="flex flex-wrap gap-2 md:gap-3"
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true, margin: '-60px' }}
@@ -90,14 +90,17 @@ export default function About() {
                           key={skill.name}
                           custom={i}
                           variants={skillIconVariants}
-                          className="group flex items-center gap-2 transition-transform duration-200 hover:scale-110"
+                          className="group flex items-center gap-2 px-3 py-1.5 md:py-2 rounded-full border border-black/5 bg-white/60 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-accent/10 hover:border-accent/30 transition-all duration-300"
                           title={skill.name}
                         >
                           <img
                             src={skill.icon}
                             alt={skill.name}
-                            className="h-12 w-12 object-contain"
+                            className="h-5 w-5 md:h-6 md:w-6 object-contain transition-transform duration-300 group-hover:scale-110 drop-shadow-sm"
                           />
+                          <span className="font-semibold text-xs md:text-sm text-foreground/90 group-hover:text-accent transition-colors truncate">
+                            {skill.name}
+                          </span>
                         </motion.div>
                       ))}
                     </motion.div>

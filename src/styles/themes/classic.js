@@ -9,8 +9,8 @@
 
 export const classicTheme = {
   // Fondos principales
-  primary: '#FFFFFF',              // Fondo principal de la pagina
-  'primary-dark': '#F5F5F5',       // Fondo alternativo para secciones
+  primary: '#F9F8F6',              // Fondo principal de la pagina (tono hueso suave)
+  'primary-dark': '#F0EFEA',       // Fondo alternativo (hueso ligeramente más oscuro)
   
   // Colores de acento (botones, enlaces, elementos destacados)
   accent: '#1a2aeb',               // Color principal de acento (azul vibrante)

@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import PortfolioHome from '@/pages/HomePortfolio';
-import ViewProject from '@/pages/ViewProject';
 import CertificatesPage from '@/pages/CertificatesPage';
 import ExperiencesPage from '@/pages/ExperiencesPage';
 import ViewExperience from '@/pages/ViewExperience';
@@ -20,7 +19,6 @@ export default function App() {
         
           <Route path="/" element={<PortfolioHome />} />
         
-          <Route path="/proyecto/:id" element={<ViewProject />} />
           <Route path="/certificados" element={<CertificatesPage />} />
           <Route path="/experiencias" element={<ExperiencesPage />} />
           <Route path="/experiencia/:id" element={<ViewExperience />} />

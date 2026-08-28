@@ -34,7 +34,7 @@ import racingRedTheme from './racing-red';
  *  Para ver una preview de cada tema, abre /estilos en el navegador.
  */
 
-export const activeTheme = retroSolarTheme;
+export const activeTheme = classicTheme;
 
 /* 
  * EXPORTACION DE TODOS LOS TEMAS

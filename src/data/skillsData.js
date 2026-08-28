@@ -30,42 +30,47 @@ import { SKILLS_ICONS } from '@/data/config';
 
 const skillsDataRaw = [
   {
-    id: 'web',
-    title: 'Desarrollo Web (Full-Stack)',
+    id: 'analysis',
+    title: 'Data Analysis',
     items: [
-      { name: 'React', icon: `/images/${SKILLS_ICONS.react}` },
+      { name: 'Python', icon: `/images/${SKILLS_ICONS.python}` },
+      { name: 'Google Colab', icon: `/images/${SKILLS_ICONS.colab}` },
+      { name: 'Apache Spark', icon: `/images/${SKILLS_ICONS.apacheSpark}` },
+    ],
+  },
+  {
+    id: 'backend',
+    title: 'Backend',
+    items: [
       { name: 'Node.js', icon: `/images/${SKILLS_ICONS.nodejs}` },
       { name: 'JavaScript', icon: `/images/${SKILLS_ICONS.javascript}` },
+    ],
+  },
+  {
+    id: 'databases',
+    title: 'Databases',
+    items: [
+      { name: 'PostgreSQL', icon: `/images/${SKILLS_ICONS.postgresql}` },
+      { name: 'MongoDB', icon: `/images/${SKILLS_ICONS.mongodb}` },
+    ],
+  },
+  {
+    id: 'frontend',
+    title: 'Frontend',
+    items: [
+      { name: 'React', icon: `/images/${SKILLS_ICONS.react}` },
       { name: 'HTML5', icon: `/images/${SKILLS_ICONS.html}` },
       { name: 'CSS3', icon: `/images/${SKILLS_ICONS.css}` },
       { name: 'Tailwind CSS', icon: `/images/${SKILLS_ICONS.tailwind}` },
     ],
   },
   {
-    id: 'data',
-    title: 'Bases de Datos & Backend',
-    items: [
-      { name: 'PostgreSQL', icon: `/images/${SKILLS_ICONS.postgresql}` },
-      { name: 'MongoDB', icon: `/images/${SKILLS_ICONS.mongodb}` },
-      { name: 'Node.js', icon: `/images/${SKILLS_ICONS.nodejs}` },
-    ],
-  },
-  {
     id: 'cloud',
-    title: 'Cloud & DevOps',
+    title: 'Cloud',
     items: [
       { name: 'Google Cloud', icon: `/images/${SKILLS_ICONS.gcp}` },
       { name: 'Azure', icon: `/images/${SKILLS_ICONS.azure}` },
       { name: 'Docker', icon: `/images/${SKILLS_ICONS.docker}` },
-    ],
-  },
-  {
-    id: 'analysis',
-    title: 'Análisis de datos',
-    items: [
-      { name: 'Python', icon: `/images/${SKILLS_ICONS.python}` },
-      { name: 'Google Colab', icon: `/images/${SKILLS_ICONS.colab}` },
-      { name: 'Apache Spark', icon: `/images/${SKILLS_ICONS.apacheSpark}` },
     ],
   },
 ];
