@@ -110,8 +110,8 @@ const experiencesDataRaw = [
     id: 'cdmx-tech-week-2025',
     
     title: {
-      es: 'CDMX Tech Week 2025',
-      en: 'CDMX Tech Week 2025',
+      es: 'CDMX Tech Week',
+      en: 'CDMX Tech Week',
     },
     
     date: {
@@ -171,8 +171,8 @@ const experiencesDataRaw = [
     id: 'gdg-queretaro-devfest-2025',
     
     title: {
-      es: 'Google Developer Group Querétaro - DevFest 2025',
-      en: 'Google Developer Group Querétaro - DevFest 2025',
+      es: 'GDG Qro',
+      en: 'GDG Qro',
     },
     
     date: {
@@ -295,8 +295,8 @@ const experiencesDataRaw = [
     id: 'sac-git-github-course-2026',
     
     title: {
-      es: 'Curso de Git y GitHub - SAC Facultad de Informatica',
-      en: 'Git and GitHub Course - SAC Faculty of Computer Science',
+      es: 'Git & GitHub',
+      en: 'Git & GitHub',
     },
     
     date: {
@@ -349,6 +349,61 @@ const experiencesDataRaw = [
     images: {
       hero:    `/images/${EXPERIENCE_IMAGES['github-course'].hero}`,
       gallery: EXPERIENCE_IMAGES['github-course'].gallery.map(img => `/images/${img}`),
+    },
+  },
+
+  {
+    id: 'aws-summit-2026',
+    
+    title: {
+      es: 'AWS Summit',
+      en: 'AWS Summit',
+    },
+    
+    date: {
+      es: '2026',
+      en: '2026',
+    },
+    
+    location: {
+      es: 'Ciudad de Mexico, Mexico',
+      en: 'Mexico City, Mexico',
+    },
+    
+    description: {
+      es: 'Asistencia al AWS Summit en Mexico City, un evento enfocado en los ultimos avances de cloud computing, inteligencia artificial generativa y mejores practicas de arquitectura en Amazon Web Services.',
+      en: 'Attendance at the AWS Summit in Mexico City, an event focused on the latest advances in cloud computing, generative AI, and architecture best practices in Amazon Web Services.',
+    },
+    
+    imageUrl: `/images/${EXPERIENCE_IMAGES['aws-summit-2026'].imageUrl}`,
+    
+    category: 'conference',
+    
+    story: {
+      es: 'El AWS Summit Mexico fue una experiencia increible donde tuve la oportunidad de sumergirme en el ecosistema de Amazon Web Services. Asistir a este tipo de eventos masivos siempre me recuerda lo inmensa que es la industria tecnologica y la velocidad a la que evoluciona.\n\nDurante el evento, asisti a multiples conferencias y talleres tecnicos enfocados en arquitectura en la nube, optimizacion de costos y la integracion de modelos de inteligencia artificial generativa utilizando herramientas como Amazon Bedrock. Ver casos de uso reales de grandes empresas utilizando la infraestructura de AWS me dio una perspectiva mucho mas amplia de como disenar sistemas escalables y resilientes.\n\nAdemas del aprendizaje tecnico, el Summit fue un excelente espacio para el networking. Tuve la oportunidad de conectar con otros desarrolladores, ingenieros cloud y arquitectos de soluciones, intercambiando ideas sobre las tecnologias que estamos utilizando. Compartir con la comunidad y conocer a personas apasionadas por el desarrollo siempre es una de las mejores partes de asistir a estas conferencias.\n\nRegrese con muchisima inspiracion y nuevos conocimientos listos para aplicar en mis proximos proyectos. Este tipo de experiencias no solo enriquecen mi perfil profesional, sino que me motivan a seguir preparandome para obtener mas certificaciones y dominar las tecnologias de la nube.',
+      en: 'The AWS Summit Mexico was an incredible experience where I had the opportunity to dive deep into the Amazon Web Services ecosystem. Attending these types of massive events always reminds me of how immense the tech industry is and the speed at which it evolves.\n\nDuring the event, I attended multiple technical conferences and workshops focused on cloud architecture, cost optimization, and the integration of generative AI models using tools like Amazon Bedrock. Seeing real use cases of large companies leveraging AWS infrastructure gave me a much broader perspective on how to design scalable and resilient systems.\n\nBesides technical learning, the Summit was an excellent space for networking. I had the chance to connect with other developers, cloud engineers, and solution architects, exchanging ideas about the technologies we are using. Sharing with the community and meeting people passionate about development is always one of the best parts of attending these conferences.\n\nI returned with immense inspiration and new knowledge ready to apply in my upcoming projects. These types of experiences not only enrich my professional profile but also motivate me to keep preparing for more certifications and master cloud technologies.',
+    },
+    
+    learnings: {
+      es: [
+        'Estrategias de migracion y optimizacion de costos en infraestructuras de nube.',
+        'Implementacion de inteligencia artificial generativa en aplicaciones empresariales con Amazon Bedrock.',
+        'Mejores practicas de arquitectura Serverless y disenio de microservicios.',
+        'La importancia de la seguridad y el cumplimiento en la gestion de datos en la nube.',
+        'Networking de alto nivel con profesionales de la industria y expertos de AWS.',
+      ],
+      en: [
+        'Migration strategies and cost optimization in cloud infrastructures.',
+        'Implementation of generative AI in enterprise applications with Amazon Bedrock.',
+        'Best practices in Serverless architecture and microservices design.',
+        'The importance of security and compliance in cloud data management.',
+        'High-level networking with industry professionals and AWS experts.',
+      ],
+    },
+    
+    images: {
+      hero:    `/images/${EXPERIENCE_IMAGES['aws-summit-2026'].hero}`,
+      gallery: EXPERIENCE_IMAGES['aws-summit-2026'].gallery.map(img => `/images/${img}`),
     },
   },
 ];

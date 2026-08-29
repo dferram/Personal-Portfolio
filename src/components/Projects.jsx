@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaGithub, FaExternalLinkAlt, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaStar, FaChevronLeft, FaChevronRight, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useI18n } from '@/i18n/I18nProvider';
 import { PROJECTS_DATA } from '../data/projects';
@@ -171,19 +171,20 @@ export default function Projects() {
             <div className="absolute top-[40%] -left-4 md:left-2 -translate-y-1/2 z-20">
               <button 
                 onClick={() => scroll('left')}
-                className="w-12 h-12 rounded-full bg-primary/90 backdrop-blur border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl shadow-black/50 hover:bg-accent hover:text-white text-muted hover:scale-110"
-                aria-label="Anterior"
+                className="btn-glass w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 shadow-lg"
+                aria-label="Scroll left"
               >
-                <FaChevronLeft size={20} />
+                <FaArrowLeft />
               </button>
             </div>
+            
             <div className="absolute top-[40%] -right-4 md:right-2 -translate-y-1/2 z-20">
               <button 
                 onClick={() => scroll('right')}
-                className="w-12 h-12 rounded-full bg-primary/90 backdrop-blur border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl shadow-black/50 hover:bg-accent hover:text-white text-muted hover:scale-110"
-                aria-label="Siguiente"
+                className="btn-glass w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 shadow-lg"
+                aria-label="Scroll right"
               >
-                <FaChevronRight size={20} />
+                <FaArrowRight />
               </button>
             </div>
           </div>
