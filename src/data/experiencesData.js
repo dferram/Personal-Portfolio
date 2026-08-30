@@ -406,6 +406,40 @@ const experiencesDataRaw = [
       gallery: EXPERIENCE_IMAGES['aws-summit-2026'].gallery.map(img => `/images/${img}`),
     },
   },
+  
+  {
+    id: 'college',
+    title: { es: 'Universidad', en: 'College' },
+    date: { es: '2022 - 2026', en: '2022 - 2026' },
+    location: { es: 'Querétaro, México', en: 'Querétaro, Mexico' },
+    description: {
+      es: 'Momentos y experiencias durante mi etapa universitaria.',
+      en: 'Moments and experiences during my college years.',
+    },
+    imageUrl: `/images/${EXPERIENCE_IMAGES['college'].imageUrl}`,
+    category: 'other',
+    images: {
+      hero: `/images/${EXPERIENCE_IMAGES['college'].hero}`,
+      gallery: EXPERIENCE_IMAGES['college'].gallery.map(img => `/images/${img}`),
+    },
+  },
+
+  {
+    id: 'friends-of-figma',
+    title: { es: 'Friends of Figma', en: 'Friends of Figma' },
+    date: { es: '2025 - Presente', en: '2025 - Present' },
+    location: { es: 'Querétaro, México', en: 'Querétaro, Mexico' },
+    description: {
+      es: 'Participación en la comunidad local de diseño Friends of Figma.',
+      en: 'Participation in the local design community Friends of Figma.',
+    },
+    imageUrl: `/images/${EXPERIENCE_IMAGES['friends-of-figma'].imageUrl}`,
+    category: 'other',
+    images: {
+      hero: `/images/${EXPERIENCE_IMAGES['friends-of-figma'].hero}`,
+      gallery: EXPERIENCE_IMAGES['friends-of-figma'].gallery.map(img => `/images/${img}`),
+    },
+  },
 ];
 
 export const EXPERIENCES_DATA = processImagePaths(experiencesDataRaw);

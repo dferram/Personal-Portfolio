@@ -25,13 +25,16 @@ export default function ExperienceDetail() {
     );
   }
 
-  // Juntar todas las fotos disponibles del evento
+  // Juntar todas las fotos disponibles del evento y limitarlas
   const allPhotos = useMemo(() => {
     const photos = [];
     if (experience.images?.hero) photos.push(experience.images.hero);
     if (experience.images?.gallery) photos.push(...experience.images.gallery);
     if (photos.length === 0 && experience.imageUrl) photos.push(experience.imageUrl);
-    return photos;
+    
+    // Si hay demasiadas fotos (ej. > 15), limitamos a 12 o 15 para no saturar el scrapbook
+    // Puedes ajustar este número según te parezca mejor
+    return photos.slice(0, 15);
   }, [experience]);
 
   // Generar posiciones aleatorias pero uniformes para abarcar toda la pantalla

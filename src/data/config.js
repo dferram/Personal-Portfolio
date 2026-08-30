@@ -89,62 +89,32 @@ export const CERTIFICATE_IMAGES = {
 // imageUrl    → imagen que aparece en la tarjeta de la lista
 // hero        → imagen principal en la página de detalle
 // gallery     → lista de fotos para la galería (agrega/quita las que quieras)
+const cdmxImages = import.meta.glob('/public/images/experiences/cdmx-tech-week/*.{jpeg,jpg,png,JPG}', { eager: true });
+const cdmxFiles = Object.keys(cdmxImages).map(p => p.replace('/public/images/', ''));
+
+const collegeImages = import.meta.glob('/public/images/experiences/college/*.{jpeg,jpg,png,JPG}', { eager: true });
+const collegeFiles = Object.keys(collegeImages).map(p => p.replace('/public/images/', ''));
+
+const figmaImages = import.meta.glob('/public/images/experiences/friends-of-figma/*.{jpeg,jpg,png,JPG}', { eager: true });
+const figmaFiles = Object.keys(figmaImages).map(p => p.replace('/public/images/', ''));
+
 export const EXPERIENCE_IMAGES = {
   'cdmx-tech-week': {
-    imageUrl: 'experiences/cdmx-tech-week/3.jpeg',
-    hero: 'experiences/cdmx-tech-week/5.jpeg',
-    gallery: [
-      'experiences/cdmx-tech-week/1.jpeg',
-      'experiences/cdmx-tech-week/2.jpeg',
-      'experiences/cdmx-tech-week/3.jpeg',
-      'experiences/cdmx-tech-week/4.jpeg',
-      'experiences/cdmx-tech-week/5.jpeg',
-      'experiences/cdmx-tech-week/6.jpeg',
-      'experiences/cdmx-tech-week/7.jpeg',
-      'experiences/cdmx-tech-week/8.jpeg',
-      'experiences/cdmx-tech-week/9.jpeg',
-      'experiences/cdmx-tech-week/10.jpeg',
-      'experiences/cdmx-tech-week/11.jpeg',
-      'experiences/cdmx-tech-week/12.jpeg',
-      'experiences/cdmx-tech-week/13.jpeg',
-      'experiences/cdmx-tech-week/14.jpeg',
-      'experiences/cdmx-tech-week/15.jpeg',
-      'experiences/cdmx-tech-week/16.jpeg',
-      'experiences/cdmx-tech-week/17.jpeg',
-      'experiences/cdmx-tech-week/18.jpeg',
-      'experiences/cdmx-tech-week/19.jpeg',
-      'experiences/cdmx-tech-week/20.jpeg',
-      'experiences/cdmx-tech-week/21.jpeg',
-      'experiences/cdmx-tech-week/22.jpeg',
-      'experiences/cdmx-tech-week/23.jpeg',
-      'experiences/cdmx-tech-week/24.jpeg',
-      'experiences/cdmx-tech-week/25.jpeg',
-      'experiences/cdmx-tech-week/26.jpeg',
-      'experiences/cdmx-tech-week/27.jpeg',
-      'experiences/cdmx-tech-week/28.jpeg',
-      'experiences/cdmx-tech-week/29.jpeg',
-      'experiences/cdmx-tech-week/30.jpeg',
-      'experiences/cdmx-tech-week/31.jpeg',
-      'experiences/cdmx-tech-week/32.jpeg',
-      'experiences/cdmx-tech-week/33.jpeg',
-      'experiences/cdmx-tech-week/34.jpeg',
-      'experiences/cdmx-tech-week/35.jpeg',
-      'experiences/cdmx-tech-week/36.jpeg',
-      'experiences/cdmx-tech-week/37.jpeg',
-      'experiences/cdmx-tech-week/38.jpeg',
-      'experiences/cdmx-tech-week/39.jpeg',
-      'experiences/cdmx-tech-week/40.jpeg',
-      'experiences/cdmx-tech-week/41.jpeg',
-      'experiences/cdmx-tech-week/42.jpeg',
-      'experiences/cdmx-tech-week/43.jpeg',
-      'experiences/cdmx-tech-week/44.jpeg',
-      'experiences/cdmx-tech-week/45.jpeg',
-      'experiences/cdmx-tech-week/46.jpeg',
-      'experiences/cdmx-tech-week/47.jpeg',
-      'experiences/cdmx-tech-week/48.jpeg',
-      'experiences/cdmx-tech-week/49.jpeg',
-      'experiences/cdmx-tech-week/50.jpeg',
-    ],
+    imageUrl: cdmxFiles[0] || '',
+    hero: cdmxFiles[1] || cdmxFiles[0] || '',
+    gallery: cdmxFiles,
+  },
+  
+  'college': {
+    imageUrl: collegeFiles[0] || '',
+    hero: collegeFiles[1] || collegeFiles[0] || '',
+    gallery: collegeFiles,
+  },
+  
+  'friends-of-figma': {
+    imageUrl: figmaFiles[0] || '',
+    hero: figmaFiles[1] || figmaFiles[0] || '',
+    gallery: figmaFiles,
   },
 
   'gdg-queretaro': {
