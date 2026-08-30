@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import { useI18n } from '@/i18n/I18nProvider';
 import { getImagePath } from '@/utils/paths';
+import { colpalProjects } from '@/data/colpalProjects';
+import { useRef } from 'react';
+import { FaArrowLeft, FaArrowRight, FaStar } from 'react-icons/fa';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
@@ -10,18 +13,29 @@ const fadeUp = (delay = 0) => ({
 });
 
 const STACK = [
-  { name: 'Snowflake', color: '#29B5E8' },
-  { name: 'SQL',       color: '#F29111' },
-  { name: 'Domo',      color: '#2E9BDA' },
   { name: 'JavaScript', color: '#F7DF1E', dark: true },
+  { name: 'Google Apps Script', color: '#4285F4' },
   { name: 'Google Sheets', color: '#34A853' },
-  { name: 'Excel',     color: '#217346' },
-  { name: 'Gemini',    color: '#8B5CF6' },
+  { name: 'SQL',       color: '#F29111' },
+  { name: 'SAP',       color: '#0FAAFF' },
 ];
 
 export default function CurrentRole() {
   const { language } = useI18n();
   const isEs = language === 'es';
+  const carouselRef = useRef(null);
+
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -370, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 370, behavior: 'smooth' });
+    }
+  };
 
   const tagline     = isEs ? 'Empleo actual' : 'Current position';
   const roleLabel   = isEs ? 'Cargo' : 'Role';
@@ -34,6 +48,8 @@ export default function CurrentRole() {
     : 'Working in the procurement area of the Oral Care division handling large-scale data: building pipelines and reports connecting Snowflake/SQL with Domo for visualization, and automating procurement workflows with JavaScript and Google Sheets.';
 
   const stackLabel = isEs ? 'Stack en uso' : 'Stack in use';
+
+  const projects = colpalProjects[isEs ? 'es' : 'en'];
 
   return (
     <section className="relative py-32 overflow-hidden bg-primary">
@@ -146,6 +162,102 @@ export default function CurrentRole() {
                 </div>
               </motion.div>
 
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Horizontal Slider for Projects */}
+        <motion.div 
+          className="mt-20 w-full"
+          {...fadeUp(0.2)}
+        >
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="h-2 w-12 rounded-full bg-accent" />
+              <h3 className="text-2xl font-black uppercase tracking-tight text-foreground">
+                {isEs ? 'Proyectos Destacados' : 'Featured Projects'}
+              </h3>
+            </div>
+          </div>
+
+          {/* Carousel container */}
+          <div className="relative w-full group">
+            <div 
+              ref={carouselRef}
+              className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 scrollbar-hide px-4 md:px-0"
+            >
+              {projects.map((project) => (
+                <div 
+                  key={project.id}
+                  className="snap-center shrink-0 w-[85vw] md:w-[350px] h-full bg-white rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 overflow-hidden flex flex-col"
+                >
+                  {/* Top Banner (Colgate Blue Gradient with Logo) */}
+                  <div className="h-32 bg-gradient-to-br from-[#003494] to-[#0047BB] relative p-5 flex flex-col justify-between overflow-hidden">
+                     <div className="flex justify-between items-start z-10 relative">
+                       <div className="bg-white/20 backdrop-blur-md rounded-full px-3 py-1 w-fit flex items-center gap-1.5 border border-white/10">
+                         <span className="text-[9px] text-white font-bold tracking-widest uppercase">
+                           {isEs ? 'Privado' : 'Private'}
+                         </span>
+                       </div>
+                       {project.featured && (
+                         <div className="bg-yellow-500/90 backdrop-blur-md rounded-full p-1.5 flex items-center justify-center shadow-lg border border-yellow-400 text-white" title={isEs ? 'Proyecto Destacado' : 'Featured Project'}>
+                           <FaStar className="w-4 h-4 text-white" />
+                         </div>
+                       )}
+                     </div>
+                     
+                     <img 
+                        src={getImagePath('/work/colgate-palmolive.png')} 
+                        alt="Colgate-Palmolive" 
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-16 w-auto object-contain opacity-25 brightness-0 invert z-0" 
+                     />
+                     
+                     <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+                     <div className="absolute -top-10 -left-10 w-24 h-24 bg-accent/20 rounded-full blur-xl" />
+                  </div>
+
+                  {/* Bottom Content */}
+                  <div className="p-6 flex flex-col flex-1 bg-white">
+                    <h4 className="text-xl font-bold text-gray-900 mb-3 leading-snug">
+                      {project.title}
+                    </h4>
+                    
+                    <p className="text-sm text-gray-600 leading-relaxed mb-8 flex-1">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Pills */}
+                    <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-100">
+                      {project.stack.map(tech => (
+                        <span key={tech} className="border border-[#0047BB]/20 text-[#0047BB] bg-[#0047BB]/5 px-3 py-1 rounded-full text-xs font-semibold">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="absolute top-[40%] -left-6 md:-left-4 -translate-y-1/2 z-20">
+              <button 
+                onClick={scrollLeft}
+                className="btn-glass w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 shadow-lg"
+                aria-label="Scroll left"
+              >
+                <FaArrowLeft />
+              </button>
+            </div>
+            
+            <div className="absolute top-[40%] -right-6 md:-right-4 -translate-y-1/2 z-20">
+              <button 
+                onClick={scrollRight}
+                className="btn-glass w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 shadow-lg"
+                aria-label="Scroll right"
+              >
+                <FaArrowRight />
+              </button>
             </div>
           </div>
         </motion.div>
