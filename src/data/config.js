@@ -37,6 +37,8 @@ export const SKILLS_ICONS = {
   azure: 'azure.png',
   docker: 'docker.png',
   apacheSpark: 'apacheSpark.png',
+  git: 'git.png',
+  github: 'github-foundations.svg',
 };
 
 // ----------------------------------------------------------------------------

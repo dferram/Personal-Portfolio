@@ -75,7 +75,7 @@ export default function CurrentRole() {
 
         {/* Main card */}
         <motion.div
-          className="relative rounded-3xl border border-white/8 bg-primary-dark/60 backdrop-blur-sm overflow-hidden"
+          className="relative rounded-3xl border border-black/10 bg-primary-dark/60 backdrop-blur-sm overflow-hidden"
           {...fadeUp(0.14)}
         >
           {/* Top line accent */}
@@ -84,7 +84,7 @@ export default function CurrentRole() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-0">
 
             {/* Left — Logo */}
-            <div className="flex flex-col items-center justify-center gap-6 p-12 lg:border-r border-white/8">
+            <div className="flex flex-col items-center justify-center gap-6 p-12 lg:border-r border-black/10">
               <motion.div
                 initial={{ opacity: 0, scale: 0.85 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -131,7 +131,7 @@ export default function CurrentRole() {
 
               {/* Stack pills */}
               <motion.div
-                className="pt-5 border-t border-white/8"
+                className="pt-5 border-t border-black/10"
                 {...fadeUp(0.30)}
               >
                 <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted mb-4">

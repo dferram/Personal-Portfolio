@@ -73,6 +73,14 @@ const skillsDataRaw = [
       { name: 'Docker', icon: `/images/${SKILLS_ICONS.docker}` },
     ],
   },
+  {
+    id: 'tools',
+    title: 'Tools',
+    items: [
+      { name: 'Git', icon: `/images/${SKILLS_ICONS.git}` },
+      { name: 'GitHub', icon: `/logos/github.png` },
+    ],
+  },
 ];
 
 export const SKILLS_DATA = processImagePaths(skillsDataRaw);

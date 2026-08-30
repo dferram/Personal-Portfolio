@@ -64,20 +64,10 @@ export default function About() {
             </div>
 
             {/* Skills Section */}
-            <div className="space-y-8">
+            <div className="space-y-4">
               {SKILLS_DATA.map((category, catIndex) => {
-                const translatedTitle = t(`skills.categories.${category.id}.title`);
-                const categoryTitle =
-                  (typeof translatedTitle === 'string' && translatedTitle.length > 0 && translatedTitle) ||
-                  category.title ||
-                  '';
-
                 return (
-                  <motion.div key={category.id} className="space-y-4" {...fadeUp(catIndex * 0.1)}>
-                    <h3 className="text-2xl font-bold text-foreground md:text-3xl">
-                      {categoryTitle}
-                    </h3>
-
+                  <motion.div key={category.id} {...fadeUp(catIndex * 0.1)}>
                     {/* Skills Grid - Compact Glass Layout */}
                     <motion.div
                       className="flex flex-wrap gap-2 md:gap-3"
@@ -112,19 +102,15 @@ export default function About() {
 
           {/* Right Column: Photo with tape effect */}
           <motion.div
-            className="relative order-first lg:order-none flex justify-center"
+            className="relative order-first lg:order-none flex flex-col items-center gap-0"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
           >
             {/* Photo container */}
-            <div className="relative inline-block overflow-hidden rounded-lg shadow-clean-lg bg-white p-2">
-              {/* Tape effect decorations - cinta adhesiva translúcida tipo scotch */}
-              {/* POSICIONAMIENTO RELATIVO AL MARCO: El tape está dentro del contenedor del marco */}
-              {/* para que rote y escale junto con él. Usa porcentajes para adaptarse al tamaño. */}
-              {/* PERSONALIZACIÓN: Ajusta left-[25%] right-[25%] para posición horizontal relativa */}
-              {/* Ajusta -top-4 -bottom-4 para separación vertical del borde del marco */}
+            <div className="relative inline-block overflow-hidden rounded-lg shadow-clean-lg bg-white p-2 z-20">
+              {/* Tape effect decorations */}
               <div 
                 className="absolute -top-4 left-[25%] w-24 h-8 bg-blue-200/40 rotate-[-8deg] z-10"
                 style={{ backdropFilter: 'blur(1px)' }}
@@ -142,6 +128,21 @@ export default function About() {
                 />
               </div>
             </div>
+
+            {/* Spiderman GIF */}
+            <motion.div 
+              className="w-full max-w-[200px] md:max-w-[250px] flex justify-center -mt-8 z-10"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <img 
+                src={getImagePath('spiderman.gif')}
+                alt="Spiderman" 
+                className="w-full h-auto drop-shadow-xl"
+              />
+            </motion.div>
           </motion.div>
 
         </div>

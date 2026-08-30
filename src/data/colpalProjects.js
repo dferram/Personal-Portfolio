@@ -1,6 +1,13 @@
 export const colpalProjects = {
   en: [
     {
+      id: "procurement-pmo",
+      featured: true,
+      title: "Procurement PMO",
+      stack: ["Vue 3", "TailwindCSS", "Chart.js", "Google Apps Script"],
+      description: "A comprehensive project management tool tracking FTG (Follow-The-Green) projects. It operates entirely as a serverless web application using Google Apps Script and Sheets as the underlying database, featuring Gantt charts and executive reporting."
+    },
+    {
       id: "supplier-hub",
       featured: true,
       title: "Colgate-Palmolive Supplier Hub",
@@ -14,13 +21,6 @@ export const colpalProjects = {
       description: "A Google Apps Script automation tool designed for the Quality & Regulatory teams. It automates the end-to-end process of communicating with suppliers regarding lead content disclosure, generating personalized PDFs and handling Gmail responses."
     },
     {
-      id: "procurement-pmo",
-      featured: true,
-      title: "Procurement PMO",
-      stack: ["Vue 3", "TailwindCSS", "Chart.js", "Google Apps Script"],
-      description: "A comprehensive project management tool tracking FTG (Follow-The-Green) projects. It operates entirely as a serverless web application using Google Apps Script and Sheets as the underlying database, featuring Gantt charts and executive reporting."
-    },
-    {
       id: "massive-emails",
       title: "Massive Emails Automatization",
       stack: ["Google Sheets", "JavaScript", "HTML5", "CSS3"],
@@ -28,6 +28,13 @@ export const colpalProjects = {
     }
   ],
   es: [
+    {
+      id: "procurement-pmo",
+      featured: true,
+      title: "Procurement PMO",
+      stack: ["Vue 3", "TailwindCSS", "Chart.js", "Google Apps Script"],
+      description: "Herramienta de gestión para iniciativas FTG (Follow-The-Green). Opera como aplicación serverless utilizando Google Apps Script y Sheets como base de datos, integrando métricas financieras, reportes y diagramas de Gantt."
+    },
     {
       id: "supplier-hub",
       featured: true,
@@ -40,13 +47,6 @@ export const colpalProjects = {
       title: "Comunicación de Proveedores (Plomo)",
       stack: ["Google Sheets", "Gmail", "Google Apps Script", "HTML5"],
       description: "Herramienta de automatización construida con Google Apps Script para el equipo de Calidad. Automatiza el proceso de comunicación con proveedores sobre plomo en materias primas, generando PDFs personalizados y procesando respuestas."
-    },
-    {
-      id: "procurement-pmo",
-      featured: true,
-      title: "Procurement PMO",
-      stack: ["Vue 3", "TailwindCSS", "Chart.js", "Google Apps Script"],
-      description: "Herramienta de gestión para iniciativas FTG (Follow-The-Green). Opera como aplicación serverless utilizando Google Apps Script y Sheets como base de datos, integrando métricas financieras, reportes y diagramas de Gantt."
     },
     {
       id: "massive-emails",

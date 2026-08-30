@@ -24,7 +24,7 @@ export function getImagePath(imagePath) {
  * @returns {Object|Array|string} - The processed data with correct paths
  */
 export function processImagePaths(data) {
-  if (typeof data === 'string' && data.includes('/images/')) {
+  if (typeof data === 'string' && (data.includes('/images/') || data.includes('/logos/'))) {
     return getImagePath(data);
   }
   
