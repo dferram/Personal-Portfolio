@@ -31,17 +31,24 @@ const EventCollage = ({ experience }) => {
   const navigate = useNavigate();
   
   // Extraemos las fotos de este evento específico
-  let photos = [];
-  if (experience.images?.hero) photos.push(experience.images.hero);
-  if (experience.images?.gallery) photos.push(...experience.images.gallery);
-  if (photos.length === 0 && experience.imageUrl) photos.push(experience.imageUrl);
-  
-  // Limitamos a las posiciones disponibles (máximo 8) para mantener el look de pila desordenada
-  photos = photos.slice(0, PILE_POSITIONS.length);
+  const photos = React.useMemo(() => {
+    let p = [];
+    if (experience.images?.hero) p.push(experience.images.hero);
+    if (experience.images?.gallery) p.push(...experience.images.gallery);
+    if (p.length === 0 && experience.imageUrl) p.push(experience.imageUrl);
+    
+    // Eliminar duplicados (hero suele estar también en la galería)
+    p = [...new Set(p)];
+    
+    // Mezclar las fotos aleatoriamente para que el collage cambie
+    p = p.sort(() => Math.random() - 0.5);
+
+    // Limitamos a las posiciones disponibles (máximo 8) para mantener el look de pila desordenada
+    return p.slice(0, PILE_POSITIONS.length);
+  }, [experience]);
 
   const localizedTitle = getLocalizedValue(experience.title, language) || experience.title;
   const localizedDesc = getLocalizedValue(experience.description, language) || experience.description;
-  const hasDetail = !!(experience.story || experience.learnings);
 
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center relative flex flex-col md:flex-row items-center justify-center p-6 md:p-16 lg:p-24 pt-24 overflow-hidden">
@@ -63,14 +70,12 @@ const EventCollage = ({ experience }) => {
           <p className="text-muted text-sm md:text-base font-medium mb-8 leading-relaxed max-w-lg">
             {localizedDesc}
           </p>
-          {hasDetail && (
-            <button 
-              onClick={() => navigate(`/experiencia/${experience.id}`)}
-              className="btn-glass px-8 py-4 text-sm tracking-widest uppercase w-max"
-            >
-              {language === 'es' ? 'Ver historia completa' : 'Read full story'}
-            </button>
-          )}
+          <button 
+            onClick={() => navigate(`/experiencia/${experience.id}`)}
+            className="btn-glass px-8 py-4 text-sm tracking-widest uppercase w-max"
+          >
+            {language === 'es' ? 'Ver más...' : 'See more...'}
+          </button>
         </motion.div>
       </div>
 
@@ -101,8 +106,8 @@ const EventCollage = ({ experience }) => {
                     stiffness: 70,
                     damping: 12
                   }}
-                  className={`relative w-full overflow-hidden rounded-sm md:rounded-lg border-[6px] md:border-[12px] border-white shadow-[0_15px_35px_rgba(0,0,0,0.3)] bg-white group transition-transform duration-300 hover:scale-[1.1] ${hasDetail ? 'cursor-pointer' : ''}`}
-                  onClick={() => hasDetail && navigate(`/experiencia/${experience.id}`)}
+                  className={`relative w-full overflow-hidden rounded-sm md:rounded-lg border-[6px] md:border-[12px] border-white shadow-[0_15px_35px_rgba(0,0,0,0.3)] bg-white group transition-transform duration-300 hover:scale-[1.1] cursor-pointer`}
+                  onClick={() => navigate(`/experiencia/${experience.id}`)}
                 >
                   <img
                     src={photoUrl}
@@ -112,13 +117,11 @@ const EventCollage = ({ experience }) => {
                   />
                   
                   {/* Overlay sutil en Hover opcional para indicar clic */}
-                  {hasDetail && (
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="text-white font-bold tracking-widest text-xs uppercase bg-accent/80 px-4 py-2 rounded-full backdrop-blur-md shadow-lg">
-                        {language === 'es' ? 'Ver Detalles' : 'View Details'}
-                      </span>
-                    </div>
-                  )}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-white font-bold tracking-widest text-xs uppercase bg-accent/80 px-4 py-2 rounded-full backdrop-blur-md shadow-lg">
+                      {language === 'es' ? 'Ver Detalles' : 'View Details'}
+                    </span>
+                  </div>
                 </motion.div>
               </div>
             </div>
@@ -137,7 +140,23 @@ export default function ExperiencesPage() {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const scrollAmount = window.innerWidth;
-      container.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+      if (direction === 'right') {
+        // Si estamos al final (con un pequeño margen para subpíxeles), volvemos al inicio
+        if (container.scrollLeft >= maxScrollLeft - 10) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      } else {
+        // Si estamos al inicio, vamos al final
+        if (container.scrollLeft <= 10) {
+          container.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+      }
     }
   };
 
