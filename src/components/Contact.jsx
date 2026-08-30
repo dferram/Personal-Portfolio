@@ -1,5 +1,6 @@
-import { FaGithub, FaLinkedin, FaWhatsapp, FaFilePdf } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { FaGithub, FaLinkedin, FaWhatsapp, FaFilePdf, FaTimes } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n } from '@/i18n/I18nProvider';
 
 import { getImagePath } from '@/utils/paths';
@@ -44,6 +45,7 @@ const CONTACT_LINKS = [
 ];
 
 export default function Contact() {
+  const [isCvOpen, setIsCvOpen] = useState(false);
   const { t } = useI18n();
   const tag = t('contact.tag');
   const title = 'Fernando Ramírez';
@@ -63,22 +65,63 @@ export default function Contact() {
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
         >
-          {CONTACT_LINKS.map((link, i) => (
-            <motion.a
-              key={link.key}
-              custom={i}
-              variants={linkVariants}
-              href={link.href}
-              target={link.href.startsWith('http') ? '_blank' : undefined}
-              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="btn-glass group flex flex-1 items-center justify-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-accent"
-            >
-              <span className="transition-all duration-300">{link.icon}</span>
-              <span className="transition-all duration-300">{linkLabels?.[link.key] ?? link.key}</span>
-            </motion.a>
-          ))}
+          {CONTACT_LINKS.map((link, i) => {
+            const isCv = link.key === 'cv';
+            
+            return (
+              <motion.a
+                key={link.key}
+                custom={i}
+                variants={linkVariants}
+                href={link.href}
+                onClick={isCv ? (e) => { e.preventDefault(); setIsCvOpen(true); } : undefined}
+                target={!isCv && link.href.startsWith('http') ? '_blank' : undefined}
+                rel={!isCv && link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="btn-glass group flex flex-1 items-center justify-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-accent cursor-pointer"
+              >
+                <span className="transition-all duration-300">{link.icon}</span>
+                <span className="transition-all duration-300">{linkLabels?.[link.key] ?? link.key}</span>
+              </motion.a>
+            );
+          })}
         </motion.div>
       </div>
+
+      {/* CV Modal Overlay */}
+      <AnimatePresence>
+        {isCvOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 md:p-8 backdrop-blur-sm"
+            onClick={() => setIsCvOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-5xl h-[85vh] bg-primary rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setIsCvOpen(false)}
+                className="absolute top-4 right-8 md:right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white hover:bg-accent transition-colors backdrop-blur-md border border-white/10 shadow-lg"
+              >
+                <FaTimes size={18} />
+              </button>
+              
+              <iframe
+                src={`${CONTACT_LINKS.find(l => l.key === 'cv').href}#toolbar=0`}
+                className="w-full h-full border-none rounded-2xl"
+                title="CV Preview"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

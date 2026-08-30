@@ -3,6 +3,7 @@ import { FaGithub, FaExternalLinkAlt, FaStar, FaChevronLeft, FaChevronRight, FaA
 import { motion } from 'framer-motion';
 import { useI18n } from '@/i18n/I18nProvider';
 import { PROJECTS_DATA } from '../data/projects';
+import { getImagePath } from '@/utils/paths';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
@@ -18,6 +19,21 @@ const cardVariants = {
     scale: 1,
     transition: { duration: 0.5, ease: 'easeOut', delay: i * 0.1 },
   }),
+};
+
+const getRepoLogo = (repoName) => {
+  const name = repoName.toLowerCase();
+  if (name.includes('honatu')) return getImagePath('/logos/honatu.png');
+  if (name.includes('aniei')) return getImagePath('/logos/aniei.png');
+  if (name.includes('visionfeast')) return getImagePath('/logos/visionfeast.png');
+  if (name.includes('razoconnect')) return getImagePath('/logos/razoconnect.png');
+  if (name.includes('taskkey')) return getImagePath('/logos/taskkey.png');
+  if (name.includes('fuzzy')) return getImagePath('/logos/fuzzymed.png');
+  if (name.includes('leetcode')) return getImagePath('/logos/leetcode.png');
+  if (name.includes('github-course')) return getImagePath('/logos/sac-github-course.png');
+  if (name.includes('devpal')) return getImagePath('/logos/devpal.png');
+  
+  return getImagePath('/logos/github.png');
 };
 
 export default function Projects() {
@@ -91,7 +107,10 @@ export default function Projects() {
             >
               {repos.map((repo, i) => {
                 const localMatch = PROJECTS_DATA.find(p => p.links?.github?.toLowerCase() === repo.html_url.toLowerCase() || p.id === repo.name.toLowerCase());
-                const ogImageUrl = localMatch?.images?.hero || localMatch?.images?.gallery?.[0] || `https://opengraph.githubassets.com/1/dferram/${repo.name}`;
+                const ogImageUrl = localMatch?.images?.hero || localMatch?.images?.gallery?.[0] || getRepoLogo(repo.name);
+                
+                // Color intermedio único para que logos claros y oscuros sean visibles (sin cambios por modo oscuro)
+                const bgClass = 'bg-gray-300';
                 
                 return (
                   <motion.article
@@ -103,14 +122,18 @@ export default function Projects() {
                     viewport={{ once: true, margin: '-40px' }}
                     className="relative flex-none w-[320px] md:w-[400px] snap-center overflow-hidden rounded-2xl shadow-clean bg-primary border border-white/5 transition-all duration-500 hover:-translate-y-3 hover:shadow-accent/20 hover:border-accent/50"
                   >
-                    <div className="relative h-48 md:h-56 overflow-hidden bg-primary-dark">
+                    <div className={`relative h-48 md:h-56 overflow-hidden ${bgClass} flex items-center justify-center p-8`}>
                       <img
                         src={ogImageUrl}
                         alt={repo.name}
-                        className="h-full w-full object-cover transition duration-700 hover:scale-110 opacity-90 hover:opacity-100"
+                        className={`h-full w-full transition duration-700 hover:scale-110 opacity-90 hover:opacity-100 ${ogImageUrl.includes('/logos/') ? 'object-contain' : 'object-cover'}`}
                         loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.src = getRepoLogo(repo.name);
+                          e.currentTarget.className = "h-full w-full transition duration-700 hover:scale-110 opacity-90 hover:opacity-100 object-contain";
+                        }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                       <div className="absolute top-4 right-4 flex gap-2 pointer-events-none">
                          <span className="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-1 rounded-md text-xs font-bold text-white border border-white/10">
                             <FaStar className="text-accent" /> {repo.stargazers_count}
